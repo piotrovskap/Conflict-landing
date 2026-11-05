@@ -1,0 +1,30 @@
+// ===== Reveal słowo-po-słowie przy scrollu (manifest LAB) =====
+const stmt = document.getElementById("lab-statement");
+
+if (stmt) {
+  const words = [...stmt.querySelectorAll(".lab__word")];
+  let ticking = false;
+
+  function update() {
+    ticking = false;
+    const rect = stmt.getBoundingClientRect();
+    const vh = window.innerHeight || 1;
+    // 0 gdy napis wchodzi od dołu, 1 gdy przewinie się do górnej strefy
+    const start = vh * 0.85;
+    const end = vh * 0.3;
+    const p = Math.max(0, Math.min(1, (start - rect.top) / (start - end)));
+    const lit = Math.round(p * words.length);
+    words.forEach((w, i) => w.classList.toggle("is-lit", i < lit));
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  update();
+}
