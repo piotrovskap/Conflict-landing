@@ -1008,13 +1008,18 @@ body {
 }
 
 /* ===== FOOTER (jak inspiracja) ===== */
+/* wrapper — trzyma margines ramki i pozwala logo wystać poza box (footer ma overflow:hidden) */
+.footer-wrap {
+  position: relative;
+  margin: 0 4vw 4vw; /* w ramce, równo z nav/hero */
+}
 .footer {
   --fpad-x: clamp(28px, 4vw, 64px);
   position: relative;
+  z-index: 1; /* box zasłania symbol, zostaje tylko wystający dół */
   overflow: hidden;
   background: #090a09;
   border: 1px solid var(--line);
-  margin: 0 4vw 4vw; /* w ramce, równo z nav/hero */
   padding: clamp(40px, 6vh, 90px) var(--fpad-x) clamp(28px, 4vh, 48px);
 }
 /* pełna pozioma linia — dotyka bocznych krawędzi ramki */
@@ -1040,20 +1045,21 @@ body {
   color: #a8a6a2;
   font-size: clamp(0.95rem, 1.4vw, 1.1rem);
 }
-/* symbol z poświatą — dolna połowa chowa się za paskiem social */
+/* symbol [O] — góra wystaje pod Contact us, dół chowa się za glass-paskiem social */
 .footer__symbol {
   position: relative;
-  z-index: 1;
+  z-index: 0; /* pod paskiem social (ten ma z-index 2) → glass go rozmazuje */
   display: flex;
   justify-content: center;
   margin: clamp(28px, 6vh, 72px) 0 0;
+  pointer-events: none;
 }
 .footer__symbol::before {
   content: "";
   position: absolute;
   top: 50%;
   left: 50%;
-  width: clamp(280px, 42vw, 520px);
+  width: clamp(520px, 72vw, 940px);
   aspect-ratio: 1;
   transform: translate(-50%, -50%);
   background: radial-gradient(circle, rgba(219, 57, 76, 0.45), transparent 62%);
@@ -1062,10 +1068,9 @@ body {
 }
 .footer__symbol img {
   position: relative;
-  height: clamp(140px, 24vh, 260px);
+  height: clamp(300px, 46vh, 560px); /* większy */
   width: auto;
-  /* symbol OSTRY — rozmazuje go dopiero glass socialu tam, gdzie nachodzi */
-  filter: drop-shadow(0 0 24px rgba(219, 57, 76, 0.5));
+  filter: drop-shadow(0 0 28px rgba(219, 57, 76, 0.55));
 }
 
 /* jeden glass-box: social + kolumny (nachodzi na dolną połowę symbolu) */
@@ -2104,11 +2109,18 @@ body {
 
 /* ===== Footer: mapa strony (logo+adresy | kolumny) ===== */
 .footer__map {
+  position: relative;
+  z-index: 2; /* nad symbolem → glass rozmazuje jego dolną część */
   display: grid;
   grid-template-columns: 1fr 1.5fr;
   gap: clamp(32px, 6vw, 80px);
   align-items: start;
-  margin-top: clamp(28px, 4vw, 48px);
+  /* pełna szerokość boxa, stykający się z paskiem social → ciągłe szkło */
+  margin: 0 calc(-1 * var(--fpad-x));
+  padding: clamp(28px, 4vw, 48px) var(--fpad-x) clamp(10px, 2vw, 24px);
+  background: rgba(10, 11, 10, 0.5);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
 }
 .footer__map-brand { min-width: 0; max-width: 44ch; }
 .footer__addresses {
@@ -2369,8 +2381,13 @@ body {
   /* 100% szerokości boxa — do krawędzi ramki footera */
   margin-left: calc(-1 * var(--fpad-x));
   margin-right: calc(-1 * var(--fpad-x));
+  /* nachodzi na symbol i rozmazuje go (glass) — mocniej schowany pod spodem */
+  margin-top: clamp(-210px, -22vh, -140px);
   border-left: none;
   border-right: none;
+  background: rgba(10, 11, 10, 0.5);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
 }
 .connect__row .footer__soc { border-right: 1px solid var(--line); border-bottom: none; }
 .connect__row .footer__soc:last-child { border-right: none; }
