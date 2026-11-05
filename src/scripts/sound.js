@@ -1,7 +1,20 @@
 // ===== Dźwięki UI (cuelume) =====
-import { play, unlock, setVolume } from "/node_modules/cuelume/dist/index.js";
+import { play, unlock, setVolume, setEnabled } from "/node_modules/cuelume/dist/index.js";
 
 setVolume(0.5);
+
+// Przełącznik dźwięku w navbarze
+const soundBtn = document.getElementById("nav-sound");
+let muted = false;
+soundBtn?.addEventListener("click", () => {
+  muted = !muted;
+  try { setEnabled(!muted); } catch (e) {}
+  soundBtn.classList.toggle("is-muted", muted);
+  soundBtn.setAttribute("aria-pressed", String(muted));
+  // jedno źródło prawdy — tło i glitch słuchają tego zdarzenia
+  window.dispatchEvent(new CustomEvent("cue:mute", { detail: { muted } }));
+  if (!muted) { arm(); setTimeout(() => play("tap", { volume: 0.4 }), 40); } // feedback przy włączeniu
+});
 
 // Odblokowanie AudioContext — tylko gesty dające user-activation (klik/klawisz/dotyk,
 // NIE wheel — scroll nie aktywuje audio). Próbujemy aż faktycznie wystartuje.
@@ -40,9 +53,9 @@ function softHover(el, sound, volume) {
   setTimeout(() => hoverGuard.delete(el), 150);
 }
 document.addEventListener("pointerover", (e) => {
-  if (!unlocked) return;
   const el = e.target instanceof Element ? e.target : null;
   if (!el) return;
+  if (!unlocked) { arm(); return; } // pierwszy hover tylko odblokowuje (przeglądarka i tak milczy bez gestu)
   const menu = el.closest(".nav__item, .nav__panel a, .megamenu a, .mmbar, .mcat__links a, .feat");
   if (menu) return void softHover(menu, "tick", 0.2);
   const btn = el.closest(".btn, .dock__item, .footer__soc");

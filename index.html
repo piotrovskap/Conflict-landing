@@ -52,6 +52,13 @@
           values="1.1 0 0 0 0  0 1 0 0 0  0 0 0.9 0 0  0 0 0 1 0" />
         <feBlend in="disp2" in2="hot" mode="screen" />
       </filter>
+
+      <!-- CRT barrel distortion (mapa przemieszczenia generowana w JS) -->
+      <filter id="crt-barrel" x="-16%" y="-16%" width="132%" height="132%" color-interpolation-filters="sRGB">
+        <feImage id="crt-barrel-map" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" result="bmap" />
+        <feGaussianBlur in="bmap" stdDeviation="1.2" result="bmapSmooth" />
+        <feDisplacementMap in="SourceGraphic" in2="bmapSmooth" scale="210" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
     </defs>
   </svg>
 
@@ -340,10 +347,10 @@
       <a href="#" class="nav__item">Blog</a>
     </nav>
 
-    <div class="nav__search">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-      <input type="search" placeholder="Search…" aria-label="Search" />
-    </div>
+    <button class="nav__sound" id="nav-sound" aria-label="Przełącz dźwięk" aria-pressed="false">
+      <svg class="nav__sound-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 8.5a4 4 0 0 1 0 7M18.8 6a7 7 0 0 1 0 12"/></svg>
+      <svg class="nav__sound-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 9.5l5 5M21.5 9.5l-5 5"/></svg>
+    </button>
 
     <div class="nav__actions">
       <a href="#" class="nav__item nav__contact">Contact</a>
@@ -544,10 +551,6 @@
   <!-- ===== 5 pustych sekcji (reużywalny komponent .panel) ===== -->
   <!-- ===== WORK — pajacyki na sznurkach (portfolio w oknach) ===== -->
   <section class="puppets" id="work">
-    <div class="puppets__head" data-reveal>
-      <span class="panel__index">01</span>
-      <h2 class="panel__title">Work</h2>
-    </div>
     <div class="puppets__stage">
       <!-- Rig = box w rozmiarze ręki; sznurki są liczone względem niego (zostają na palcach) -->
       <div class="puppets__rig">
@@ -725,6 +728,7 @@
     </div>
     <div class="cases-scroll" id="cases-scroll">
      <div class="cases-pin">
+      <div class="cases-screen">
       <div class="cases-track" id="cases-track">
       <article class="cs" data-reveal>
         <div class="cs__left">
@@ -786,8 +790,68 @@
         <div class="cs__media cs__media--3" aria-hidden="true"><span class="cs__stat">2.4×</span></div>
       </article>
       </div><!-- /cases-track -->
+      <div class="cases-fx" aria-hidden="true"></div>
+      </div><!-- /cases-screen -->
      </div><!-- /cases-pin -->
     </div><!-- /cases-scroll -->
+  </section>
+
+  <!-- ===== DISCIPLINES → TEAM (reveal słowo-po-słowie, przechodzi w czerwony gradient) ===== -->
+  <section class="places" id="team" aria-label="Our disciplines">
+    <p class="places__kicker" data-reveal>Every discipline, in-house</p>
+    <p class="places__statement" id="places-statement">
+      <span class="place__word">AI Engineering.</span>
+      <span class="place__word">Product Design.</span>
+      <span class="place__word">ML Engineering.</span>
+      <span class="place__word">UX Research.</span>
+      <span class="place__word">LLM Engineering.</span>
+      <span class="place__word">Design Systems.</span>
+      <span class="place__word">Frontend.</span>
+      <span class="place__word">Motion Design.</span>
+      <span class="place__word">Backend.</span>
+      <span class="place__word">Prompt Engineering.</span>
+      <span class="place__word">Agent Engineering.</span>
+      <span class="place__word">Full-Stack.</span>
+      <span class="place__word">Computer Vision.</span>
+      <span class="place__word">Mobile.</span>
+      <span class="place__word">NLP.</span>
+      <span class="place__word">API Design.</span>
+      <span class="place__word">Model Training.</span>
+      <span class="place__word">Data Science.</span>
+      <span class="place__word">Data Engineering.</span>
+      <span class="place__word">Data Analytics.</span>
+      <span class="place__word">Database Dev.</span>
+      <span class="place__word">Cloud Architecture.</span>
+      <span class="place__word">DevOps.</span>
+      <span class="place__word">MLOps.</span>
+      <span class="place__word">Platform Engineering.</span>
+      <span class="place__word">Site Reliability.</span>
+      <span class="place__word">Observability.</span>
+      <span class="place__word">Infrastructure.</span>
+      <span class="place__word">QA Automation.</span>
+      <span class="place__word">Security.</span>
+    </p>
+    <p class="places__team" id="places-team"><span class="place__word place__word--team" data-text="One team.">One&nbsp;team.</span></p>
+
+    <div class="team__marquee" id="team-marquee">
+      <ul class="team__cards" id="team-cards" aria-label="Certified engineers">
+        <li class="team__card"><span class="team__num">01</span><div class="team__meta"><span class="team__cert">Certified · X</span><h3 class="team__name">Name Surname</h3></div></li>
+        <li class="team__card"><span class="team__num">02</span><div class="team__meta"><span class="team__cert">Certified · X</span><h3 class="team__name">Name Surname</h3></div></li>
+        <li class="team__card"><span class="team__num">03</span><div class="team__meta"><span class="team__cert">Certified · X</span><h3 class="team__name">Name Surname</h3></div></li>
+        <li class="team__card"><span class="team__num">04</span><div class="team__meta"><span class="team__cert">Certified · X</span><h3 class="team__name">Name Surname</h3></div></li>
+        <li class="team__card"><span class="team__num">05</span><div class="team__meta"><span class="team__cert">Certified · X</span><h3 class="team__name">Name Surname</h3></div></li>
+        <li class="team__card"><span class="team__num">06</span><div class="team__meta"><span class="team__cert">Certified · X</span><h3 class="team__name">Name Surname</h3></div></li>
+        <li class="team__card"><span class="team__num">07</span><div class="team__meta"><span class="team__cert">Certified · X</span><h3 class="team__name">Name Surname</h3></div></li>
+        <li class="team__card"><span class="team__num">08</span><div class="team__meta"><span class="team__cert">Certified · X</span><h3 class="team__name">Name Surname</h3></div></li>
+        <li class="team__card"><span class="team__num">09</span><div class="team__meta"><span class="team__cert">Certified · X</span><h3 class="team__name">Name Surname</h3></div></li>
+        <li class="team__card"><span class="team__num">10</span><div class="team__meta"><span class="team__cert">Certified · X</span><h3 class="team__name">Name Surname</h3></div></li>
+        <li class="team__card"><span class="team__num">11</span><div class="team__meta"><span class="team__cert">Certified · X</span><h3 class="team__name">Name Surname</h3></div></li>
+        <li class="team__card"><span class="team__num">12</span><div class="team__meta"><span class="team__cert">Certified · X</span><h3 class="team__name">Name Surname</h3></div></li>
+        <li class="team__card"><span class="team__num">13</span><div class="team__meta"><span class="team__cert">Certified · X</span><h3 class="team__name">Name Surname</h3></div></li>
+        <li class="team__card"><span class="team__num">14</span><div class="team__meta"><span class="team__cert">Certified · X</span><h3 class="team__name">Name Surname</h3></div></li>
+        <li class="team__card"><span class="team__num">15</span><div class="team__meta"><span class="team__cert">Certified · X</span><h3 class="team__name">Name Surname</h3></div></li>
+      </ul>
+    </div>
   </section>
 
   <!-- ===== TESTIMONIALS (carousel, na czarnym) ===== -->
@@ -891,10 +955,9 @@
       <div class="footer__map-brand">
         <a class="footer__logo" href="#hero"><img src="materials/logo.svg" alt="CONFLICT" /></a>
         <p class="footer__desc">In the new era of AI-native engineering we build the infrastructure, software, and AI that power serious products.</p>
-        <ul class="footer__addresses">
-          <li><strong>Costa Rica</strong><span>San José</span></li>
-          <li><strong>United States</strong><span>Miami</span></li>
-          <li><strong>Poland</strong><span>Wrocław</span></li>
+        <ul class="footer__contact">
+          <li><a href="mailto:hi@weareconflict.com">hi@weareconflict.com</a></li>
+          <li><a href="tel:+13052095818">+1 (305) 209-5818</a></li>
         </ul>
       </div>
 
@@ -930,11 +993,14 @@
     <a href="#">Cookie Policy</a>
   </div>
 
+  <div class="page-glitch" id="page-glitch" aria-hidden="true"></div>
+
   <script src="src/scripts/smooth-scroll.js" type="module"></script>
   <script src="src/scripts/nav.js" type="module"></script>
   <script src="src/scripts/main.js" type="module"></script>
   <script src="src/scripts/hero-scroll.js" type="module"></script>
   <script src="src/scripts/cases-scroll.js" type="module"></script>
+  <script src="src/scripts/crt-barrel.js" type="module"></script>
   <script src="src/scripts/glitch.js" type="module"></script>
   <script src="src/scripts/fit-title.js" type="module"></script>
   <script src="src/scripts/carousel.js" type="module"></script>
@@ -944,5 +1010,7 @@
   <script src="src/scripts/words-reveal.js" type="module"></script>
   <script src="src/scripts/puppets.js" type="module"></script>
   <script src="src/scripts/sound.js" type="module"></script>
+  <script src="src/scripts/page-glitch.js" type="module"></script>
+  <script src="src/scripts/ambient.js" type="module"></script>
 </body>
 </html>
