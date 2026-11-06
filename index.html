@@ -9,6 +9,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="node_modules/lenis/dist/lenis.css" />
   <link rel="stylesheet" href="src/styles/main.css" />
+  <!-- krytyczny styl intro — zakrywa stronę natychmiast, zanim wczyta się main.css -->
+  <style>
+    #intro { position: fixed; inset: 0; z-index: 10000; background: #060705;
+      display: flex; align-items: center; justify-content: center; }
+  </style>
 </head>
 <body>
   <!-- Filtr glitch/displacement (reużywalny: filter: url(#fx-glitch)) -->
@@ -36,6 +41,25 @@
         <feBlend in="rg" in2="b" mode="screen" />
       </filter>
 
+      <!-- wariant glitcha dla logo: bez niebieskiego przesunięcia (brak fioletowego ghosta) -->
+      <filter id="fx-glitch-logo" x="-10%" y="-10%" width="120%" height="120%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.00001 0.0006" numOctaves="1" seed="7" result="noiseL">
+          <animate attributeName="baseFrequency" dur="7s" repeatCount="indefinite"
+            values="0.00001 0.0006; 0.00001 0.0022; 0.00001 0.0005; 0.00001 0.0018; 0.00001 0.0006" />
+        </feTurbulence>
+        <feDisplacementMap in="SourceGraphic" in2="noiseL" xChannelSelector="R" yChannelSelector="G" result="dispL">
+          <animate attributeName="scale" dur="5s" repeatCount="indefinite"
+            values="12; 28; 10; 40; 14; 12" keyTimes="0; 0.2; 0.5; 0.72; 0.9; 1" />
+        </feDisplacementMap>
+        <!-- tylko lekkie czerwone przesunięcie; zielony i niebieski zostają na miejscu -->
+        <feOffset in="dispL" dx="3" dy="0" result="rshL" />
+        <feColorMatrix in="rshL" type="matrix" result="rL"
+          values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" />
+        <feColorMatrix in="dispL" type="matrix" result="gbL"
+          values="0 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0" />
+        <feBlend in="rL" in2="gbL" mode="screen" />
+      </filter>
+
       <!-- Wariant B: poziomy smear / pixel-stretch (data-mosh) -->
       <filter id="fx-glitch-2" x="-20%" y="-10%" width="140%" height="120%">
         <feTurbulence type="turbulence" baseFrequency="0.0003 0.08" numOctaves="2" seed="4" result="noise2">
@@ -61,6 +85,14 @@
       </filter>
     </defs>
   </svg>
+
+  <!-- ===== INTRO — małe logo na środku ===== -->
+  <div class="intro" id="intro" role="presentation">
+    <div class="intro__logo">
+      <img class="intro__mark" src="materials/o.svg" alt="" />
+      <span class="intro__tm">™</span>
+    </div>
+  </div>
 
   <!-- ===== NAV (reużywalny komponent z mega-menu) ===== -->
   <header class="nav" id="nav">
@@ -549,41 +581,6 @@
   </section>
 
   <!-- ===== 5 pustych sekcji (reużywalny komponent .panel) ===== -->
-  <!-- ===== WORK — pajacyki na sznurkach (portfolio w oknach) ===== -->
-  <section class="puppets" id="work">
-    <div class="puppets__stage">
-      <!-- Rig = box w rozmiarze ręki; sznurki są liczone względem niego (zostają na palcach) -->
-      <div class="puppets__rig">
-        <img class="puppets__hand" src="materials/hand.png" alt="" onerror="this.closest('.puppets__rig').classList.add('no-hand')" />
-
-        <!-- Okna na sznurkach. --fx/--fy: opuszek palca (% ręki); --len: długość; --w: szerokość -->
-        <div class="puppet" style="--fx:31%; --fy:72%; --len:70px;  --w:200px; --dur:6.5s; --delay:-0.4s; --a1:-3deg;   --a2:2.5deg;">
-          <span class="puppet__knot"></span><span class="puppet__string"></span>
-          <figure class="win"><div class="win__bar"><span class="win__dots"></span><span class="win__ctrls">▢ ✕</span></div><img src="src/portfolio/01.jpg" alt="Project 01" onerror="this.closest('.win').classList.add('is-empty'); this.remove();" /></figure>
-        </div>
-        <div class="puppet" style="--fx:43%; --fy:82%; --len:160px; --w:240px; --dur:7.6s; --delay:-1.2s; --a1:-2deg;   --a2:3deg;">
-          <span class="puppet__knot"></span><span class="puppet__string"></span>
-          <figure class="win"><div class="win__bar"><span class="win__dots"></span><span class="win__ctrls">▢ ✕</span></div><img src="src/portfolio/02.jpg" alt="Project 02" onerror="this.closest('.win').classList.add('is-empty'); this.remove();" /></figure>
-        </div>
-        <div class="puppet" style="--fx:53%; --fy:78%; --len:95px;  --w:210px; --dur:6s;   --delay:-2.1s; --a1:-3.5deg; --a2:2deg;">
-          <span class="puppet__knot"></span><span class="puppet__string"></span>
-          <figure class="win"><div class="win__bar"><span class="win__dots"></span><span class="win__ctrls">▢ ✕</span></div><img src="src/portfolio/03.jpg" alt="Project 03" onerror="this.closest('.win').classList.add('is-empty'); this.remove();" /></figure>
-        </div>
-        <div class="puppet" style="--fx:61%; --fy:66%; --len:300px; --w:180px; --dur:8.2s; --delay:-0.8s; --a1:-2.5deg; --a2:2.5deg;">
-          <span class="puppet__knot"></span><span class="puppet__string"></span>
-          <figure class="win"><div class="win__bar"><span class="win__dots"></span><span class="win__ctrls">▢ ✕</span></div><img src="src/portfolio/04.jpg" alt="Project 04" onerror="this.closest('.win').classList.add('is-empty'); this.remove();" /></figure>
-        </div>
-        <div class="puppet" style="--fx:37%; --fy:70%; --len:330px; --w:250px; --dur:7s;   --delay:-1.7s; --a1:-2deg;   --a2:3.5deg;">
-          <span class="puppet__knot"></span><span class="puppet__string"></span>
-          <figure class="win"><div class="win__bar"><span class="win__dots"></span><span class="win__ctrls">▢ ✕</span></div><img src="src/portfolio/05.jpg" alt="Project 05" onerror="this.closest('.win').classList.add('is-empty'); this.remove();" /></figure>
-        </div>
-        <div class="puppet" style="--fx:48%; --fy:84%; --len:470px; --w:220px; --dur:6.8s; --delay:-2.6s; --a1:-3deg;   --a2:2deg;">
-          <span class="puppet__knot"></span><span class="puppet__string"></span>
-          <figure class="win"><div class="win__bar"><span class="win__dots"></span><span class="win__ctrls">▢ ✕</span></div><img src="src/portfolio/01.jpg" alt="Project 01" onerror="this.closest('.win').classList.add('is-empty'); this.remove();" /></figure>
-        </div>
-      </div>
-    </div>
-  </section>
   <!-- ===== SERVICES — rozsuwany akordeon (usługi ogólne) ===== -->
   <section class="svc" id="services" aria-label="Services">
     <div class="svc__head" data-reveal>
@@ -717,6 +714,61 @@
       <span>Explore more services</span>
       <em aria-hidden="true">→</em>
     </a>
+  </section>
+  <!-- ===== WORK — scroll-journey (dwie ręce, Creation of Adam) ===== -->
+  <section class="journey" id="work" aria-label="The work">
+    <div class="journey__scroll" id="journey-scroll">
+      <div class="journey__pin">
+        <div class="journey__glow" aria-hidden="true"></div>
+        <img class="journey__hand journey__hand--a" src="materials/hand-left.png" alt="" />
+        <img class="journey__hand journey__hand--b" src="materials/hand-right.png" alt="" />
+        <div class="journey__spark" aria-hidden="true"></div>
+        <div class="journey__words">
+          <div class="journey__phase journey__phase--intro">
+            <span class="journey__w journey__w--tl">What you</span>
+            <span class="journey__w journey__w--br">imagine</span>
+          </div>
+          <h2 class="journey__center">We build it.</h2>
+        </div>
+        <span class="journey__hint" aria-hidden="true">Scroll</span>
+      </div>
+    </div>
+
+    <!-- stara ręka z linkami — ukryta na razie -->
+    <div class="puppets-hidden" hidden>
+    <div class="puppets__stage">
+      <!-- Rig = box w rozmiarze ręki; sznurki są liczone względem niego (zostają na palcach) -->
+      <div class="puppets__rig">
+        <img class="puppets__hand" src="materials/hand.png" alt="" onerror="this.closest('.puppets__rig').classList.add('no-hand')" />
+
+        <!-- Okna na sznurkach. --fx/--fy: opuszek palca (% ręki); --len: długość; --w: szerokość -->
+        <div class="puppet" style="--fx:31%; --fy:72%; --len:70px;  --w:200px; --dur:6.5s; --delay:-0.4s; --a1:-3deg;   --a2:2.5deg;">
+          <span class="puppet__knot"></span><span class="puppet__string"></span>
+          <figure class="win"><div class="win__bar"><span class="win__dots"></span><span class="win__ctrls">▢ ✕</span></div><img src="src/portfolio/01.jpg" alt="Project 01" onerror="this.closest('.win').classList.add('is-empty'); this.remove();" /></figure>
+        </div>
+        <div class="puppet" style="--fx:43%; --fy:82%; --len:160px; --w:240px; --dur:7.6s; --delay:-1.2s; --a1:-2deg;   --a2:3deg;">
+          <span class="puppet__knot"></span><span class="puppet__string"></span>
+          <figure class="win"><div class="win__bar"><span class="win__dots"></span><span class="win__ctrls">▢ ✕</span></div><img src="src/portfolio/02.jpg" alt="Project 02" onerror="this.closest('.win').classList.add('is-empty'); this.remove();" /></figure>
+        </div>
+        <div class="puppet" style="--fx:53%; --fy:78%; --len:95px;  --w:210px; --dur:6s;   --delay:-2.1s; --a1:-3.5deg; --a2:2deg;">
+          <span class="puppet__knot"></span><span class="puppet__string"></span>
+          <figure class="win"><div class="win__bar"><span class="win__dots"></span><span class="win__ctrls">▢ ✕</span></div><img src="src/portfolio/03.jpg" alt="Project 03" onerror="this.closest('.win').classList.add('is-empty'); this.remove();" /></figure>
+        </div>
+        <div class="puppet" style="--fx:61%; --fy:66%; --len:300px; --w:180px; --dur:8.2s; --delay:-0.8s; --a1:-2.5deg; --a2:2.5deg;">
+          <span class="puppet__knot"></span><span class="puppet__string"></span>
+          <figure class="win"><div class="win__bar"><span class="win__dots"></span><span class="win__ctrls">▢ ✕</span></div><img src="src/portfolio/04.jpg" alt="Project 04" onerror="this.closest('.win').classList.add('is-empty'); this.remove();" /></figure>
+        </div>
+        <div class="puppet" style="--fx:37%; --fy:70%; --len:330px; --w:250px; --dur:7s;   --delay:-1.7s; --a1:-2deg;   --a2:3.5deg;">
+          <span class="puppet__knot"></span><span class="puppet__string"></span>
+          <figure class="win"><div class="win__bar"><span class="win__dots"></span><span class="win__ctrls">▢ ✕</span></div><img src="src/portfolio/05.jpg" alt="Project 05" onerror="this.closest('.win').classList.add('is-empty'); this.remove();" /></figure>
+        </div>
+        <div class="puppet" style="--fx:48%; --fy:84%; --len:470px; --w:220px; --dur:6.8s; --delay:-2.6s; --a1:-3deg;   --a2:2deg;">
+          <span class="puppet__knot"></span><span class="puppet__string"></span>
+          <figure class="win"><div class="win__bar"><span class="win__dots"></span><span class="win__ctrls">▢ ✕</span></div><img src="src/portfolio/01.jpg" alt="Project 01" onerror="this.closest('.win').classList.add('is-empty'); this.remove();" /></figure>
+        </div>
+      </div>
+    </div>
+    </div><!-- /puppets-hidden -->
   </section>
 
   <!-- ===== CASE STUDIES ===== -->
@@ -997,6 +1049,7 @@
 
   <div class="page-glitch" id="page-glitch" aria-hidden="true"></div>
 
+  <script src="src/scripts/intro.js" type="module"></script>
   <script src="src/scripts/smooth-scroll.js" type="module"></script>
   <script src="src/scripts/nav.js" type="module"></script>
   <script src="src/scripts/main.js" type="module"></script>
@@ -1011,6 +1064,7 @@
   <script src="src/scripts/accordion.js" type="module"></script>
   <script src="src/scripts/words-reveal.js" type="module"></script>
   <script src="src/scripts/puppets.js" type="module"></script>
+  <script src="src/scripts/journey.js" type="module"></script>
   <script src="src/scripts/sound.js" type="module"></script>
   <script src="src/scripts/page-glitch.js" type="module"></script>
   <script src="src/scripts/ambient.js" type="module"></script>
