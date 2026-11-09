@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — CONFLICT</title>
+  <meta name="description" content="Engineering with taste. Execution with teeth. Platform engineering, AI enablement, application development, e-commerce engineering and consulting — from zero to production." />
+  <link rel="icon" href="materials/favicon/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="materials/favicon/favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="materials/favicon/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="node_modules/lenis/dist/lenis.css" />
+  <link rel="stylesheet" href="src/styles/main.css?v=20261109f" />
+  <link rel="stylesheet" href="src/styles/subpage.css?v=20261109f" />
+</head>
+<body class="page-sub">
+  <!-- Filtr glitch/displacement (reużywalny: filter: url(#fx-glitch)) -->
+  <svg class="fx-glitch-defs" aria-hidden="true" width="0" height="0">
+    <defs>
+      <filter id="fx-glitch" x="-10%" y="-10%" width="120%" height="120%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.00001 0.0006" numOctaves="1" seed="7" result="noise">
+          <animate attributeName="baseFrequency" dur="7s" repeatCount="indefinite"
+            values="0.00001 0.0006; 0.00001 0.0022; 0.00001 0.0005; 0.00001 0.0018; 0.00001 0.0006" />
+        </feTurbulence>
+        <feDisplacementMap in="SourceGraphic" in2="noise" xChannelSelector="R" yChannelSelector="G" result="disp">
+          <animate attributeName="scale" dur="5s" repeatCount="indefinite"
+            values="12; 28; 10; 40; 14; 12" keyTimes="0; 0.2; 0.5; 0.72; 0.9; 1" />
+        </feDisplacementMap>
+        <!-- Rozszczepienie kanałów RGB (chromatic aberration) -->
+        <feOffset in="disp" dx="4" dy="0" result="rsh" />
+        <feColorMatrix in="rsh" type="matrix" result="r"
+          values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" />
+        <feOffset in="disp" dx="-4" dy="0" result="bsh" />
+        <feColorMatrix in="bsh" type="matrix" result="b"
+          values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" />
+        <feColorMatrix in="disp" type="matrix" result="g"
+          values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" />
+        <feBlend in="r" in2="g" mode="screen" result="rg" />
+        <feBlend in="rg" in2="b" mode="screen" />
+      </filter>
+
+      <!-- wariant glitcha dla logo: bez niebieskiego przesunięcia (brak fioletowego ghosta) -->
+      <filter id="fx-glitch-logo" x="-10%" y="-10%" width="120%" height="120%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.00001 0.0006" numOctaves="1" seed="7" result="noiseL">
+          <animate attributeName="baseFrequency" dur="7s" repeatCount="indefinite"
+            values="0.00001 0.0006; 0.00001 0.0022; 0.00001 0.0005; 0.00001 0.0018; 0.00001 0.0006" />
+        </feTurbulence>
+        <feDisplacementMap in="SourceGraphic" in2="noiseL" xChannelSelector="R" yChannelSelector="G" result="dispL">
+          <animate attributeName="scale" dur="5s" repeatCount="indefinite"
+            values="12; 28; 10; 40; 14; 12" keyTimes="0; 0.2; 0.5; 0.72; 0.9; 1" />
+        </feDisplacementMap>
+        <!-- tylko lekkie czerwone przesunięcie; zielony i niebieski zostają na miejscu -->
+        <feOffset in="dispL" dx="3" dy="0" result="rshL" />
+        <feColorMatrix in="rshL" type="matrix" result="rL"
+          values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" />
+        <feColorMatrix in="dispL" type="matrix" result="gbL"
+          values="0 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0" />
+        <feBlend in="rL" in2="gbL" mode="screen" />
+      </filter>
+
+      <!-- Wariant B: poziomy smear / pixel-stretch (data-mosh) -->
+      <filter id="fx-glitch-2" x="-20%" y="-10%" width="140%" height="120%">
+        <feTurbulence type="turbulence" baseFrequency="0.0003 0.08" numOctaves="2" seed="4" result="noise2">
+          <animate attributeName="baseFrequency" dur="4s" repeatCount="indefinite"
+            values="0.0003 0.08; 0.0012 0.14; 0.0003 0.06; 0.0012 0.08" />
+        </feTurbulence>
+        <feDisplacementMap in="SourceGraphic" in2="noise2" xChannelSelector="R" yChannelSelector="A" result="disp2">
+          <animate attributeName="scale" dur="4s" repeatCount="indefinite"
+            values="40; 90; 30; 70; 40" keyTimes="0; 0.25; 0.5; 0.8; 1" />
+        </feDisplacementMap>
+        <!-- poziomy motion-blur = świetlne smugi -->
+        <feGaussianBlur in="disp2" stdDeviation="9 0" result="smear" />
+        <feColorMatrix in="smear" type="matrix" result="hot"
+          values="1.1 0 0 0 0  0 1 0 0 0  0 0 0.9 0 0  0 0 0 1 0" />
+        <feBlend in="disp2" in2="hot" mode="screen" />
+      </filter>
+
+      <!-- CRT barrel distortion (mapa przemieszczenia generowana w JS) -->
+      <filter id="crt-barrel" x="-16%" y="-16%" width="132%" height="132%" color-interpolation-filters="sRGB">
+        <feImage id="crt-barrel-map" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" result="bmap" />
+        <feGaussianBlur in="bmap" stdDeviation="1.2" result="bmapSmooth" />
+        <feDisplacementMap in="SourceGraphic" in2="bmapSmooth" scale="210" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+
+      <!-- CRT tile: poziome rwanie obrazu (tearing) + rozszczepienie RGB — dla slajdów karuzeli (filter: url(#crt-tile)) -->
+      <filter id="crt-tile" x="-10%" y="-6%" width="120%" height="112%" color-interpolation-filters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.00001 0.045" numOctaves="1" seed="11" result="tnoise">
+          <animate attributeName="baseFrequency" dur="6s" repeatCount="indefinite"
+            values="0.00001 0.045; 0.00001 0.012; 0.00001 0.09; 0.00001 0.03; 0.00001 0.045" />
+          <animate attributeName="seed" dur="1.2s" repeatCount="indefinite" values="11; 12; 13; 14; 15; 16; 17; 18; 19; 20" calcMode="discrete" />
+        </feTurbulence>
+        <feDisplacementMap in="SourceGraphic" in2="tnoise" xChannelSelector="R" yChannelSelector="A" result="tdisp">
+          <animate attributeName="scale" dur="4s" repeatCount="indefinite"
+            values="3; 3; 22; 4; 3; 34; 6; 3" keyTimes="0; 0.42; 0.45; 0.5; 0.78; 0.8; 0.83; 1" calcMode="discrete" />
+        </feDisplacementMap>
+        <feOffset in="tdisp" dx="2.2" dy="0" result="trs" />
+        <feColorMatrix in="trs" type="matrix" result="tr"
+          values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" />
+        <feOffset in="tdisp" dx="-2.2" dy="0" result="tbs" />
+        <feColorMatrix in="tbs" type="matrix" result="tb"
+          values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" />
+        <feColorMatrix in="tdisp" type="matrix" result="tg"
+          values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" />
+        <feBlend in="tr" in2="tg" mode="screen" result="trg" />
+        <feBlend in="trg" in2="tb" mode="screen" />
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- ===== NAV (reużywalny komponent z mega-menu) ===== -->
+  <header class="nav" id="nav">
+    <a class="nav__logo" href="index.html">
+      <img src="materials/logo.svg" alt="CONFLICT" />
+    </a>
+
+    <nav class="nav__menu" id="nav-menu">
+      <a href="index.html#hero" class="nav__item">Home</a>
+
+      <!-- Company (mega menu — komponent) -->
+      <div class="nav__group nav__group--mega">
+        <button class="nav__item nav__trigger" data-href="about.html" aria-expanded="false">Company<span class="nav__caret">▾</span></button>
+        <div class="nav__panel megamenu megamenu--simple">
+          <div class="megamenu__grid">
+            <div class="megamenu__main">
+              <div class="megamenu__cats">
+                <section class="mcat">
+                  <div class="mcat__head"><div><h4>Company</h4></div></div>
+                  <ul class="mcat__links">
+                    <li><a href="about.html">About us</a></li>
+                    <li><a href="approach.html">Our approach</a></li>
+                    <li><a href="outcome.html">Outcomes</a></li>
+                    <li><a href="about.html#ethos">Engineering culture</a></li>
+                  </ul>
+                </section>
+                <section class="mcat">
+                  <div class="mcat__head"><div><h4>Team</h4></div></div>
+                  <ul class="mcat__links">
+                    <li><a href="index.html#team">Our team</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Life at CONFLICT</a></li>
+                    <li><a href="#">Press kit</a></li>
+                  </ul>
+                </section>
+                <section class="mcat">
+                  <div class="mcat__head"><div><h4>Resources</h4></div></div>
+                  <ul class="mcat__links">
+                    <li><a href="index.html#work">Showcase</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="index.html#case-studies">Case studies</a></li>
+                    <li><a href="#">Docs</a></li>
+                  </ul>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div class="megamenu__bar">
+            <a href="about.html" class="mmbar mmbar--primary">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>
+              <span>About us</span> <em aria-hidden="true">→</em>
+            </a>
+            <a href="#" class="mmbar">
+              <svg viewBox="0 0 24 24"><path d="M4 7h16v13H4zM9 7V4h6v3"/></svg>
+              <span>Careers</span>
+            </a>
+            <a href="contact.html" class="mmbar">
+              <svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="16" rx="1.5"/><path d="M4 9h16M8 3v4M16 3v4"/><path d="M9 14l2 2 4-4"/></svg>
+              <span>Book a call</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Services (mega menu) -->
+      <div class="nav__group nav__group--mega">
+        <button class="nav__item nav__trigger" data-href="#sp-services" aria-expanded="false">Services<span class="nav__caret">▾</span></button>
+        <div class="nav__panel megamenu">
+          <div class="megamenu__grid">
+            <div class="megamenu__main">
+              <div class="megamenu__cats">
+                <section class="mcat">
+                  <div class="mcat__head">
+                    <span class="mcat__icon"><svg viewBox="0 0 24 24"><path d="M9 7l-4 5 4 5M15 7l4 5-4 5"/></svg></span>
+                    <div><h4><a href="#ai">AI &amp; Intelligence</a></h4><p>Smarter systems. Faster outcomes. AI, without the fluff.</p></div>
+                  </div>
+                  <ul class="mcat__links">
+                    <li><a href="#ai">Data Engineering &amp; Analytics</a></li>
+                    <li><a href="#ai">AI Infrastructure &amp; MLOps</a></li>
+                    <li><a href="#ai">AI Integrations &amp; API Automation</a></li>
+                    <li><a href="#ai">Audio Intelligence &amp; Voice AI</a></li>
+                    <li><a href="#ai">Autonomous Agents &amp; Orchestrated Intelligence</a></li>
+                    <li><a href="#ai">CalliopeAI</a></li>
+                    <li><a href="#ai">Computer Vision &amp; Detection Systems</a></li>
+                    <li><a href="#ai">Custom Model Development</a></li>
+                    <li><a href="#ai">Data Infrastructure &amp; ML Readiness</a></li>
+                    <li><a href="#ai">Forecasting &amp; Predictive Modeling</a></li>
+                    <li><a href="#ai">Retrieval Augmented Generation (RAG)</a></li>
+                  </ul>
+                </section>
+
+                <section class="mcat">
+                  <div class="mcat__head">
+                    <span class="mcat__icon"><svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M11 18h2"/></svg></span>
+                    <div><h4><a href="#apps">App Development</a></h4><p>Apps that work. Code that lasts.</p></div>
+                  </div>
+                  <ul class="mcat__links">
+                    <li><a href="#apps">Systems Integration</a></li>
+                    <li><a href="#apps">API Design &amp; Development</a></li>
+                    <li><a href="#apps">Desktop Application Development</a></li>
+                    <li><a href="#apps">Mobile Application Development</a></li>
+                    <li><a href="#apps">Web Application Development</a></li>
+                    <li><a href="#apps">Workflows &amp; Automation</a></li>
+                    <li><a href="#apps">Product Taxonomy &amp; Discovery</a></li>
+                  </ul>
+                </section>
+
+                <section class="mcat">
+                  <div class="mcat__head">
+                    <span class="mcat__icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/><path d="M3 4h2l2.5 11h10l2-7H6"/></svg></span>
+                    <div><h4><a href="#commerce">eCommerce</a></h4><p>Commerce that scales under load.</p></div>
+                  </div>
+                  <ul class="mcat__links">
+                    <li><a href="#commerce">Cart, Checkout &amp; Subscription Flows</a></li>
+                    <li><a href="#commerce">eCommerce Analytics &amp; Optimization</a></li>
+                    <li><a href="#commerce">eCommerce Compliance</a></li>
+                    <li><a href="#commerce">eCommerce Performance &amp; Resilience</a></li>
+                    <li><a href="#commerce">eCommerce Platforms</a></li>
+                    <li><a href="#commerce">Fraud &amp; Customer Experience</a></li>
+                    <li><a href="#commerce">Fulfillment, ERP &amp; Supply Chain</a></li>
+                    <li><a href="#commerce">Headless Commerce Architecture</a></li>
+                    <li><a href="#commerce">International eCommerce &amp; Global Expansion</a></li>
+                    <li><a href="#commerce">Loyalty, CRM &amp; Retention</a></li>
+                    <li><a href="#commerce">Marketplace &amp; Multi-Vendor Commerce</a></li>
+                    <li><a href="#commerce">Payments Infrastructure</a></li>
+                  </ul>
+                </section>
+
+                <section class="mcat">
+                  <div class="mcat__head">
+                    <span class="mcat__icon"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6z" fill="currentColor" stroke="none"/></svg></span>
+                    <div><h4><a href="#platform">Platform &amp; Infrastructure</a></h4><p>Resilient platforms, built to run.</p></div>
+                  </div>
+                  <ul class="mcat__links">
+                    <li><a href="#platform">Cloud IT &amp; Agentic IT</a></li>
+                    <li><a href="#platform">High Performance &amp; Private Cloud</a></li>
+                    <li><a href="#platform">Cloud-Native Architecture</a></li>
+                    <li><a href="#platform">DevOps Transformation</a></li>
+                    <li><a href="#platform">Observability &amp; Telemetry</a></li>
+                    <li><a href="#platform">Security &amp; Compliance</a></li>
+                    <li><a href="#platform">Site Reliability Engineering</a></li>
+                    <li><a href="#platform">Systems Administration</a></li>
+                  </ul>
+                </section>
+
+                <section class="mcat">
+                  <div class="mcat__head">
+                    <span class="mcat__icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg></span>
+                    <div><h4><a href="#consulting">Consulting</a></h4><p>Elite engineering, on your terms.</p></div>
+                  </div>
+                  <ul class="mcat__links">
+                    <li><a href="#consulting">Transformation &amp; Enablement</a></li>
+                    <li><a href="#consulting">Consulting &amp; Strategic Advisory</a></li>
+                    <li><a href="#consulting">Engineering Support &amp; Retainers</a></li>
+                    <li><a href="#consulting">On-Call Engineering &amp; Incident Response</a></li>
+                    <li><a href="#consulting">Shared Engineering Services</a></li>
+                  </ul>
+                </section>
+              </div>
+            </div>
+
+            <aside class="megamenu__showcase">
+              <span class="showcase__title">Our Solutions</span>
+              <a href="https://weareconflict.com/showcase/" class="feat feat--collab">
+                <span class="feat__art feat__art--grid"></span>
+                <span class="feat__body">
+                  <strong>Boilerworks™</strong>
+                  <span>Modular full-stack platform — production-grade apps, from internal tools to $1B+ storefronts.</span>
+                </span>
+              </a>
+              <a href="https://weareconflict.com/showcase/" class="feat feat--pm">
+                <span class="feat__art">
+                  <span class="feat__cursors"><i></i><i></i><i></i></span>
+                </span>
+                <span class="feat__body">
+                  <strong>Calliope AI</strong>
+                  <span>Private AI for teams — assistants, notebooks, chat &amp; agents, with governance.</span>
+                </span>
+              </a>
+              <a href="https://weareconflict.com/showcase/" class="feat feat--analytics">
+                <span class="feat__art feat__art--radar"><i class="feat__msg"></i></span>
+                <span class="feat__body">
+                  <strong>VeraCall</strong>
+                  <span>AI comms assistant — calls, messaging, scheduling &amp; reminders in one.</span>
+                </span>
+              </a>
+              <a href="https://weareconflict.com/showcase/" class="feat feat--auto">
+                <span class="feat__art feat__art--planet"><i class="feat__orbit"></i></span>
+                <span class="feat__body">
+                  <strong>Ezacto</strong>
+                  <span>eCommerce engine — commerce that scales under load.</span>
+                </span>
+              </a>
+            </aside>
+          </div><!-- /megamenu__grid -->
+
+          <!-- Dolny pasek sekcji (full-width) -->
+          <div class="megamenu__bar">
+            <a href="#sp-services" class="mmbar mmbar--primary">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+              <span>All services</span> <em aria-hidden="true">→</em>
+            </a>
+            <a href="index.html#work" class="mmbar">
+              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="1.5"/><path d="M3 9h18M8 18v2M16 18v2"/></svg>
+              <span>Showcase</span>
+            </a>
+            <a href="index.html#services" class="mmbar">
+              <svg viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 3v18M4 7.5l8 4.5 8-4.5"/></svg>
+              <span>Products</span>
+            </a>
+            <a href="contact.html" class="mmbar">
+              <svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="16" rx="1.5"/><path d="M4 9h16M8 3v4M16 3v4"/><path d="M9 14l2 2 4-4"/></svg>
+              <span>Book a call</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Solutions (mega menu — komponent) -->
+      <div class="nav__group nav__group--mega">
+        <button class="nav__item nav__trigger" aria-expanded="false">Solutions<span class="nav__caret">▾</span></button>
+        <div class="nav__panel megamenu megamenu--simple">
+          <div class="megamenu__grid">
+            <div class="megamenu__main">
+              <div class="megamenu__cats">
+                <section class="mcat mcat--wide">
+                  <div class="mcat__head"><div><h4>Problems we solve</h4></div></div>
+                  <ul class="mcat__links mcat__links--cols">
+                    <li><a href="#">AI Hyperburn</a></li>
+                    <li><a href="#">Death by Consultants</a></li>
+                    <li><a href="#">No Observability</a></li>
+                    <li><a href="#">Skunksworks for Hire</a></li>
+                    <li><a href="#">Mobile Mess</a></li>
+                    <li><a href="#">AI Fatigue &amp; Overwhelm</a></li>
+                    <li><a href="#">Big Bets</a></li>
+                    <li><a href="#">Cloud Chaos</a></li>
+                    <li><a href="#">Compliance Pain</a></li>
+                    <li><a href="#">Data Silos</a></li>
+                    <li><a href="#">Dev Team Friction</a></li>
+                    <li><a href="#">eCommerce Struggles</a></li>
+                    <li><a href="#">Faux DevOps</a></li>
+                    <li><a href="#">Deliver Through a Hiring Freeze</a></li>
+                    <li><a href="#">Non-Core Development</a></li>
+                    <li><a href="#">Need for Speed</a></li>
+                    <li><a href="#">SRE Gaps</a></li>
+                    <li><a href="#">Startup Whiplash</a></li>
+                    <li><a href="#">Tool Sprawl</a></li>
+                    <li><a href="#">Vendor Lock-In</a></li>
+                    <li><a href="#">Platform Scale Mismatch</a></li>
+                  </ul>
+                </section>
+                <section class="mcat">
+                  <div class="mcat__head"><div><h4>Industries</h4></div></div>
+                  <ul class="mcat__links">
+                    <li><a href="#">Fintech</a></li>
+                    <li><a href="#">Healthtech</a></li>
+                    <li><a href="#">eCommerce</a></li>
+                    <li><a href="#">SaaS</a></li>
+                    <li><a href="#">Logistics</a></li>
+                    <li><a href="#">Energy</a></li>
+                  </ul>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div class="megamenu__bar">
+            <a href="https://weareconflict.com/showcase/" class="mmbar mmbar--primary">
+              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="1.5"/><path d="M3 9h18M8 18v2M16 18v2"/></svg>
+              <span>Case studies</span> <em aria-hidden="true">→</em>
+            </a>
+            <a href="index.html#work" class="mmbar">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+              <span>Showcase</span>
+            </a>
+            <a href="contact.html" class="mmbar">
+              <svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="16" rx="1.5"/><path d="M4 9h16M8 3v4M16 3v4"/><path d="M9 14l2 2 4-4"/></svg>
+              <span>Book a call</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <a href="index.html#case-studies" class="nav__item">Showcase</a>
+      <a href="#" class="nav__item">Blog</a>
+    </nav>
+
+    <button class="nav__sound" id="nav-sound" aria-label="Przełącz dźwięk" aria-pressed="false">
+      <svg class="nav__sound-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 8.5a4 4 0 0 1 0 7M18.8 6a7 7 0 0 1 0 12"/></svg>
+      <svg class="nav__sound-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 9.5l5 5M21.5 9.5l-5 5"/></svg>
+    </button>
+
+    <div class="nav__actions">
+      <a href="contact.html" class="nav__item nav__contact">Contact</a>
+      <a href="contact.html" class="btn btn--primary nav__cta">Start Project</a>
+    </div>
+
+    <button class="nav__burger" id="nav-burger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- Scrim: blur całej strony pod otwartym mega menu -->
+  <div class="nav-scrim" id="nav-scrim" aria-hidden="true"></div>
+
+  <main class="sp" id="top">
+
+    <!-- ===== HERO podstrony ===== -->
+    <section class="sp-hero" aria-labelledby="sp-title">
+      <div class="sp-hero__frame">
+        <div class="sp-hero__main">
+          <h1 class="sp-hero__title" id="sp-title">
+            <span class="sp-hero__line" data-reveal>Engineering with Taste.</span>
+            <span class="sp-hero__line" data-reveal data-reveal-delay="120">Execution with <span class="sp-glitch" data-text="Teeth.">Teeth.</span></span>
+          </h1>
+
+          <!-- „From zero to production." — pikselowy kursor jedzie po torze -->
+          <div class="sp-track" data-reveal data-reveal-delay="240" aria-label="From zero to production.">
+            <span class="sp-track__end">Zero</span>
+            <span class="sp-track__rail" aria-hidden="true">
+              <span class="sp-track__fill" id="sp-track-fill"></span>
+              <img class="sp-track__cursor" id="sp-track-cursor" src="materials/cursor.png" alt="" />
+            </span>
+            <span class="sp-track__end sp-track__end--on">Production.</span>
+          </div>
+
+          <p class="sp-hero__lead" data-reveal data-reveal-delay="320">At CONFLICT, we don’t just build software — we <strong>engineer outcomes</strong>. We’re the pit crew behind high-growth products, fast-scaling startups, and enterprise-grade infrastructure.</p>
+
+          <div class="sp-hero__actions" data-reveal data-reveal-delay="400">
+            <a href="contact.html" class="btn btn--primary">Start a project</a>
+            <a href="#sp-services" class="btn btn--ghost">Explore services <span class="btn__arrow" aria-hidden="true">↓</span></a>
+          </div>
+        </div>
+
+        <!-- skrót: 5 usług od razu w hero (skanowalność, skok do sekcji) -->
+        <nav class="sp-hero__index" aria-label="Services overview" data-reveal data-reveal-delay="200">
+          <a class="sp-jump" href="#platform"><span class="sp-jump__num">01</span><span class="sp-jump__name">Platform Engineering &amp; Infrastructure</span><span class="sp-jump__tag">Build like the big leagues.</span></a>
+          <a class="sp-jump" href="#ai"><span class="sp-jump__num">02</span><span class="sp-jump__name">AI Enablement &amp; Intelligent Systems</span><span class="sp-jump__tag">Applied AI. No academic fluff.</span></a>
+          <a class="sp-jump" href="#apps"><span class="sp-jump__num">03</span><span class="sp-jump__name">Application Development</span><span class="sp-jump__tag">Sharp code. Seamless UX. Built to scale.</span></a>
+          <a class="sp-jump" href="#commerce"><span class="sp-jump__num">04</span><span class="sp-jump__name">E-Commerce Engineering</span><span class="sp-jump__tag">We don’t sell socks — we scale platforms.</span></a>
+          <a class="sp-jump" href="#consulting"><span class="sp-jump__num">05</span><span class="sp-jump__name">Consulting &amp; Shared Services</span><span class="sp-jump__tag">When you need firepower, not fluff.</span></a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- ===== GDZIE JESTEŚ — samoidentyfikacja → właściwa usługa ===== -->
+    <!-- ===== HASŁO — wyśrodkowane, zapala się słowo po słowie przy scrollu (jak LAB na głównej) ===== -->
+    <section class="sp-statement" aria-labelledby="sp-where-title">
+      <h2 class="sp-statement__text" id="sp-where-title" data-words-reveal>We meet you where you are — and move you where you need to go.</h2>
+    </section>
+
+    <section class="sp-where" aria-labelledby="sp-where-title">
+      <p class="sp-lead" data-reveal>From machine learning to mobile apps, from on-prem to Kubernetes, we deliver software and systems that don’t flinch under pressure.</p>
+      <div class="sp-where__grid">
+        <article class="sp-where__card" data-reveal data-reveal-delay="0">
+          <span class="sp-where__num">01</span>
+          <h3 class="sp-where__q">Launching something new?</h3>
+          <div class="sp-where__links">
+            <a href="#apps">Application Development <em aria-hidden="true">→</em></a>
+            <a href="#ai">AI Enablement &amp; Intelligent Systems <em aria-hidden="true">→</em></a>
+          </div>
+        </article>
+        <article class="sp-where__card" data-reveal data-reveal-delay="120">
+          <span class="sp-where__num">02</span>
+          <h3 class="sp-where__q">Wrestling with legacy code?</h3>
+          <div class="sp-where__links">
+            <a href="#platform">Platform Engineering &amp; Infrastructure <em aria-hidden="true">→</em></a>
+            <a href="#consulting">Consulting &amp; Shared Services <em aria-hidden="true">→</em></a>
+          </div>
+        </article>
+        <article class="sp-where__card" data-reveal data-reveal-delay="240">
+          <span class="sp-where__num">03</span>
+          <h3 class="sp-where__q">Scaling up with investor eyes on your uptime?</h3>
+          <div class="sp-where__links">
+            <a href="#platform">Platform Engineering &amp; Infrastructure <em aria-hidden="true">→</em></a>
+            <a href="#commerce">E-Commerce Engineering <em aria-hidden="true">→</em></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== USŁUGI — przypięty spis (scroll-spy) + panele ===== -->
+    <section class="sp-services" id="sp-services" aria-label="Services">
+      <nav class="sp-index" id="sp-index" aria-label="Services">
+        <a class="sp-index__item" href="#platform"><span class="sp-index__num">01</span><span class="sp-index__name">Platform &amp; Infrastructure</span><span class="sp-index__bar"><i></i></span></a>
+        <a class="sp-index__item" href="#ai"><span class="sp-index__num">02</span><span class="sp-index__name">AI Enablement</span><span class="sp-index__bar"><i></i></span></a>
+        <a class="sp-index__item" href="#apps"><span class="sp-index__num">03</span><span class="sp-index__name">Application Development</span><span class="sp-index__bar"><i></i></span></a>
+        <a class="sp-index__item" href="#commerce"><span class="sp-index__num">04</span><span class="sp-index__name">E-Commerce</span><span class="sp-index__bar"><i></i></span></a>
+        <a class="sp-index__item" href="#consulting"><span class="sp-index__num">05</span><span class="sp-index__name">Consulting</span><span class="sp-index__bar"><i></i></span></a>
+      </nav>
+
+      <div class="sp-services__list">
+        <article class="sp-svc" id="platform" aria-labelledby="platform-title">
+          <div class="sp-svc__top">
+            <div class="sp-svc__text">
+              <span class="sp-svc__num" aria-hidden="true">01</span>
+              <h2 class="sp-svc__title" id="platform-title" data-reveal>Platform Engineering &amp; Infrastructure</h2>
+              <p class="sp-svc__tag" data-reveal data-reveal-delay="80">Build like the big leagues.</p>
+              <p class="sp-svc__desc" data-reveal data-reveal-delay="160">We bring the patterns and practices used by elite engineering teams — think Google, Netflix, and the cutting edge of platform ops. Whether you’re cloud-curious or cloud-native, we help you go from “just deployed” to production-grade with confidence.</p>
+              <a class="sp-svc__cta" href="contact.html?service=platform" data-reveal data-reveal-delay="220">Talk to an expert <em aria-hidden="true">→</em></a>
+            </div>
+            <div class="sp-term" aria-hidden="true" data-reveal data-reveal-delay="120">
+              <div class="sp-term__bar"><i></i><i></i><i></i><span>conflict@platform</span></div>
+              <div class="sp-term__screen"><span class="sp-term__line">$ terraform apply</span><span class="sp-term__line">✓ infrastructure provisioned</span><span class="sp-term__line">$ kubectl rollout status deploy/api</span><span class="sp-term__line">✓ deployment successfully rolled out</span><span class="sp-term__line">$ alerts --status</span><span class="sp-term__line">✓ all checks passing</span><span class="sp-term__caret"></span></div>
+            </div>
+          </div>
+          <ul class="sp-caps" aria-label="Platform Engineering &amp; Infrastructure capabilities">
+              <li class="sp-caps__item" data-reveal data-reveal-delay="0">
+                <a class="sp-cap" href="service.html?id=devops-transformation">
+                  <span class="sp-cap__num">01.1</span>
+                  <span class="sp-cap__go" aria-hidden="true">→</span>
+                  <h3 class="sp-cap__title">DevOps Transformation</h3>
+                  <p class="sp-cap__desc">Infrastructure as code, CI/CD pipelines, GitOps, config management.</p>
+                  <span class="sp-cap__more">Explore</span>
+                </a>
+              </li>
+              <li class="sp-caps__item" data-reveal data-reveal-delay="70">
+                <a class="sp-cap" href="service.html?id=site-reliability-engineering">
+                  <span class="sp-cap__num">01.2</span>
+                  <span class="sp-cap__go" aria-hidden="true">→</span>
+                  <h3 class="sp-cap__title">Site Reliability Engineering</h3>
+                  <p class="sp-cap__desc">On-demand and auto-scaling GPU clusters (NVIDIA, AMD, cloud-native or bare metal).</p>
+                  <span class="sp-cap__more">Explore</span>
+                </a>
+              </li>
+              <li class="sp-caps__item" data-reveal data-reveal-delay="140">
+                <a class="sp-cap" href="service.html?id=cloud-native-architecture">
+                  <span class="sp-cap__num">01.3</span>
+                  <span class="sp-cap__go" aria-hidden="true">→</span>
+                  <h3 class="sp-cap__title">Cloud-Native Architecture</h3>
+                  <p class="sp-cap__desc">AWS, GCP, hybrid and multi-cloud — built for flexibility and scale.</p>
+                  <span class="sp-cap__more">Explore</span>
+                </a>
+              </li>
+              <li class="sp-caps__item" data-reveal data-reveal-delay="210">
+                <a class="sp-cap" href="service.html?id=observability">
+                  <span class="sp-cap__num">01.4</span>
+                  <span class="sp-cap__go" aria-hidden="true">→</span>
+                  <h3 class="sp-cap__title">Observability</h3>
+                  <p class="sp-cap__desc">Metrics, logs, traces, alerts — and clarity, not chaos.</p>
+                  <span class="sp-cap__more">Explore</span>
+                </a>
+              </li>
+              <li class="sp-caps__item" data-reveal data-reveal-delay="280">
+                <a class="sp-cap" href="service.html?id=security-and-compliance">
+                  <span class="sp-cap__num">01.5</span>
+                  <span class="sp-cap__go" aria-hidden="true">→</span>
+                  <h3 class="sp-cap__title">Security &amp; Compliance</h3>
+                  <p class="sp-cap__desc">PCI, SOX, SOC 2 — baked into your infrastructure.</p>
+                  <span class="sp-cap__more">Explore</span>
+                </a>
+              </li>
+              <li class="sp-caps__item" data-reveal data-reveal-delay="350">
+                <a class="sp-cap" href="service.html?id=systems-administration">
+                  <span class="sp-cap__num">01.6</span>
+                  <span class="sp-cap__go" aria-hidden="true">→</span>
+                  <h3 class="sp-cap__title">Systems Administration</h3>
+                  <p class="sp-cap__desc">Deep Linux fluency, Windows via trusted partners, automated workflows.</p>
+                  <span class="sp-cap__more">Explore</span>
+                </a>
+              </li>
+          </ul>
+        </article>
+        <article class="sp-svc" id="ai" aria-labelledby="ai-title">
+          <div class="sp-svc__top">
+            <div class="sp-svc__text">
+              <span class="sp-svc__num" aria-hidden="true">02</span>
+              <h2 class="sp-svc__title" id="ai-title" data-reveal>AI Enablement &amp; Intelligent Systems</h2>
+              <p class="sp-svc__tag" data-reveal data-reveal-delay="80">Applied AI. No academic fluff.</p>
+              <p class="sp-svc__desc" data-reveal data-reveal-delay="160">From custom LLMs to lightning-fast RAG apps, we help companies turn AI hype into business results — with real-time performance and real-world ROI.</p>
+              <a class="sp-svc__cta" href="contact.html?service=ai" data-reveal data-reveal-delay="220">Talk to an expert <em aria-hidden="true">→</em></a>
+            </div>
+            <div class="sp-term" aria-hidden="true" data-reveal data-reveal-delay="120">
+              <div class="sp-term__bar"><i></i><i></i><i></i><span>conflict@ai</span></div>
+              <div class="sp-term__screen"><span class="sp-term__line">&gt; rag.query("where is my order?")</span><span class="sp-term__line">↳ retrieving context…</span><span class="sp-term__line">↳ streaming answer</span><span class="sp-term__line">$ mlops deploy model --gpu</span><span class="sp-term__line">✓ endpoint live</span><span class="sp-term__caret"></span></div>
+            </div>
+          </div>
+          <ul class="sp-caps" aria-label="AI Enablement &amp; Intelligent Systems capabilities">
+              <li class="sp-caps__item" data-reveal data-reveal-delay="0">
+                <a class="sp-cap" href="service.html?id=custom-model-development">
+                  <span class="sp-cap__num">02.1</span>
+                  <span class="sp-cap__go" aria-hidden="true">→</span>
+                  <h3 class="sp-cap__title">Custom Model Development</h3>
+                  <p class="sp-cap__desc">Train, fine-tune, and deploy domain-specific LLMs.</p>
+                  <span class="sp-cap__more">Explore</span>
+                </a>
+              </li>
+              <li class="sp-caps__item" data-reveal data-reveal-delay="70">
+                <a class="sp-cap" href="service.html?id=rag-and-langchain-apps">
+                  <span class="sp-cap__num">02.2</span>
+                  <span class="sp-cap__go" aria-hidden="true">→</span>
+                  <h3 class="sp-cap__title">RAG &amp; LangChain Apps</h3>
+                  <p class="sp-cap__desc">Retrieval-augmented generation, blazing-fast flows, prompt optimization.</p>
+                  <span class="sp-cap__more">Explore</span>
+                </a>
+              </li>
+              <li class="sp-caps__item" data-reveal data-reveal-delay="140">
+                <a class="sp-cap" href="service.html?id=ai-integrations">
+                  <span class="sp-cap__num">02.3</span>
+                  <span class="sp-cap__go" aria-hidden="true">→</span>
+                  <h3 class="sp-cap__title">AI Integrations</h3>
+                  <p class="sp-cap__desc">Add GPT, Claude, or your in-house model via clean, scalable APIs.</p>
+                  <span class="sp-cap__more">Explore</span>
+                </a>
+              </li>
+              <li class="sp-caps__item" data-reveal data-reveal-delay="210">
+                <a class="sp-cap" href="service.html?id=ai-infrastructure-and-mlops">
+                  <span class="sp-cap__num">02.4</span>
+                  <span class="sp-cap__go" aria-hidden="true">→</span>
+                  <h3 class="sp-cap__title">AI Infrastructure &amp; MLOps</h3>
+                  <p class="sp-cap__desc">Model CI/CD, GPU orchestration, vector databases, scalable deployment.</p>
+                  <span class="sp-cap__more">Explore</span>
+                </a>
+              </li>
+          </ul>
+        </article>
+        <article class="sp-svc" id="apps" aria-labelledby="apps-title">
+          <div class="sp-svc__top">
+            <div class="sp-svc__text">
+              <span class="sp-svc__num" aria-hidden="true">03</span>
+              <h2 class="sp-svc__title" id="apps-title" data-reveal>Application Development</h2>
+              <p class="sp-svc__tag" data-reveal data-reveal-delay="80">Sharp code. Seamless UX. Built to scale.</p>
+              <p class="sp-svc__desc" data-reveal data-reveal-delay="160">From MVP to platform, we design and build applications that work beautifully and perform reliably — across every device and surface.</p>
+              <a class="sp-svc__cta" href="contact.html?service=apps" data-reveal data-reveal-delay="220">Talk to an expert <em aria-hidden="true">→</em></a>
+            </div>
+            <div class="sp-term" aria-hidden="true" data-reveal data-reveal-delay="120">
+              <div class="sp-term__bar"><i></i><i></i><i></i><span>conflict@apps</span></div>
+              <div class="sp-term__screen"><span class="sp-term__line">$ npm run build</span><span class="sp-term__line">✓ web · ios · android</span><span class="sp-term__line">$ curl /api/health</span><span class="sp-term__line">{ "status": "ok" }</span><span class="sp-term__caret"></span></div>
+            </div>
+          </div>
+          <ul class="sp-caps" aria-label="Application Development capabilities">
+              <li class="sp-caps__item" data-reveal data-reveal-delay="0">
+                <a class="sp-cap" href="service.html?id=web-applications">
+                  <span class="sp-cap__num">03.1</span>
+                  <span class="sp-cap__go" aria-hidden="true">→</span>
+                  <h3 class="sp-cap__title">Web Applications</h3>
+                  <p class="sp-cap__desc">Dashboards, portals, admin panels, responsive frontends.</p>
+                  <span class="sp-cap__more">Explore</span>
+                </a>
+              </li>
+              <li class="sp-caps__item" data-reveal data-reveal-delay="70">
+                <a class="sp-cap" href="service.html?id=mobile-apps">
+                  <span class="sp-cap__num">03.2</span>
+                  <span class="sp-cap__go" aria-hidden="true">→</span>
+                  <h3 class="sp-cap__title">Mobile Apps</h3>
+                  <p class="sp-cap__desc">Native iOS, Android, or React Native universal apps.</p>
+                  <span class="sp-cap__more">Explore</span>
+                </a>
+              </li>
+              <li class="sp-caps__item" data-reveal data-reveal-delay="140">
+                <a class="sp-cap" href="service.html?id=apis-and-integration-layers">
+                  <span class="sp-cap__num">03.3</span>
+                  <span class="sp-cap__go" aria-hidden="true">→</span>
+                  <h3 class="sp-cap__title">APIs &amp; Integration Layers</h3>
+                  <p class="sp-cap__desc">REST, GraphQL, gRPC — secure and scalable.</p>
+                  <span class="sp-cap__more">Explore</span>
+                </a>
+              </li>
+              <li class="sp-caps__item" data-reveal data-reveal-delay="210">
+                <a class="sp-cap" href="service.html?id=workflow-and-automation-tools">
+                  <span class="sp-cap__num">03.4</span>
+                  <span class="sp-cap__go" aria-hidden="true">→</span>
+                  <h3 class="sp-cap__title">Workflow &amp; Automation Tools</h3>
+                  <p class="sp-cap__desc">Internal tools, data flows, ops automation, customer journeys.</p>
+                  <span class="sp-cap__more">Explore</span>
+                </a>
+              </li>
+              <li class="sp-caps__item" data-reveal data-reveal-delay="280">
+                <a class="sp-cap" href="service.html?id=desktop-applications">
+                  <span class="sp-cap__num">03.5</span>
+                  <span class="sp-cap__go" aria-hidden="true">→</span>
+                  <h3 class="sp-cap__title">Desktop Applications</h3>
+                  <p class="sp-cap__desc">Modern Electron apps with offline mode and rich interactivity.</p>
+                  <span class="sp-cap__more">Explore</span>
+                </a>
+              </li>
+          </ul>
+        </article>
+        <article class="sp-svc" id="commerce" aria-labelledby="commerce-title">
+          <div class="sp-svc__top">
+            <div class="sp-svc__text">
+              <span class="sp-svc__num" aria-hidden="true">04</span>
+              <h2 class="sp-svc__title" id="commerce-title" data-reveal>E-Commerce Engineering</h2>
+              <p class="sp-svc__tag" data-reveal data-reveal-delay="80">We don’t sell socks — we scale platforms.</p>
+              <p class="sp-svc__desc" data-reveal data-reveal-delay="160">We’ve powered billion-dollar storefronts, rescued broken carts, and architected ecommerce systems that thrive under pressure. This is full-stack commerce engineering — built to convert.</p>
+              <a class="sp-svc__cta" href="contact.html?service=commerce" data-reveal data-reveal-delay="220">Talk to an expert <em aria-hidden="true">→</em></a>
+            </div>
+            <div class="sp-term" aria-hidden="true" data-reveal data-reveal-delay="120">
+              <div class="sp-term__bar"><i></i><i></i><i></i><span>conflict@commerce</span></div>
+              <div class="sp-term__screen"><span class="sp-term__line">POST /checkout/session</span><span class="sp-term__line">✓ payment authorized</span><span class="sp-term__line">$ erp sync --orders</span><span class="sp-term__line">✓ inventory in sync</span><span class="sp-term__caret"></span></div>
+            </div>
+          </div>
+          <ul class="sp-caps" aria-label="E-Commerce Engineering capabilities">
+              <li class="sp-caps__item" data-reveal data-reveal-delay="0">
+                <a class="sp-cap" href="service.html?id=platform-expertise">
+                  <span class="sp-cap__num">04.1</span>
+                  <span class="sp-cap__go" aria-hidden="true">→</span>
+                  <h3 class="sp-cap__title">Platform Expertise</h3>
+                  <p class="sp-cap__desc">Shopify, Saleor, Magento, WooCommerce, NetSuite, Oracle, Zonos.</p>
+                  <span class="sp-cap__more">Explore</span>
+                </a>
+              </li>
+              <li class="sp-caps__item" data-reveal data-reveal-delay="70">
+                <a class="sp-cap" href="service.html?id=checkout-optimization">
+                  <span class="sp-cap__num">04.2</span>
+                  <span class="sp-cap__go" aria-hidden="true">→</span>
+                  <h3 class="sp-cap__title">Checkout Optimization</h3>
+                  <p class="sp-cap__desc">Cart flows, payments, performance, trust signals — fixed.</p>
+                  <span class="sp-cap__more">Explore</span>
+                </a>
+              </li>
+              <li class="sp-caps__item" data-reveal data-reveal-delay="140">
+                <a class="sp-cap" href="service.html?id=crm-loyalty-and-retention">
+                  <span class="sp-cap__num">04.3</span>
+                  <span class="sp-cap__go" aria-hidden="true">→</span>
+                  <h3 class="sp-cap__title">CRM, Loyalty &amp; Retention</h3>
+                  <p class="sp-cap__desc">Data-driven systems to boost repeat purchase and engagement.</p>
+                  <span class="sp-cap__more">Explore</span>
+                </a>
+              </li>
+              <li class="sp-caps__item" data-reveal data-reveal-delay="210">
+                <a class="sp-cap" href="service.html?id=product-taxonomy-and-discovery">
+                  <span class="sp-cap__num">04.4</span>
+                  <span class="sp-cap__go" aria-hidden="true">→</span>
+                  <h3 class="sp-cap__title">Product Taxonomy &amp; Discovery</h3>
+                  <p class="sp-cap__desc">Personalization, recommendations, search, filters that convert.</p>
+                  <span class="sp-cap__more">Explore</span>
+                </a>
+              </li>
+              <li class="sp-caps__item" data-reveal data-reveal-delay="280">
+                <a class="sp-cap" href="service.html?id=fulfillment-erp-and-supply-chain">
+                  <span class="sp-cap__num">04.5</span>
+                  <span class="sp-cap__go" aria-hidden="true">→</span>
+                  <h3 class="sp-cap__title">Fulfillment, ERP &amp; Supply Chain</h3>
+                  <p class="sp-cap__desc">Systems that don’t break when volume spikes.</p>
+                  <span class="sp-cap__more">Explore</span>
+                </a>
+              </li>
+              <li class="sp-caps__item" data-reveal data-reveal-delay="350">
+                <a class="sp-cap" href="service.html?id=compliance">
+                  <span class="sp-cap__num">04.6</span>
+                  <span class="sp-cap__go" aria-hidden="true">→</span>
+                  <h3 class="sp-cap__title">Compliance</h3>
+                  <p class="sp-cap__desc">PCI, SOX — ready for auditors without slowing your roadmap.</p>
+                  <span class="sp-cap__more">Explore</span>
+                </a>
+              </li>
+          </ul>
+        </article>
+        <article class="sp-svc" id="consulting" aria-labelledby="consulting-title">
+          <div class="sp-svc__top">
+            <div class="sp-svc__text">
+              <span class="sp-svc__num" aria-hidden="true">05</span>
+              <h2 class="sp-svc__title" id="consulting-title" data-reveal>Consulting &amp; Shared Services</h2>
+              <p class="sp-svc__tag" data-reveal data-reveal-delay="80">When you need firepower, not fluff.</p>
+              <p class="sp-svc__desc" data-reveal data-reveal-delay="160">Need senior guidance? Extra hands? Round-the-clock ops backup? We drop in where you need us — fast, focused, and ready to deliver.</p>
+              <a class="sp-svc__cta" href="contact.html?service=consulting" data-reveal data-reveal-delay="220">Talk to an expert <em aria-hidden="true">→</em></a>
+            </div>
+            <div class="sp-term" aria-hidden="true" data-reveal data-reveal-delay="120">
+              <div class="sp-term__bar"><i></i><i></i><i></i><span>conflict@consulting</span></div>
+              <div class="sp-term__screen"><span class="sp-term__line">$ oncall page --sev1</span><span class="sp-term__line">↳ engineer joined incident</span><span class="sp-term__line">✓ resolved</span><span class="sp-term__line">$ roadmap review</span><span class="sp-term__line">✓ plan delivered</span><span class="sp-term__caret"></span></div>
+            </div>
+          </div>
+          <ul class="sp-caps" aria-label="Consulting &amp; Shared Services capabilities">
+              <li class="sp-caps__item" data-reveal data-reveal-delay="0">
+                <a class="sp-cap" href="service.html?id=fractional-cto-and-architecture-consulting">
+                  <span class="sp-cap__num">05.1</span>
+                  <span class="sp-cap__go" aria-hidden="true">→</span>
+                  <h3 class="sp-cap__title">Fractional CTO &amp; Architecture Consulting</h3>
+                  <p class="sp-cap__desc">Product roadmaps, technical due diligence, system planning.</p>
+                  <span class="sp-cap__more">Explore</span>
+                </a>
+              </li>
+              <li class="sp-caps__item" data-reveal data-reveal-delay="70">
+                <a class="sp-cap" href="service.html?id=staff-augmentation-and-embedded-teams">
+                  <span class="sp-cap__num">05.2</span>
+                  <span class="sp-cap__go" aria-hidden="true">→</span>
+                  <h3 class="sp-cap__title">Staff Augmentation &amp; Embedded Teams</h3>
+                  <p class="sp-cap__desc">Hire elite engineers to plug into your velocity.</p>
+                  <span class="sp-cap__more">Explore</span>
+                </a>
+              </li>
+              <li class="sp-caps__item" data-reveal data-reveal-delay="140">
+                <a class="sp-cap" href="service.html?id=on-call-and-incident-response">
+                  <span class="sp-cap__num">05.3</span>
+                  <span class="sp-cap__go" aria-hidden="true">→</span>
+                  <h3 class="sp-cap__title">On-Call &amp; Incident Response</h3>
+                  <p class="sp-cap__desc">Shared ops and support for when things go sideways.</p>
+                  <span class="sp-cap__more">Explore</span>
+                </a>
+              </li>
+              <li class="sp-caps__item" data-reveal data-reveal-delay="210">
+                <a class="sp-cap" href="service.html?id=training-and-coaching">
+                  <span class="sp-cap__num">05.4</span>
+                  <span class="sp-cap__go" aria-hidden="true">→</span>
+                  <h3 class="sp-cap__title">Training &amp; Coaching</h3>
+                  <p class="sp-cap__desc">Workshops, upskilling, enablement programs.</p>
+                  <span class="sp-cap__more">Explore</span>
+                </a>
+              </li>
+              <li class="sp-caps__item" data-reveal data-reveal-delay="280">
+                <a class="sp-cap" href="service.html?id=support-and-retainers">
+                  <span class="sp-cap__num">05.5</span>
+                  <span class="sp-cap__go" aria-hidden="true">→</span>
+                  <h3 class="sp-cap__title">Support &amp; Retainers</h3>
+                  <p class="sp-cap__desc">Keep us on call for updates, patches, fire drills, and follow-through.</p>
+                  <span class="sp-cap__more">Explore</span>
+                </a>
+              </li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== KONTAKT — „Not sure where to start?" ===== -->
+    <section class="sp-contact" aria-labelledby="sp-contact-title">
+      <div class="sp-contact__head">
+        <h2 class="sp-h2" id="sp-contact-title" data-reveal>Not sure where to start?</h2>
+        <p class="sp-lead" data-reveal data-reveal-delay="100">We’ve helped companies untangle spaghetti infra, launch in record time, and go from zero to production AI in a single quarter.</p>
+        <div class="sp-contact__actions" data-reveal data-reveal-delay="180">
+          <a href="contact.html" class="btn btn--primary">Contact Us</a>
+          <a href="contact.html" class="btn btn--ghost">Book a Demo</a>
+        </div>
+      </div>
+      <div class="sp-contact__lines">
+        <a class="sp-line" href="mailto:hi@weareconflict.com" data-reveal>
+          <span class="sp-line__label">Start a project</span>
+          <span class="sp-line__value">hi@weareconflict.com</span>
+          <img class="sp-line__cursor" src="materials/cursor.png" alt="" aria-hidden="true" />
+        </a>
+        <a class="sp-line" href="tel:+13052095818" data-reveal data-reveal-delay="100">
+          <span class="sp-line__label">Talk to an expert</span>
+          <span class="sp-line__value">+1 (305) 209-5818</span>
+          <img class="sp-line__cursor" src="materials/cursor.png" alt="" aria-hidden="true" />
+        </a>
+      </div>
+    </section>
+  </main>
+
+
+  <!-- ===== FOOTER / CONTACT ===== -->
+  <div class="footer-wrap">
+  <footer class="footer" id="contact">
+    <!-- Nagłówek + CTA -->
+    <div class="footer__hero">
+      <h2 class="footer__headline">Built for What<br />Comes Next.</h2>
+      <p class="footer__tagline">Tell us what you're building — or the problem you're solving. Our experts will scope the work, estimate it, and lay out exactly how we'd build it. From there, we'll both know if we're an exact fit.</p>
+      <a href="contact.html" class="btn btn--primary btn--glitch" data-text="Contact us">Contact us</a>
+    </div>
+
+    <!-- Symbol [O] — góra wystaje pod Contact us, dół chowa się za glass-paskiem social -->
+    <div class="footer__symbol" aria-hidden="true">
+      <img src="materials/o.svg" alt="" />
+    </div>
+
+    <!-- Social (pod Contact us, nad „In the new era") -->
+    <div class="connect__row footer__connect">
+      <a href="#" class="footer__soc">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 10v7M7 7v.01M11 17v-4a2 2 0 0 1 4 0v4M11 10v7"/></svg>
+        <span>LinkedIn</span><span class="footer__arrow">→</span>
+      </a>
+      <a href="#" class="footer__soc">
+        <svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20"/></svg>
+        <span>Twitter</span><span class="footer__arrow">→</span>
+      </a>
+      <a href="#" class="footer__soc">
+        <svg viewBox="0 0 24 24"><path d="M9 19c-4 1.4-4-2.5-6-3m12 5v-3.4a3 3 0 0 0-.8-2.3c2.9-.3 5.8-1.4 5.8-6.4a5 5 0 0 0-1.3-3.4 4.6 4.6 0 0 0-.1-3.4s-1.1-.3-3.5 1.3a12 12 0 0 0-6 0C6.2 2 5.1 2.3 5.1 2.3a4.6 4.6 0 0 0-.1 3.4A5 5 0 0 0 3.6 9.1c0 5 2.9 6.1 5.8 6.4a3 3 0 0 0-.8 2.3V22"/></svg>
+        <span>GitHub</span><span class="footer__arrow">→</span>
+      </a>
+      <a href="#" class="footer__soc">
+        <svg viewBox="0 0 24 24"><path d="M15.6 13c0-2 1.6-3 1.6-3s-1-1.6-2.9-1.6c-1.4 0-2 .7-2.8.7s-1.4-.7-2.6-.7C7 8.1 5.5 9.8 5.5 12.4c0 2.8 2.1 5.9 3.3 5.9.8 0 1.3-.6 2.2-.6s1.3.6 2.2.6c1 0 2.7-2.5 2.7-2.5s-2.3-.9-2.3-2.8z" fill="currentColor" stroke="none"/><path d="M13.3 6.6c.6-.8 1-1.8.9-2.6-.9 0-1.8.5-2.3 1.2-.5.7-1 1.6-.8 2.5 1 .1 1.7-.4 2.2-1.1z" fill="currentColor" stroke="none"/></svg>
+        <span>App Store</span><span class="footer__arrow">→</span>
+      </a>
+    </div>
+
+    <!-- Logo + adresy (lewa) + mapa strony (prawa) -->
+    <div class="footer__map">
+      <div class="footer__map-brand">
+        <a class="footer__logo" href="index.html#hero"><img src="materials/logo.svg" alt="CONFLICT" /></a>
+        <p class="footer__desc">In the new era of AI-native engineering we build the infrastructure, software, and AI that power serious products.</p>
+        <ul class="footer__contact">
+          <li><a href="mailto:hi@weareconflict.com">hi@weareconflict.com</a></li>
+          <li><a href="tel:+13052095818">+1 (305) 209-5818</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__cols">
+        <div class="footer__col">
+          <h4>Product</h4>
+          <a href="#">Technology</a><a href="#">Integrations</a><a href="#">Releases</a><a href="#">Status</a>
+        </div>
+        <div class="footer__col">
+          <h4>Resources</h4>
+          <a href="#">Docs</a><a href="#">API Reference</a><a href="#">Tutorials</a><a href="#">System Guide</a>
+        </div>
+        <div class="footer__col">
+          <h4>Company</h4>
+          <a href="#">Team</a><a href="#">Culture</a><a href="#">Jobs</a><a href="#">Press Kit</a>
+        </div>
+        <div class="footer__col">
+          <h4>Legal</h4>
+          <a href="#">Imprint</a><a href="#">Data Policy</a><a href="#">Cookie Policy</a><a href="#">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="footer__rule" />
+
+    <p class="footer__copy">© 2026 CONFLICT™ — AI-Native Engineering</p>
+  </footer>
+  </div><!-- /footer-wrap -->
+
+  <!-- Legal (pod stopką) -->
+  <div class="legal">
+    <a href="#">Terms &amp; Conditions</a>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Cookie Policy</a>
+  </div>
+
+  <div class="page-glitch" id="page-glitch" aria-hidden="true"></div>
+
+  <script src="src/scripts/smooth-scroll.js?v=20261109f" type="module"></script>
+  <script src="src/scripts/nav.js?v=20261109f" type="module"></script>
+  <script src="src/scripts/cursor-glitch.js?v=20261109f" type="module"></script>
+  <script src="src/scripts/main.js?v=20261109f" type="module"></script>
+  <script src="src/scripts/subpage.js?v=20261109f" type="module"></script>
+  <script src="src/scripts/sound.js?v=20261109f" type="module"></script>
+  <script src="src/scripts/page-glitch.js?v=20261109f" type="module"></script>
+  <script src="src/scripts/ambient.js?v=20261109f" type="module"></script>
+</body>
+</html>

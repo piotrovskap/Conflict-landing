@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our approach — CONFLICT</title>
+  <meta name="description" content="Built around AI. Not bolted on. Our engineering model is built around AI agents, autonomous workflows, and outcome-driven delivery." />
+  <link rel="icon" href="materials/favicon/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="materials/favicon/favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="materials/favicon/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="node_modules/lenis/dist/lenis.css" />
+  <link rel="stylesheet" href="src/styles/main.css?v=20261109f" />
+  <link rel="stylesheet" href="src/styles/subpage.css?v=20261109f" />
+</head>
+<body class="page-sub page-approach">
+  <!-- Filtr glitch/displacement (reużywalny: filter: url(#fx-glitch)) -->
+  <svg class="fx-glitch-defs" aria-hidden="true" width="0" height="0">
+    <defs>
+      <filter id="fx-glitch" x="-10%" y="-10%" width="120%" height="120%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.00001 0.0006" numOctaves="1" seed="7" result="noise">
+          <animate attributeName="baseFrequency" dur="7s" repeatCount="indefinite"
+            values="0.00001 0.0006; 0.00001 0.0022; 0.00001 0.0005; 0.00001 0.0018; 0.00001 0.0006" />
+        </feTurbulence>
+        <feDisplacementMap in="SourceGraphic" in2="noise" xChannelSelector="R" yChannelSelector="G" result="disp">
+          <animate attributeName="scale" dur="5s" repeatCount="indefinite"
+            values="12; 28; 10; 40; 14; 12" keyTimes="0; 0.2; 0.5; 0.72; 0.9; 1" />
+        </feDisplacementMap>
+        <!-- Rozszczepienie kanałów RGB (chromatic aberration) -->
+        <feOffset in="disp" dx="4" dy="0" result="rsh" />
+        <feColorMatrix in="rsh" type="matrix" result="r"
+          values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" />
+        <feOffset in="disp" dx="-4" dy="0" result="bsh" />
+        <feColorMatrix in="bsh" type="matrix" result="b"
+          values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" />
+        <feColorMatrix in="disp" type="matrix" result="g"
+          values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" />
+        <feBlend in="r" in2="g" mode="screen" result="rg" />
+        <feBlend in="rg" in2="b" mode="screen" />
+      </filter>
+
+      <!-- wariant glitcha dla logo: bez niebieskiego przesunięcia (brak fioletowego ghosta) -->
+      <filter id="fx-glitch-logo" x="-10%" y="-10%" width="120%" height="120%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.00001 0.0006" numOctaves="1" seed="7" result="noiseL">
+          <animate attributeName="baseFrequency" dur="7s" repeatCount="indefinite"
+            values="0.00001 0.0006; 0.00001 0.0022; 0.00001 0.0005; 0.00001 0.0018; 0.00001 0.0006" />
+        </feTurbulence>
+        <feDisplacementMap in="SourceGraphic" in2="noiseL" xChannelSelector="R" yChannelSelector="G" result="dispL">
+          <animate attributeName="scale" dur="5s" repeatCount="indefinite"
+            values="12; 28; 10; 40; 14; 12" keyTimes="0; 0.2; 0.5; 0.72; 0.9; 1" />
+        </feDisplacementMap>
+        <!-- tylko lekkie czerwone przesunięcie; zielony i niebieski zostają na miejscu -->
+        <feOffset in="dispL" dx="3" dy="0" result="rshL" />
+        <feColorMatrix in="rshL" type="matrix" result="rL"
+          values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" />
+        <feColorMatrix in="dispL" type="matrix" result="gbL"
+          values="0 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0" />
+        <feBlend in="rL" in2="gbL" mode="screen" />
+      </filter>
+
+      <!-- Wariant B: poziomy smear / pixel-stretch (data-mosh) -->
+      <filter id="fx-glitch-2" x="-20%" y="-10%" width="140%" height="120%">
+        <feTurbulence type="turbulence" baseFrequency="0.0003 0.08" numOctaves="2" seed="4" result="noise2">
+          <animate attributeName="baseFrequency" dur="4s" repeatCount="indefinite"
+            values="0.0003 0.08; 0.0012 0.14; 0.0003 0.06; 0.0012 0.08" />
+        </feTurbulence>
+        <feDisplacementMap in="SourceGraphic" in2="noise2" xChannelSelector="R" yChannelSelector="A" result="disp2">
+          <animate attributeName="scale" dur="4s" repeatCount="indefinite"
+            values="40; 90; 30; 70; 40" keyTimes="0; 0.25; 0.5; 0.8; 1" />
+        </feDisplacementMap>
+        <!-- poziomy motion-blur = świetlne smugi -->
+        <feGaussianBlur in="disp2" stdDeviation="9 0" result="smear" />
+        <feColorMatrix in="smear" type="matrix" result="hot"
+          values="1.1 0 0 0 0  0 1 0 0 0  0 0 0.9 0 0  0 0 0 1 0" />
+        <feBlend in="disp2" in2="hot" mode="screen" />
+      </filter>
+
+      <!-- CRT barrel distortion (mapa przemieszczenia generowana w JS) -->
+      <filter id="crt-barrel" x="-16%" y="-16%" width="132%" height="132%" color-interpolation-filters="sRGB">
+        <feImage id="crt-barrel-map" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" result="bmap" />
+        <feGaussianBlur in="bmap" stdDeviation="1.2" result="bmapSmooth" />
+        <feDisplacementMap in="SourceGraphic" in2="bmapSmooth" scale="210" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+
+      <!-- CRT tile: poziome rwanie obrazu (tearing) + rozszczepienie RGB — dla slajdów karuzeli (filter: url(#crt-tile)) -->
+      <filter id="crt-tile" x="-10%" y="-6%" width="120%" height="112%" color-interpolation-filters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.00001 0.045" numOctaves="1" seed="11" result="tnoise">
+          <animate attributeName="baseFrequency" dur="6s" repeatCount="indefinite"
+            values="0.00001 0.045; 0.00001 0.012; 0.00001 0.09; 0.00001 0.03; 0.00001 0.045" />
+          <animate attributeName="seed" dur="1.2s" repeatCount="indefinite" values="11; 12; 13; 14; 15; 16; 17; 18; 19; 20" calcMode="discrete" />
+        </feTurbulence>
+        <feDisplacementMap in="SourceGraphic" in2="tnoise" xChannelSelector="R" yChannelSelector="A" result="tdisp">
+          <animate attributeName="scale" dur="4s" repeatCount="indefinite"
+            values="3; 3; 22; 4; 3; 34; 6; 3" keyTimes="0; 0.42; 0.45; 0.5; 0.78; 0.8; 0.83; 1" calcMode="discrete" />
+        </feDisplacementMap>
+        <feOffset in="tdisp" dx="2.2" dy="0" result="trs" />
+        <feColorMatrix in="trs" type="matrix" result="tr"
+          values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" />
+        <feOffset in="tdisp" dx="-2.2" dy="0" result="tbs" />
+        <feColorMatrix in="tbs" type="matrix" result="tb"
+          values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" />
+        <feColorMatrix in="tdisp" type="matrix" result="tg"
+          values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" />
+        <feBlend in="tr" in2="tg" mode="screen" result="trg" />
+        <feBlend in="trg" in2="tb" mode="screen" />
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- ===== NAV (reużywalny komponent z mega-menu) ===== -->
+  <header class="nav" id="nav">
+    <a class="nav__logo" href="index.html">
+      <img src="materials/logo.svg" alt="CONFLICT" />
+    </a>
+
+    <nav class="nav__menu" id="nav-menu">
+      <a href="index.html#hero" class="nav__item">Home</a>
+
+      <!-- Company (mega menu — komponent) -->
+      <div class="nav__group nav__group--mega">
+        <button class="nav__item nav__trigger" data-href="about.html" aria-expanded="false">Company<span class="nav__caret">▾</span></button>
+        <div class="nav__panel megamenu megamenu--simple">
+          <div class="megamenu__grid">
+            <div class="megamenu__main">
+              <div class="megamenu__cats">
+                <section class="mcat">
+                  <div class="mcat__head"><div><h4>Company</h4></div></div>
+                  <ul class="mcat__links">
+                    <li><a href="about.html">About us</a></li>
+                    <li><a href="#top">Our approach</a></li>
+                    <li><a href="outcome.html">Outcomes</a></li>
+                    <li><a href="about.html#ethos">Engineering culture</a></li>
+                  </ul>
+                </section>
+                <section class="mcat">
+                  <div class="mcat__head"><div><h4>Team</h4></div></div>
+                  <ul class="mcat__links">
+                    <li><a href="index.html#team">Our team</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Life at CONFLICT</a></li>
+                    <li><a href="#">Press kit</a></li>
+                  </ul>
+                </section>
+                <section class="mcat">
+                  <div class="mcat__head"><div><h4>Resources</h4></div></div>
+                  <ul class="mcat__links">
+                    <li><a href="index.html#work">Showcase</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="index.html#case-studies">Case studies</a></li>
+                    <li><a href="#">Docs</a></li>
+                  </ul>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div class="megamenu__bar">
+            <a href="about.html" class="mmbar mmbar--primary">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>
+              <span>About us</span> <em aria-hidden="true">→</em>
+            </a>
+            <a href="#" class="mmbar">
+              <svg viewBox="0 0 24 24"><path d="M4 7h16v13H4zM9 7V4h6v3"/></svg>
+              <span>Careers</span>
+            </a>
+            <a href="contact.html" class="mmbar">
+              <svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="16" rx="1.5"/><path d="M4 9h16M8 3v4M16 3v4"/><path d="M9 14l2 2 4-4"/></svg>
+              <span>Book a call</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Services (mega menu) -->
+      <div class="nav__group nav__group--mega">
+        <button class="nav__item nav__trigger" data-href="services.html#sp-services" aria-expanded="false">Services<span class="nav__caret">▾</span></button>
+        <div class="nav__panel megamenu">
+          <div class="megamenu__grid">
+            <div class="megamenu__main">
+              <div class="megamenu__cats">
+                <section class="mcat">
+                  <div class="mcat__head">
+                    <span class="mcat__icon"><svg viewBox="0 0 24 24"><path d="M9 7l-4 5 4 5M15 7l4 5-4 5"/></svg></span>
+                    <div><h4><a href="services.html#ai">AI &amp; Intelligence</a></h4><p>Smarter systems. Faster outcomes. AI, without the fluff.</p></div>
+                  </div>
+                  <ul class="mcat__links">
+                    <li><a href="services.html#ai">Data Engineering &amp; Analytics</a></li>
+                    <li><a href="services.html#ai">AI Infrastructure &amp; MLOps</a></li>
+                    <li><a href="services.html#ai">AI Integrations &amp; API Automation</a></li>
+                    <li><a href="services.html#ai">Audio Intelligence &amp; Voice AI</a></li>
+                    <li><a href="services.html#ai">Autonomous Agents &amp; Orchestrated Intelligence</a></li>
+                    <li><a href="services.html#ai">CalliopeAI</a></li>
+                    <li><a href="services.html#ai">Computer Vision &amp; Detection Systems</a></li>
+                    <li><a href="services.html#ai">Custom Model Development</a></li>
+                    <li><a href="services.html#ai">Data Infrastructure &amp; ML Readiness</a></li>
+                    <li><a href="services.html#ai">Forecasting &amp; Predictive Modeling</a></li>
+                    <li><a href="services.html#ai">Retrieval Augmented Generation (RAG)</a></li>
+                  </ul>
+                </section>
+
+                <section class="mcat">
+                  <div class="mcat__head">
+                    <span class="mcat__icon"><svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M11 18h2"/></svg></span>
+                    <div><h4><a href="services.html#apps">App Development</a></h4><p>Apps that work. Code that lasts.</p></div>
+                  </div>
+                  <ul class="mcat__links">
+                    <li><a href="services.html#apps">Systems Integration</a></li>
+                    <li><a href="services.html#apps">API Design &amp; Development</a></li>
+                    <li><a href="services.html#apps">Desktop Application Development</a></li>
+                    <li><a href="services.html#apps">Mobile Application Development</a></li>
+                    <li><a href="services.html#apps">Web Application Development</a></li>
+                    <li><a href="services.html#apps">Workflows &amp; Automation</a></li>
+                    <li><a href="services.html#apps">Product Taxonomy &amp; Discovery</a></li>
+                  </ul>
+                </section>
+
+                <section class="mcat">
+                  <div class="mcat__head">
+                    <span class="mcat__icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/><path d="M3 4h2l2.5 11h10l2-7H6"/></svg></span>
+                    <div><h4><a href="services.html#commerce">eCommerce</a></h4><p>Commerce that scales under load.</p></div>
+                  </div>
+                  <ul class="mcat__links">
+                    <li><a href="services.html#commerce">Cart, Checkout &amp; Subscription Flows</a></li>
+                    <li><a href="services.html#commerce">eCommerce Analytics &amp; Optimization</a></li>
+                    <li><a href="services.html#commerce">eCommerce Compliance</a></li>
+                    <li><a href="services.html#commerce">eCommerce Performance &amp; Resilience</a></li>
+                    <li><a href="services.html#commerce">eCommerce Platforms</a></li>
+                    <li><a href="services.html#commerce">Fraud &amp; Customer Experience</a></li>
+                    <li><a href="services.html#commerce">Fulfillment, ERP &amp; Supply Chain</a></li>
+                    <li><a href="services.html#commerce">Headless Commerce Architecture</a></li>
+                    <li><a href="services.html#commerce">International eCommerce &amp; Global Expansion</a></li>
+                    <li><a href="services.html#commerce">Loyalty, CRM &amp; Retention</a></li>
+                    <li><a href="services.html#commerce">Marketplace &amp; Multi-Vendor Commerce</a></li>
+                    <li><a href="services.html#commerce">Payments Infrastructure</a></li>
+                  </ul>
+                </section>
+
+                <section class="mcat">
+                  <div class="mcat__head">
+                    <span class="mcat__icon"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6z" fill="currentColor" stroke="none"/></svg></span>
+                    <div><h4><a href="services.html#platform">Platform &amp; Infrastructure</a></h4><p>Resilient platforms, built to run.</p></div>
+                  </div>
+                  <ul class="mcat__links">
+                    <li><a href="services.html#platform">Cloud IT &amp; Agentic IT</a></li>
+                    <li><a href="services.html#platform">High Performance &amp; Private Cloud</a></li>
+                    <li><a href="services.html#platform">Cloud-Native Architecture</a></li>
+                    <li><a href="services.html#platform">DevOps Transformation</a></li>
+                    <li><a href="services.html#platform">Observability &amp; Telemetry</a></li>
+                    <li><a href="services.html#platform">Security &amp; Compliance</a></li>
+                    <li><a href="services.html#platform">Site Reliability Engineering</a></li>
+                    <li><a href="services.html#platform">Systems Administration</a></li>
+                  </ul>
+                </section>
+
+                <section class="mcat">
+                  <div class="mcat__head">
+                    <span class="mcat__icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg></span>
+                    <div><h4><a href="services.html#consulting">Consulting</a></h4><p>Elite engineering, on your terms.</p></div>
+                  </div>
+                  <ul class="mcat__links">
+                    <li><a href="services.html#consulting">Transformation &amp; Enablement</a></li>
+                    <li><a href="services.html#consulting">Consulting &amp; Strategic Advisory</a></li>
+                    <li><a href="services.html#consulting">Engineering Support &amp; Retainers</a></li>
+                    <li><a href="services.html#consulting">On-Call Engineering &amp; Incident Response</a></li>
+                    <li><a href="services.html#consulting">Shared Engineering Services</a></li>
+                  </ul>
+                </section>
+              </div>
+            </div>
+
+            <aside class="megamenu__showcase">
+              <span class="showcase__title">Our Solutions</span>
+              <a href="https://weareconflict.com/showcase/" class="feat feat--collab">
+                <span class="feat__art feat__art--grid"></span>
+                <span class="feat__body">
+                  <strong>Boilerworks™</strong>
+                  <span>Modular full-stack platform — production-grade apps, from internal tools to $1B+ storefronts.</span>
+                </span>
+              </a>
+              <a href="https://weareconflict.com/showcase/" class="feat feat--pm">
+                <span class="feat__art">
+                  <span class="feat__cursors"><i></i><i></i><i></i></span>
+                </span>
+                <span class="feat__body">
+                  <strong>Calliope AI</strong>
+                  <span>Private AI for teams — assistants, notebooks, chat &amp; agents, with governance.</span>
+                </span>
+              </a>
+              <a href="https://weareconflict.com/showcase/" class="feat feat--analytics">
+                <span class="feat__art feat__art--radar"><i class="feat__msg"></i></span>
+                <span class="feat__body">
+                  <strong>VeraCall</strong>
+                  <span>AI comms assistant — calls, messaging, scheduling &amp; reminders in one.</span>
+                </span>
+              </a>
+              <a href="https://weareconflict.com/showcase/" class="feat feat--auto">
+                <span class="feat__art feat__art--planet"><i class="feat__orbit"></i></span>
+                <span class="feat__body">
+                  <strong>Ezacto</strong>
+                  <span>eCommerce engine — commerce that scales under load.</span>
+                </span>
+              </a>
+            </aside>
+          </div><!-- /megamenu__grid -->
+
+          <!-- Dolny pasek sekcji (full-width) -->
+          <div class="megamenu__bar">
+            <a href="services.html#sp-services" class="mmbar mmbar--primary">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+              <span>All services</span> <em aria-hidden="true">→</em>
+            </a>
+            <a href="index.html#work" class="mmbar">
+              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="1.5"/><path d="M3 9h18M8 18v2M16 18v2"/></svg>
+              <span>Showcase</span>
+            </a>
+            <a href="index.html#services" class="mmbar">
+              <svg viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 3v18M4 7.5l8 4.5 8-4.5"/></svg>
+              <span>Products</span>
+            </a>
+            <a href="contact.html" class="mmbar">
+              <svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="16" rx="1.5"/><path d="M4 9h16M8 3v4M16 3v4"/><path d="M9 14l2 2 4-4"/></svg>
+              <span>Book a call</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Solutions (mega menu — komponent) -->
+      <div class="nav__group nav__group--mega">
+        <button class="nav__item nav__trigger" aria-expanded="false">Solutions<span class="nav__caret">▾</span></button>
+        <div class="nav__panel megamenu megamenu--simple">
+          <div class="megamenu__grid">
+            <div class="megamenu__main">
+              <div class="megamenu__cats">
+                <section class="mcat mcat--wide">
+                  <div class="mcat__head"><div><h4>Problems we solve</h4></div></div>
+                  <ul class="mcat__links mcat__links--cols">
+                    <li><a href="#">AI Hyperburn</a></li>
+                    <li><a href="#">Death by Consultants</a></li>
+                    <li><a href="#">No Observability</a></li>
+                    <li><a href="#">Skunksworks for Hire</a></li>
+                    <li><a href="#">Mobile Mess</a></li>
+                    <li><a href="#">AI Fatigue &amp; Overwhelm</a></li>
+                    <li><a href="#">Big Bets</a></li>
+                    <li><a href="#">Cloud Chaos</a></li>
+                    <li><a href="#">Compliance Pain</a></li>
+                    <li><a href="#">Data Silos</a></li>
+                    <li><a href="#">Dev Team Friction</a></li>
+                    <li><a href="#">eCommerce Struggles</a></li>
+                    <li><a href="#">Faux DevOps</a></li>
+                    <li><a href="#">Deliver Through a Hiring Freeze</a></li>
+                    <li><a href="#">Non-Core Development</a></li>
+                    <li><a href="#">Need for Speed</a></li>
+                    <li><a href="#">SRE Gaps</a></li>
+                    <li><a href="#">Startup Whiplash</a></li>
+                    <li><a href="#">Tool Sprawl</a></li>
+                    <li><a href="#">Vendor Lock-In</a></li>
+                    <li><a href="#">Platform Scale Mismatch</a></li>
+                  </ul>
+                </section>
+                <section class="mcat">
+                  <div class="mcat__head"><div><h4>Industries</h4></div></div>
+                  <ul class="mcat__links">
+                    <li><a href="#">Fintech</a></li>
+                    <li><a href="#">Healthtech</a></li>
+                    <li><a href="#">eCommerce</a></li>
+                    <li><a href="#">SaaS</a></li>
+                    <li><a href="#">Logistics</a></li>
+                    <li><a href="#">Energy</a></li>
+                  </ul>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div class="megamenu__bar">
+            <a href="https://weareconflict.com/showcase/" class="mmbar mmbar--primary">
+              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="1.5"/><path d="M3 9h18M8 18v2M16 18v2"/></svg>
+              <span>Case studies</span> <em aria-hidden="true">→</em>
+            </a>
+            <a href="index.html#work" class="mmbar">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+              <span>Showcase</span>
+            </a>
+            <a href="contact.html" class="mmbar">
+              <svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="16" rx="1.5"/><path d="M4 9h16M8 3v4M16 3v4"/><path d="M9 14l2 2 4-4"/></svg>
+              <span>Book a call</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <a href="index.html#case-studies" class="nav__item">Showcase</a>
+      <a href="#" class="nav__item">Blog</a>
+    </nav>
+
+    <button class="nav__sound" id="nav-sound" aria-label="Przełącz dźwięk" aria-pressed="false">
+      <svg class="nav__sound-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 8.5a4 4 0 0 1 0 7M18.8 6a7 7 0 0 1 0 12"/></svg>
+      <svg class="nav__sound-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 9.5l5 5M21.5 9.5l-5 5"/></svg>
+    </button>
+
+    <div class="nav__actions">
+      <a href="contact.html" class="nav__item nav__contact">Contact</a>
+      <a href="contact.html" class="btn btn--primary nav__cta">Start Project</a>
+    </div>
+
+    <button class="nav__burger" id="nav-burger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- Scrim: blur całej strony pod otwartym mega menu -->
+  <div class="nav-scrim" id="nav-scrim" aria-hidden="true"></div>
+
+  <main class="sp sp-page-approach" id="top">
+
+    <!-- ===== HERO ===== -->
+    <section class="sp-hero" aria-labelledby="ap-title">
+      <div class="sp-hero__frame">
+        <div class="sp-hero__main">
+          <h1 class="sp-hero__title" id="ap-title">
+            <span class="sp-hero__line" data-reveal>Built around AI.</span>
+            <span class="sp-hero__line" data-reveal data-reveal-delay="120">Not <span class="sp-strike">bolted on.</span></span>
+          </h1>
+          <p class="sp-hero__lead" data-reveal data-reveal-delay="240">We don’t treat AI as a feature to add later. Our entire engineering model is built around <strong>AI agents, autonomous workflows, and outcome-driven delivery</strong>. This is what AI-native means in practice.</p>
+          <div class="sp-hero__actions" data-reveal data-reveal-delay="320">
+            <a href="contact.html" class="btn btn--primary">Start your project</a>
+            <a href="services.html#ai" class="btn btn--ghost">Explore our AI Services <span class="btn__arrow" aria-hidden="true">→</span></a>
+          </div>
+        </div>
+        <div class="sp-hero__media svc__media" aria-hidden="true" data-reveal data-reveal-delay="160">
+          <div class="svc__vid media-video fx-glitch fx-glitch--soft is-mode-a"><video class="media-video__el" src="materials/1-clean.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== AI-NATIVE vs AI-AUGMENTED — porównanie ===== -->
+    <section class="sp-vs" aria-labelledby="ap-vs">
+      <h2 class="sp-h2" id="ap-vs" data-reveal>AI-Native vs. AI-Augmented</h2>
+      <div class="sp-vs__grid">
+        <article class="sp-vs__col sp-vs__col--off" data-reveal>
+          <h3 class="sp-vs__label">AI-augmented</h3>
+          <p class="sp-vs__lead">Most organizations layer AI on top of existing human workflows.</p>
+          <ul class="sp-vs__list">
+            <li>Copilots, prompt helpers, and chatbot interfaces</li>
+            <li>Added to processes designed for humans alone</li>
+            <li>AI stays at the edge of the work</li>
+          </ul>
+        </article>
+        <div class="sp-vs__sep" aria-hidden="true"><span class="sp-glitch" data-text="VS">VS</span></div>
+        <article class="sp-vs__col sp-vs__col--on" data-reveal data-reveal-delay="140">
+          <h3 class="sp-vs__label">AI-native</h3>
+          <p class="sp-vs__lead">We restructure entire development lifecycles around AI agents, autonomous systems, and intent-driven creation.</p>
+          <ul class="sp-vs__list">
+            <li>AI agents plan, build, test, and deploy software components — with human oversight</li>
+            <li>Dramatic acceleration</li>
+            <li>Without sacrificing architectural quality or governance</li>
+          </ul>
+        </article>
+      </div>
+      <a class="sp-svc__cta" href="services.html#ai" data-reveal>See our AI Services <em aria-hidden="true">→</em></a>
+    </section>
+
+    <!-- ===== HOW WE WORK — 4 karty ===== -->
+    <section class="sp-do" id="how-we-work" aria-labelledby="ap-how">
+      <h2 class="sp-h2" id="ap-how" data-reveal>How we work</h2>
+      <p class="sp-lead" data-reveal data-reveal-delay="100">Our AI-native approach changes how software gets built.</p>
+      <ul class="sp-caps sp-caps--4">
+          <li class="sp-caps__item" data-reveal data-reveal-delay="0">
+            <a class="sp-cap" href="services.html#ai">
+              <span class="sp-cap__num">01</span>
+              <span class="sp-cap__go" aria-hidden="true">→</span>
+              <h3 class="sp-cap__title">Agentic Development</h3>
+              <p class="sp-cap__desc">AI agents that reason, break down tasks, and collaborate with humans across complex problem spaces. Beyond simple prompt generation.</p>
+              <span class="sp-cap__more">Learn more</span>
+            </a>
+          </li>
+          <li class="sp-caps__item" data-reveal data-reveal-delay="70">
+            <a class="sp-cap" href="services.html#apps">
+              <span class="sp-cap__num">02</span>
+              <span class="sp-cap__go" aria-hidden="true">→</span>
+              <h3 class="sp-cap__title">Spec-Driven Engineering</h3>
+              <p class="sp-cap__desc">Formal specifications as first-class artifacts that both humans and AI agents consume. Tests, constraints, and acceptance criteria defined before a single line of code.</p>
+              <span class="sp-cap__more">Learn more</span>
+            </a>
+          </li>
+          <li class="sp-caps__item" data-reveal data-reveal-delay="140">
+            <a class="sp-cap" href="service.html?id=observability">
+              <span class="sp-cap__num">03</span>
+              <span class="sp-cap__go" aria-hidden="true">→</span>
+              <h3 class="sp-cap__title">Adaptive Feedback Loops</h3>
+              <p class="sp-cap__desc">Automated quality monitoring agents and continuous feedback that keep systems resilient and evolving. Production-grade from day one.</p>
+              <span class="sp-cap__more">Learn more</span>
+            </a>
+          </li>
+          <li class="sp-caps__item" data-reveal data-reveal-delay="210">
+            <a class="sp-cap" href="outcome.html">
+              <span class="sp-cap__num">04</span>
+              <span class="sp-cap__go" aria-hidden="true">→</span>
+              <h3 class="sp-cap__title">Outcome Measurement</h3>
+              <p class="sp-cap__desc">Every engineering output is tied to a measurable business outcome. Revenue uplift, risk reduction, time-to-value. We call this Outcome Engineering.</p>
+              <span class="sp-cap__more">Learn more</span>
+            </a>
+          </li>
+      </ul>
+    </section>
+
+    <!-- ===== THE THREE LAYERS — diagram 3D rozsuwany scrollem ===== -->
+    <section class="sp-layers" id="layers" aria-labelledby="ap-layers" data-layers>
+      <div class="sp-layers__pin">
+        <div class="sp-layers__text">
+          <h2 class="sp-h2" id="ap-layers">The three layers</h2>
+          <p class="sp-lead">Every AI-native organization operates across three layers.</p>
+          <ol class="sp-layers__list">
+            <li class="sp-layers__item" data-layer="0"><span class="sp-layers__num">01</span><div><h3>Intelligence Layer</h3><p>Models, agents, and data infrastructure.</p></div></li>
+            <li class="sp-layers__item" data-layer="1"><span class="sp-layers__num">02</span><div><h3>Orchestration Layer</h3><p>Workflows, toolchains, and human-AI handoffs.</p></div></li>
+            <li class="sp-layers__item" data-layer="2"><span class="sp-layers__num">03</span><div><h3>Outcome Layer</h3><p>Measurement, feedback loops, and business alignment.</p></div></li>
+          </ol>
+          <p class="sp-layers__unified">We engineer all three as <strong>a unified system</strong>, not separate concerns.</p>
+          <a href="contact.html" class="btn btn--primary">Talk to an expert</a>
+        </div>
+        <div class="sp-layers__stage" aria-hidden="true">
+          <div class="sp-layers__stack">
+            <div class="sp-plane" data-layer="2"><span>Outcome</span></div>
+            <div class="sp-plane" data-layer="1"><span>Orchestration</span></div>
+            <div class="sp-plane" data-layer="0"><span>Intelligence</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== OUR ETHOS — hasło + dwa pasy przesuwane scrollem ===== -->
+    <section class="sp-ethos" id="ethos" aria-labelledby="ap-ethos">
+      <h2 class="sp-statement__text sp-ethos__title" id="ap-ethos" data-words-reveal>Innovation doesn’t grow in comfort — it’s born in conflict.</h2>
+      <p class="sp-lead sp-ethos__lead" data-reveal>The best ideas come from the tension between ambition and reality. That’s why we lean into hard problems. That’s why we say no to shortcuts. That’s why we build systems that hold up when the pressure’s on.</p>
+      <div class="sp-marquee" data-scroll-marquee="-1" aria-hidden="true"><span>Constraint sharpens creativity.</span><span>Constraint sharpens creativity.</span><span>Constraint sharpens creativity.</span><span>Constraint sharpens creativity.</span></div>
+      <p class="sp-ethos__forged" data-reveal><img src="materials/o.svg" alt="" aria-hidden="true" />And from conflict, extraordinary software is forged.</p>
+      <div class="sp-marquee sp-marquee--alt" data-scroll-marquee="1" aria-hidden="true"><span>Friction fuels invention.</span><span>Friction fuels invention.</span><span>Friction fuels invention.</span><span>Friction fuels invention.</span></div>
+      <p class="sr-only">Constraint sharpens creativity. Friction fuels invention.</p>
+    </section>
+
+    <!-- ===== KONTAKT ===== -->
+    <section class="sp-contact" aria-labelledby="ap-contact">
+      <div class="sp-contact__head">
+        <h2 class="sp-h2" id="ap-contact" data-reveal>Ready to go AI-native?</h2>
+        <p class="sp-lead" data-reveal data-reveal-delay="100">Whether you are starting from scratch or evolving an existing AI strategy, we help you build with AI at the center, not the edge.</p>
+        <div class="sp-contact__actions" data-reveal data-reveal-delay="180">
+          <a href="contact.html" class="btn btn--primary">Contact Us</a>
+          <a href="services.html" class="btn btn--ghost">Explore Services</a>
+        </div>
+      </div>
+      <div class="sp-contact__lines">
+        <a class="sp-line" href="mailto:hi@weareconflict.com" data-reveal>
+          <span class="sp-line__label">Start a project</span>
+          <span class="sp-line__value">hi@weareconflict.com</span>
+          <img class="sp-line__cursor" src="materials/cursor.png" alt="" aria-hidden="true" />
+        </a>
+        <a class="sp-line" href="tel:+13052095818" data-reveal data-reveal-delay="100">
+          <span class="sp-line__label">Talk to an expert</span>
+          <span class="sp-line__value">+1 (305) 209-5818</span>
+          <img class="sp-line__cursor" src="materials/cursor.png" alt="" aria-hidden="true" />
+        </a>
+      </div>
+    </section>
+  </main>
+
+
+  <!-- ===== FOOTER / CONTACT ===== -->
+  <div class="footer-wrap">
+  <footer class="footer" id="contact">
+    <!-- Nagłówek + CTA -->
+    <div class="footer__hero">
+      <h2 class="footer__headline">Built for What<br />Comes Next.</h2>
+      <p class="footer__tagline">Tell us what you're building — or the problem you're solving. Our experts will scope the work, estimate it, and lay out exactly how we'd build it. From there, we'll both know if we're an exact fit.</p>
+      <a href="contact.html" class="btn btn--primary btn--glitch" data-text="Contact us">Contact us</a>
+    </div>
+
+    <!-- Symbol [O] — góra wystaje pod Contact us, dół chowa się za glass-paskiem social -->
+    <div class="footer__symbol" aria-hidden="true">
+      <img src="materials/o.svg" alt="" />
+    </div>
+
+    <!-- Social (pod Contact us, nad „In the new era") -->
+    <div class="connect__row footer__connect">
+      <a href="#" class="footer__soc">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 10v7M7 7v.01M11 17v-4a2 2 0 0 1 4 0v4M11 10v7"/></svg>
+        <span>LinkedIn</span><span class="footer__arrow">→</span>
+      </a>
+      <a href="#" class="footer__soc">
+        <svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20"/></svg>
+        <span>Twitter</span><span class="footer__arrow">→</span>
+      </a>
+      <a href="#" class="footer__soc">
+        <svg viewBox="0 0 24 24"><path d="M9 19c-4 1.4-4-2.5-6-3m12 5v-3.4a3 3 0 0 0-.8-2.3c2.9-.3 5.8-1.4 5.8-6.4a5 5 0 0 0-1.3-3.4 4.6 4.6 0 0 0-.1-3.4s-1.1-.3-3.5 1.3a12 12 0 0 0-6 0C6.2 2 5.1 2.3 5.1 2.3a4.6 4.6 0 0 0-.1 3.4A5 5 0 0 0 3.6 9.1c0 5 2.9 6.1 5.8 6.4a3 3 0 0 0-.8 2.3V22"/></svg>
+        <span>GitHub</span><span class="footer__arrow">→</span>
+      </a>
+      <a href="#" class="footer__soc">
+        <svg viewBox="0 0 24 24"><path d="M15.6 13c0-2 1.6-3 1.6-3s-1-1.6-2.9-1.6c-1.4 0-2 .7-2.8.7s-1.4-.7-2.6-.7C7 8.1 5.5 9.8 5.5 12.4c0 2.8 2.1 5.9 3.3 5.9.8 0 1.3-.6 2.2-.6s1.3.6 2.2.6c1 0 2.7-2.5 2.7-2.5s-2.3-.9-2.3-2.8z" fill="currentColor" stroke="none"/><path d="M13.3 6.6c.6-.8 1-1.8.9-2.6-.9 0-1.8.5-2.3 1.2-.5.7-1 1.6-.8 2.5 1 .1 1.7-.4 2.2-1.1z" fill="currentColor" stroke="none"/></svg>
+        <span>App Store</span><span class="footer__arrow">→</span>
+      </a>
+    </div>
+
+    <!-- Logo + adresy (lewa) + mapa strony (prawa) -->
+    <div class="footer__map">
+      <div class="footer__map-brand">
+        <a class="footer__logo" href="index.html#hero"><img src="materials/logo.svg" alt="CONFLICT" /></a>
+        <p class="footer__desc">In the new era of AI-native engineering we build the infrastructure, software, and AI that power serious products.</p>
+        <ul class="footer__contact">
+          <li><a href="mailto:hi@weareconflict.com">hi@weareconflict.com</a></li>
+          <li><a href="tel:+13052095818">+1 (305) 209-5818</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__cols">
+        <div class="footer__col">
+          <h4>Product</h4>
+          <a href="#">Technology</a><a href="#">Integrations</a><a href="#">Releases</a><a href="#">Status</a>
+        </div>
+        <div class="footer__col">
+          <h4>Resources</h4>
+          <a href="#">Docs</a><a href="#">API Reference</a><a href="#">Tutorials</a><a href="#">System Guide</a>
+        </div>
+        <div class="footer__col">
+          <h4>Company</h4>
+          <a href="#">Team</a><a href="#">Culture</a><a href="#">Jobs</a><a href="#">Press Kit</a>
+        </div>
+        <div class="footer__col">
+          <h4>Legal</h4>
+          <a href="#">Imprint</a><a href="#">Data Policy</a><a href="#">Cookie Policy</a><a href="#">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="footer__rule" />
+
+    <p class="footer__copy">© 2026 CONFLICT™ — AI-Native Engineering</p>
+  </footer>
+  </div><!-- /footer-wrap -->
+
+  <!-- Legal (pod stopką) -->
+  <div class="legal">
+    <a href="#">Terms &amp; Conditions</a>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Cookie Policy</a>
+  </div>
+
+  <div class="page-glitch" id="page-glitch" aria-hidden="true"></div>
+
+  <script src="src/scripts/smooth-scroll.js?v=20261109f" type="module"></script>
+  <script src="src/scripts/nav.js?v=20261109f" type="module"></script>
+  <script src="src/scripts/cursor-glitch.js?v=20261109f" type="module"></script>
+  <script src="src/scripts/main.js?v=20261109f" type="module"></script>
+  <script src="src/scripts/subpage.js?v=20261109f" type="module"></script>
+  <script src="src/scripts/sound.js?v=20261109f" type="module"></script>
+  <script src="src/scripts/page-glitch.js?v=20261109f" type="module"></script>
+  <script src="src/scripts/ambient.js?v=20261109f" type="module"></script>
+</body>
+</html>

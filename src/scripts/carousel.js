@@ -13,7 +13,7 @@ function initCarousel(carousel) {
   originals.forEach((s) => track.appendChild(s.cloneNode(true)));
 
   const slides = [...track.children]; // 3N
-  let index = N + Math.floor(N / 2); // start na środku środkowego zestawu
+  let index = N; // pierwsza realizacja jest aktywna po wejściu na stronę
   let animating = false;
 
   function center(withTransition) {
@@ -66,10 +66,23 @@ function initCarousel(carousel) {
 
   // ===== Auto-przewijanie (pauza na hover) =====
   const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+  let populatedCount = 0;
   const DELAY = 3500;
   let timer = null;
-  const play = () => { if (reduceMotion) return; stop(); timer = setInterval(() => go(1), DELAY); };
+  const play = () => { if (reduceMotion || populatedCount < 2) return; stop(); timer = setInterval(() => go(1), DELAY); };
   const stop = () => { if (timer) { clearInterval(timer); timer = null; } };
+
+  originals.forEach((slide) => {
+    const img = slide.querySelector("img");
+    if (!img) return;
+    const countLoaded = () => {
+      if (!img.naturalWidth) return;
+      populatedCount += 1;
+      if (populatedCount === 2) play();
+    };
+    if (img.complete) countLoaded();
+    else img.addEventListener("load", countLoaded, { once: true });
+  });
 
   carousel.addEventListener("mouseenter", stop);
   carousel.addEventListener("mouseleave", play);

@@ -15,6 +15,47 @@ if (nav) {
   if (window.ResizeObserver) new ResizeObserver(syncNavHeight).observe(nav);
 }
 
+// Chowaj nagłówek przy przewijaniu w dół; pokaż przy ruchu w górę lub po postoju.
+if (nav) {
+  let lastY = window.scrollY;
+  let idleTimer;
+  const show = () => nav.classList.remove("is-hidden");
+  const hide = () => {
+    if (!nav.classList.contains("is-open")) {
+      closeAll();
+      nav.classList.add("is-hidden");
+    }
+  };
+  const scheduleIdleShow = () => {
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(show, 2500);
+  };
+
+  function onScrollVisibility() {
+    const y = window.scrollY;
+    const delta = y - lastY;
+    lastY = y;
+
+    if (y <= 8) {
+      show();
+      return;
+    }
+    if (delta > 2) hide();
+    else if (delta < -2) show();
+    scheduleIdleShow();
+  }
+
+  window.addEventListener("scroll", onScrollVisibility, { passive: true });
+  // Hero przechwytuje wheel, więc reagujemy na kierunek jeszcze przed jego snapem.
+  window.addEventListener("wheel", (event) => {
+    if (event.ctrlKey || Math.abs(event.deltaY) < 2) return;
+    if (event.deltaY > 0) hide();
+    else show();
+    scheduleIdleShow();
+  }, { capture: true, passive: true });
+  nav.addEventListener("focusin", show);
+}
+
 function updateScrim() {
   scrim?.classList.toggle("is-active", groups.some((g) => g.classList.contains("is-open")));
 }
