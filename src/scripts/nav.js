@@ -122,3 +122,30 @@ document.addEventListener("click", (e) => { if (!nav.contains(e.target)) closeAl
 nav?.querySelectorAll(".nav__panel a, .nav__menu > .nav__item").forEach((a) => {
   a.addEventListener("click", () => { nav.classList.remove("is-open"); closeAll(); });
 });
+
+// ===== Wideo w mega menu — gra tylko, gdy panel jest otwarty (preload="none" do pierwszego otwarcia) =====
+document.querySelectorAll(".nav__group--mega").forEach((group) => {
+  const vids = [...group.querySelectorAll(".nav__panel video")];
+  if (!vids.length) return;
+  const play = () => vids.forEach((v) => { v.muted = true; v.play().catch(() => {}); });
+  const stop = () => vids.forEach((v) => v.pause());
+  group.addEventListener("pointerenter", play);
+  group.addEventListener("focusin", play);
+  group.addEventListener("pointerleave", () => setTimeout(() => { if (!group.matches(":hover, :focus-within")) stop(); }, 400));
+  group.querySelector(".nav__trigger")?.addEventListener("click", play);
+});
+
+// ===== Skip link (a11y): pierwszy element w kolejności Tab, przeskakuje menu do <main> =====
+{
+  const main = document.querySelector("main");
+  if (main && !document.querySelector(".skip-link")) {
+    if (!main.id) main.id = "top";
+    if (!main.hasAttribute("tabindex")) main.tabIndex = -1;
+    const a = document.createElement("a");
+    a.className = "skip-link";
+    a.href = `#${main.id}`;
+    a.textContent = "Skip to content";
+    a.addEventListener("click", (e) => { e.preventDefault(); main.focus({ preventScroll: true }); main.scrollIntoView(); });
+    document.body.prepend(a);
+  }
+}

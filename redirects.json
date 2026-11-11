@@ -1,0 +1,517 @@
+[
+  {
+    "from": "/about/",
+    "to": "/about.html",
+    "status": 301
+  },
+  {
+    "from": "/approach/",
+    "to": "/approach.html",
+    "status": 301
+  },
+  {
+    "from": "/career/",
+    "to": "/career.html",
+    "status": 301
+  },
+  {
+    "from": "/contact/",
+    "to": "/contact.html",
+    "status": 301
+  },
+  {
+    "from": "/industries/",
+    "to": "/industries.html",
+    "status": 301
+  },
+  {
+    "from": "/industries/ecommerce/",
+    "to": "/industry.html?id=ecommerce",
+    "status": 301
+  },
+  {
+    "from": "/industries/enterprise-complex-organizations/",
+    "to": "/industry.html?id=enterprise-complex-organizations",
+    "status": 301
+  },
+  {
+    "from": "/industries/health-tech-digital-care-platforms/",
+    "to": "/industry.html?id=health-tech-digital-care-platforms",
+    "status": 301
+  },
+  {
+    "from": "/industries/regulated-compliance-heavy-environments/",
+    "to": "/industry.html?id=regulated-compliance-heavy-environments",
+    "status": 301
+  },
+  {
+    "from": "/industries/saas-platforms-b2b-tools/",
+    "to": "/industry.html?id=saas-platforms-b2b-tools",
+    "status": 301
+  },
+  {
+    "from": "/industries/startups-high-velocity-teams/",
+    "to": "/industry.html?id=startups-high-velocity-teams",
+    "status": 301
+  },
+  {
+    "from": "/industries/tech-for-trades/",
+    "to": "/industry.html?id=tech-for-trades",
+    "status": 301
+  },
+  {
+    "from": "/outcome-engineering/",
+    "to": "/outcome.html",
+    "status": 301
+  },
+  {
+    "from": "/partnerships/",
+    "to": "/partnerships.html",
+    "status": 301
+  },
+  {
+    "from": "/partnerships/aws/",
+    "to": "/partner.html?id=aws",
+    "status": 301
+  },
+  {
+    "from": "/partnerships/google/",
+    "to": "/partner.html?id=google",
+    "status": 301
+  },
+  {
+    "from": "/privacy/",
+    "to": "/legal.html?id=privacy",
+    "status": 301
+  },
+  {
+    "from": "/problems/",
+    "to": "/problems.html",
+    "status": 301
+  },
+  {
+    "from": "/problems/ai-overwhelm/",
+    "to": "/problem.html?id=ai-overwhelm",
+    "status": 301
+  },
+  {
+    "from": "/problems/big-bets-no-owners/",
+    "to": "/problem.html?id=big-bets-no-owners",
+    "status": 301
+  },
+  {
+    "from": "/problems/cloud-chaos/",
+    "to": "/problem.html?id=cloud-chaos",
+    "status": 301
+  },
+  {
+    "from": "/problems/compliance-pain/",
+    "to": "/problem.html?id=compliance-pain",
+    "status": 301
+  },
+  {
+    "from": "/problems/data-silos-integration-headaches/",
+    "to": "/problem.html?id=data-silos-integration-headaches",
+    "status": 301
+  },
+  {
+    "from": "/problems/dev-team-friction/",
+    "to": "/problem.html?id=dev-team-friction",
+    "status": 301
+  },
+  {
+    "from": "/problems/ecommerce-struggles/",
+    "to": "/problem.html?id=ecommerce-struggles",
+    "status": 301
+  },
+  {
+    "from": "/problems/fake-devops-real-problems/",
+    "to": "/problem.html?id=fake-devops-real-problems",
+    "status": 301
+  },
+  {
+    "from": "/problems/headcount-frozen-roadmaps-not/",
+    "to": "/problem.html?id=headcount-frozen-roadmaps-not",
+    "status": 301
+  },
+  {
+    "from": "/problems/internal-apps-you-shouldnt-be-building/",
+    "to": "/problem.html?id=internal-apps-you-shouldnt-be-building",
+    "status": 301
+  },
+  {
+    "from": "/problems/need-for-speed/",
+    "to": "/problem.html?id=need-for-speed",
+    "status": 301
+  },
+  {
+    "from": "/problems/sre-gaps/",
+    "to": "/problem.html?id=sre-gaps",
+    "status": 301
+  },
+  {
+    "from": "/problems/startup-whiplash/",
+    "to": "/problem.html?id=startup-whiplash",
+    "status": 301
+  },
+  {
+    "from": "/problems/too-many-tools-not-enough-flow/",
+    "to": "/problem.html?id=too-many-tools-not-enough-flow",
+    "status": 301
+  },
+  {
+    "from": "/problems/tried-ai-got-burned/",
+    "to": "/problem.html?id=tried-ai-got-burned",
+    "status": 301
+  },
+  {
+    "from": "/problems/vendor-lock-in/",
+    "to": "/problem.html?id=vendor-lock-in",
+    "status": 301
+  },
+  {
+    "from": "/problems/you-got-a-wild-idea-you-need-a-team-that-gets-it/",
+    "to": "/problem.html?id=you-got-a-wild-idea-you-need-a-team-that-gets-it",
+    "status": 301
+  },
+  {
+    "from": "/problems/you-hired-help-and-still-got-nowhere/",
+    "to": "/problem.html?id=you-hired-help-and-still-got-nowhere",
+    "status": 301
+  },
+  {
+    "from": "/problems/your-mobile-app-is-a-mess-or-still-on-the-whiteboard/",
+    "to": "/problem.html?id=your-mobile-app-is-a-mess-or-still-on-the-whiteboard",
+    "status": 301
+  },
+  {
+    "from": "/problems/your-stack-doesnt-match-your-scale/",
+    "to": "/problem.html?id=your-stack-doesnt-match-your-scale",
+    "status": 301
+  },
+  {
+    "from": "/problems/youre-flying-blind/",
+    "to": "/problem.html?id=youre-flying-blind",
+    "status": 301
+  },
+  {
+    "from": "/services/",
+    "to": "/services.html",
+    "status": 301
+  },
+  {
+    "from": "/services/_index-old/",
+    "to": "/services.html",
+    "status": 301
+  },
+  {
+    "from": "/services/ai/",
+    "to": "/service-category.html?id=ai",
+    "status": 301
+  },
+  {
+    "from": "/services/ai/ai-infrastructure-mlops/",
+    "to": "/service.html?id=ai-infrastructure-mlops",
+    "status": 301
+  },
+  {
+    "from": "/services/ai/ai-integrations-api-automation/",
+    "to": "/service.html?id=ai-integrations-api-automation",
+    "status": 301
+  },
+  {
+    "from": "/services/ai/audio-intelligence-voice-ai/",
+    "to": "/service.html?id=audio-intelligence-voice-ai",
+    "status": 301
+  },
+  {
+    "from": "/services/ai/autonomous-agents-orchestrated-intelligence/",
+    "to": "/service.html?id=autonomous-agents-orchestrated-intelligence",
+    "status": 301
+  },
+  {
+    "from": "/services/ai/calliopeai/",
+    "to": "/service.html?id=calliopeai",
+    "status": 301
+  },
+  {
+    "from": "/services/ai/computer-vision-detection-systems/",
+    "to": "/service.html?id=computer-vision-detection-systems",
+    "status": 301
+  },
+  {
+    "from": "/services/ai/custom-model-development/",
+    "to": "/service.html?id=custom-model-development",
+    "status": 301
+  },
+  {
+    "from": "/services/ai/data-engineering-analytics/",
+    "to": "/service.html?id=data-engineering-analytics",
+    "status": 301
+  },
+  {
+    "from": "/services/ai/data-strategy-ml-readiness/",
+    "to": "/service.html?id=data-strategy-ml-readiness",
+    "status": 301
+  },
+  {
+    "from": "/services/ai/forecasting-and-predictive-ai/",
+    "to": "/service.html?id=forecasting-and-predictive-ai",
+    "status": 301
+  },
+  {
+    "from": "/services/ai/retrieval-augmented-generation-rag/",
+    "to": "/service.html?id=retrieval-augmented-generation-rag",
+    "status": 301
+  },
+  {
+    "from": "/services/apps/",
+    "to": "/service-category.html?id=apps",
+    "status": 301
+  },
+  {
+    "from": "/services/apps/api-design-development/",
+    "to": "/service.html?id=api-design-development",
+    "status": 301
+  },
+  {
+    "from": "/services/apps/desktop-application-development/",
+    "to": "/service.html?id=desktop-application-development",
+    "status": 301
+  },
+  {
+    "from": "/services/apps/mobile-application-development/",
+    "to": "/service.html?id=mobile-application-development",
+    "status": 301
+  },
+  {
+    "from": "/services/apps/systems-integration/",
+    "to": "/service.html?id=systems-integration",
+    "status": 301
+  },
+  {
+    "from": "/services/apps/web-application-development/",
+    "to": "/service.html?id=web-application-development",
+    "status": 301
+  },
+  {
+    "from": "/services/apps/workflow-automation-internal-tools/",
+    "to": "/service.html?id=workflow-automation-internal-tools",
+    "status": 301
+  },
+  {
+    "from": "/services/ecommerce/",
+    "to": "/service-category.html?id=ecommerce",
+    "status": 301
+  },
+  {
+    "from": "/services/ecommerce/cart-checkout-subscription-flows/",
+    "to": "/service.html?id=cart-checkout-subscription-flows",
+    "status": 301
+  },
+  {
+    "from": "/services/ecommerce/ecommerce-analytics-optimization/",
+    "to": "/service.html?id=ecommerce-analytics-optimization",
+    "status": 301
+  },
+  {
+    "from": "/services/ecommerce/ecommerce-compliance/",
+    "to": "/service.html?id=ecommerce-compliance",
+    "status": 301
+  },
+  {
+    "from": "/services/ecommerce/ecommerce-performance-resilience/",
+    "to": "/service.html?id=ecommerce-performance-resilience",
+    "status": 301
+  },
+  {
+    "from": "/services/ecommerce/ecommerce-platforms/",
+    "to": "/service.html?id=ecommerce-platforms",
+    "status": 301
+  },
+  {
+    "from": "/services/ecommerce/fraud-customer-experience/",
+    "to": "/service.html?id=fraud-customer-experience",
+    "status": 301
+  },
+  {
+    "from": "/services/ecommerce/fulfillment-erp-supply-chain/",
+    "to": "/service.html?id=fulfillment-erp-supply-chain",
+    "status": 301
+  },
+  {
+    "from": "/services/ecommerce/headless-commerce-architecture/",
+    "to": "/service.html?id=headless-commerce-architecture",
+    "status": 301
+  },
+  {
+    "from": "/services/ecommerce/international-ecommerce-global-expansion/",
+    "to": "/service.html?id=international-ecommerce-global-expansion",
+    "status": 301
+  },
+  {
+    "from": "/services/ecommerce/loyalty-crm-retention/",
+    "to": "/service.html?id=loyalty-crm-retention",
+    "status": 301
+  },
+  {
+    "from": "/services/ecommerce/marketplace-platforms-multi-vendor-commerce/",
+    "to": "/service.html?id=marketplace-platforms-multi-vendor-commerce",
+    "status": 301
+  },
+  {
+    "from": "/services/ecommerce/payments-infrastructure/",
+    "to": "/service.html?id=payments-infrastructure",
+    "status": 301
+  },
+  {
+    "from": "/services/ecommerce/product-taxonomy-discovery/",
+    "to": "/service.html?id=product-taxonomy-discovery",
+    "status": 301
+  },
+  {
+    "from": "/services/platform/",
+    "to": "/service-category.html?id=platform",
+    "status": 301
+  },
+  {
+    "from": "/services/platform/cloud-it/",
+    "to": "/service.html?id=cloud-it",
+    "status": 301
+  },
+  {
+    "from": "/services/platform/cloud-native-architecture/",
+    "to": "/service.html?id=cloud-native-architecture",
+    "status": 301
+  },
+  {
+    "from": "/services/platform/devops-transformation/",
+    "to": "/service.html?id=devops-transformation",
+    "status": 301
+  },
+  {
+    "from": "/services/platform/high-performance-datacenter-private-cloud/",
+    "to": "/service.html?id=high-performance-datacenter-private-cloud",
+    "status": 301
+  },
+  {
+    "from": "/services/platform/observability-telemetry/",
+    "to": "/service.html?id=observability-telemetry",
+    "status": 301
+  },
+  {
+    "from": "/services/platform/security-compliance/",
+    "to": "/service.html?id=security-compliance",
+    "status": 301
+  },
+  {
+    "from": "/services/platform/site-reliability-engineering/",
+    "to": "/service.html?id=site-reliability-engineering",
+    "status": 301
+  },
+  {
+    "from": "/services/platform/systems-administration/",
+    "to": "/service.html?id=systems-administration",
+    "status": 301
+  },
+  {
+    "from": "/services/shared-consulting/",
+    "to": "/service-category.html?id=shared-consulting",
+    "status": 301
+  },
+  {
+    "from": "/services/shared-consulting/consulting-strategic-advisory/",
+    "to": "/service.html?id=consulting-strategic-advisory",
+    "status": 301
+  },
+  {
+    "from": "/services/shared-consulting/engineering-support-retainers/",
+    "to": "/service.html?id=engineering-support-retainers",
+    "status": 301
+  },
+  {
+    "from": "/services/shared-consulting/on-call-engineering-incident-response/",
+    "to": "/service.html?id=on-call-engineering-incident-response",
+    "status": 301
+  },
+  {
+    "from": "/services/shared-consulting/shared-engineering-services/",
+    "to": "/service.html?id=shared-engineering-services",
+    "status": 301
+  },
+  {
+    "from": "/services/shared-consulting/transformation-enablement/",
+    "to": "/service.html?id=transformation-enablement",
+    "status": 301
+  },
+  {
+    "from": "/showcase/",
+    "to": "/showcase.html",
+    "status": 301
+  },
+  {
+    "from": "/success-stories/",
+    "to": "/success-stories.html",
+    "status": 301
+  },
+  {
+    "from": "/success-stories/ci-cd-rebuild/",
+    "to": "/case.html?id=ci-cd-rebuild",
+    "status": 301
+  },
+  {
+    "from": "/success-stories/compliance-security/",
+    "to": "/case.html?id=compliance-security",
+    "status": 301
+  },
+  {
+    "from": "/success-stories/devcamps/",
+    "to": "/case.html?id=devcamps",
+    "status": 301
+  },
+  {
+    "from": "/success-stories/production-support-operations/",
+    "to": "/case.html?id=production-support-operations",
+    "status": 301
+  },
+  {
+    "from": "/success-stories/steadymd-custom-app-dev-embedded-team-support/",
+    "to": "/case.html?id=steadymd-custom-app-dev-embedded-team-support",
+    "status": 301
+  },
+  {
+    "from": "/success-stories/steadymd-staff-augmentation-embedded-engineering/",
+    "to": "/case.html?id=steadymd-staff-augmentation-embedded-engineering",
+    "status": 301
+  },
+  {
+    "from": "/success-stories/zonos-api-and-web-development/",
+    "to": "/case.html?id=zonos-api-and-web-development",
+    "status": 301
+  },
+  {
+    "from": "/success-stories/zonos-php-sdk-development/",
+    "to": "/case.html?id=zonos-php-sdk-development",
+    "status": 301
+  },
+  {
+    "from": "/success-stories/zonos-staff-augmentation-and-embedded-engineering/",
+    "to": "/case.html?id=zonos-staff-augmentation-and-embedded-engineering",
+    "status": 301
+  },
+  {
+    "from": "/team-spartan/",
+    "to": "/team-spartan.html",
+    "status": 301
+  },
+  {
+    "from": "/team-spartan/account-portal/",
+    "to": "/team-spartan.html",
+    "status": 301
+  },
+  {
+    "from": "/tos/",
+    "to": "/legal.html?id=tos",
+    "status": 301
+  }
+]

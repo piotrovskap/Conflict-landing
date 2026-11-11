@@ -1,6 +1,8 @@
 // ===== PODSTRONA (single page) — mikrointerakcje komponentów sp- =====
 const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
+// dźwięk przez sound.js (jedno miejsce z mute/unlock)
+const cue = (name, volume = 0.2) => window.dispatchEvent(new CustomEvent("cue:play", { detail: { name, volume } }));
 
 // ---------- Tor „Zero → Production." — pikselowy kursor skacze krokami ----------
 const track = document.querySelector(".sp-track");
@@ -39,7 +41,7 @@ document.querySelectorAll(".sp-term").forEach((term) => {
   const io = new IntersectionObserver((entries) => {
     if (!entries.some((e) => e.isIntersecting)) return;
     io.disconnect();
-    lines.forEach((l, i) => setTimeout(() => l.classList.add("is-on"), 350 + i * 420));
+    lines.forEach((l, i) => setTimeout(() => { l.classList.add("is-on"); cue(l.dataset.kind === "ok" ? "success" : "type", l.dataset.kind === "ok" ? 0.12 : 0.16); }, 350 + i * 420));
   }, { threshold: 0.4 });
   io.observe(term);
 });
@@ -106,6 +108,7 @@ document.querySelectorAll("[data-layers]").forEach((sec) => {
     const p = range > 50 ? clamp(-r.top / range) : clamp((window.innerHeight * 0.85 - r.top) / (window.innerHeight * 0.7));
     sec.style.setProperty("--lp", (reduce ? 1 : p).toFixed(3));
     const active = Math.min(N - 1, Math.floor(p * N * 0.999));
+    if (active !== sec._active) { if (sec._active !== undefined) cue("select", 0.18); sec._active = active; }
     const set = (el) => el.classList.toggle("is-active", Number(el.dataset.layer) === active);
     items.forEach(set);
     planes.forEach(set);
@@ -156,6 +159,7 @@ if (index) {
       if (r.top <= line && r.bottom > line) current = i;
     });
     if (current !== active) {
+      if (current >= 0) cue("tick", 0.12);
       active = current;
       links.forEach((a, i) => {
         a.classList.toggle("is-active", i === active);
@@ -177,3 +181,93 @@ if (index) {
   window.addEventListener("resize", onScroll);
   update();
 }
+
+// ---------- Zakładki (reużywalne: [data-tabs] > .sp-tabs__list > button[role=tab] + [role=tabpanel]) ----------
+// Strzałki ←/→ przełączają, podkreślenie jedzie pod aktywną zakładką (--tx, --tw).
+document.querySelectorAll("[data-tabs]").forEach((root) => {
+  const list = root.querySelector(".sp-tabs__list");
+  const tabs = [...root.querySelectorAll('[role="tab"]')];
+  const panels = tabs.map((t) => document.getElementById(t.getAttribute("aria-controls")));
+  const select = (i, focus = false) => {
+    tabs.forEach((t, k) => {
+      const on = k === i;
+      t.setAttribute("aria-selected", String(on));
+      t.tabIndex = on ? 0 : -1;
+      if (panels[k]) panels[k].hidden = !on;
+    });
+    const t = tabs[i];
+    list.style.setProperty("--tx", `${t.offsetLeft}px`);
+    list.style.setProperty("--tw", `${t.offsetWidth}px`);
+    if (focus) t.focus();
+    if (list.scrollWidth > list.clientWidth) list.scrollTo({ left: t.offsetLeft - 16, behavior: reduce ? "auto" : "smooth" });
+    cue("select", 0.22);
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener("click", () => select(i));
+    t.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") { e.preventDefault(); select((i + 1) % tabs.length, true); }
+      if (e.key === "ArrowLeft") { e.preventDefault(); select((i - 1 + tabs.length) % tabs.length, true); }
+    });
+  });
+  const first = Math.max(0, tabs.findIndex((t) => t.getAttribute("aria-selected") === "true"));
+  // pierwsze ustawienie bez dźwięku
+  tabs.forEach((t, k) => { t.setAttribute("aria-selected", String(k === first)); t.tabIndex = k === first ? 0 : -1; if (panels[k]) panels[k].hidden = k !== first; });
+  const place = () => { const t = tabs[tabs.findIndex((x) => x.getAttribute("aria-selected") === "true")]; list.style.setProperty("--tx", `${t.offsetLeft}px`); list.style.setProperty("--tw", `${t.offsetWidth}px`); };
+  requestAnimationFrame(place);
+  window.addEventListener("resize", place);
+  window.addEventListener("load", place);
+});
+
+// ---------- Kroki przypięte i sterowane scrollem (reużywalne: [data-steps] > [data-step] + [data-step-panel]) ----------
+// Desktop: sekcja przypięta, przewijanie przełącza krok i jego panel; --sp = postęp 0…1.
+// Wąski ekran / reduced-motion: CSS pokazuje wszystkie panele jeden pod drugim.
+document.querySelectorAll("[data-steps]").forEach((sec) => {
+  const steps = [...sec.querySelectorAll("[data-step]")];
+  const panels = [...sec.querySelectorAll("[data-step-panel]")];
+  const N = steps.length;
+  let active = -1, ticking = false;
+  const set = (i) => {
+    if (i === active) return;
+    if (active >= 0) cue("tick", 0.14);
+    active = i;
+    steps.forEach((s, k) => { s.classList.toggle("is-active", k === i); s.classList.toggle("is-done", k < i); });
+    panels.forEach((p, k) => p.classList.toggle("is-active", k === i));
+  };
+  const update = () => {
+    ticking = false;
+    const range = sec.offsetHeight - window.innerHeight;
+    const p = range > 50 ? clamp(-sec.getBoundingClientRect().top / range) : 1;
+    sec.style.setProperty("--sp", p.toFixed(3));
+    set(range > 50 ? Math.min(N - 1, Math.floor(p * N * 0.999)) : 0);
+  };
+  // klik w krok → przewiń do jego fragmentu
+  steps.forEach((s, k) => s.addEventListener("click", () => {
+    const range = sec.offsetHeight - window.innerHeight;
+    if (range <= 50) return;
+    const y = sec.getBoundingClientRect().top + scrollY + range * ((k + 0.5) / N);
+    window.__lenis ? window.__lenis.scrollTo(y) : scrollTo({ top: y, behavior: "smooth" });
+  }));
+  const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  update();
+});
+
+// ---------- Stała pigułka „pilna pomoc" (reużywalne: [data-urgent-pill] + data-target="#sekcja") ----------
+// Widoczna po zjechaniu z hero; chowa się, gdy sekcja docelowa lub stopka są na ekranie.
+document.querySelectorAll("[data-urgent-pill]").forEach((pill) => {
+  const target = document.querySelector(pill.dataset.target);
+  const hero = document.querySelector(".sp-hero");
+  const footer = document.querySelector(".footer");
+  let pastHero = false, targetIn = false, footerIn = false;
+  const sync = () => pill.classList.toggle("is-on", pastHero && !targetIn && !footerIn);
+  const io = new IntersectionObserver((es) => {
+    es.forEach((e) => {
+      if (e.target === hero) pastHero = !e.isIntersecting;
+      if (e.target === target) targetIn = e.isIntersecting;
+      if (e.target === footer) footerIn = e.isIntersecting;
+    });
+    sync();
+  }, { threshold: 0 });
+  [hero, target, footer].forEach((el) => el && io.observe(el));
+});

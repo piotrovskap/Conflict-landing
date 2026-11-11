@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+# materiały robocze — nie publikować na produkcji
+Disallow: /ref/
+Disallow: /Podstrony/
+Disallow: /tools/
+Disallow: /content/
+
+Sitemap: https://weareconflict.com/sitemap.xml

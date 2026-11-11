@@ -1,18 +1,38 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Futuristic — Landing</title>
+  <title>CONFLICT — AI-Native Engineering</title>
+  <!-- seo:start (generowane: node tools/seo-build.mjs) -->
+  <meta name="description" content="CONFLICT™ designs and builds software for ambitious teams — from new products to the platforms their businesses rely on." />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="theme-color" content="#060705" />
+  <link rel="canonical" href="https://weareconflict.com/" />
+  <meta property="og:site_name" content="CONFLICT" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="CONFLICT — AI-Native Engineering" />
+  <meta property="og:description" content="CONFLICT™ designs and builds software for ambitious teams — from new products to the platforms their businesses rely on." />
+  <meta property="og:url" content="https://weareconflict.com/" />
+  <meta property="og:image" content="https://weareconflict.com/materials/og/og-default.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="CONFLICT — AI-Native Engineering" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="CONFLICT — AI-Native Engineering" />
+  <meta name="twitter:description" content="CONFLICT™ designs and builds software for ambitious teams — from new products to the platforms their businesses rely on." />
+  <meta name="twitter:image" content="https://weareconflict.com/materials/og/og-default.jpg" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://weareconflict.com/#org","name":"CONFLICT","url":"https://weareconflict.com/","logo":"https://weareconflict.com/materials/favicon/apple-touch-icon.png","email":"hi@weareconflict.com","telephone":"+1-305-209-5818","sameAs":["https://www.linkedin.com/company/conflict"]},{"@type":"WebSite","@id":"https://weareconflict.com/#website","url":"https://weareconflict.com/","name":"CONFLICT","description":"CONFLICT™ designs and builds software for ambitious teams — from new products to the platforms their businesses rely on.","publisher":{"@id":"https://weareconflict.com/#org"},"inLanguage":"en"},{"@type":"WebPage","@id":"https://weareconflict.com/","url":"https://weareconflict.com/","name":"CONFLICT — AI-Native Engineering","description":"CONFLICT™ designs and builds software for ambitious teams — from new products to the platforms their businesses rely on.","isPartOf":{"@id":"https://weareconflict.com/#website"},"inLanguage":"en"}]}</script>
+  <!-- seo:end -->
   <!-- favicon: czerwony sygnet CONFLICT [I] -->
   <link rel="icon" href="materials/favicon/favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="materials/favicon/favicon-32.png" type="image/png" sizes="32x32" />
   <link rel="apple-touch-icon" href="materials/favicon/apple-touch-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet" />
+  <link rel="preload" href="materials/fonts/unica-one-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="src/styles/fonts.css?v=20261113m" />
   <link rel="stylesheet" href="node_modules/lenis/dist/lenis.css" />
-  <link rel="stylesheet" href="src/styles/main.css?v=20261109f" />
+  <link rel="stylesheet" href="src/styles/main.css?v=20261113m" />
   <!-- krytyczny styl intro — zakrywa stronę natychmiast, zanim wczyta się main.css -->
   <style>
     #intro { position: fixed; inset: 0; z-index: 10000; background: #060705;
@@ -133,7 +153,7 @@
       <!-- Company (mega menu — komponent) -->
       <div class="nav__group nav__group--mega">
         <button class="nav__item nav__trigger" data-href="about.html" aria-expanded="false">Company<span class="nav__caret">▾</span></button>
-        <div class="nav__panel megamenu megamenu--simple">
+        <div class="nav__panel megamenu megamenu--simple megamenu--spartan">
           <div class="megamenu__grid">
             <div class="megamenu__main">
               <div class="megamenu__cats">
@@ -149,37 +169,48 @@
                 <section class="mcat">
                   <div class="mcat__head"><div><h4>Team</h4></div></div>
                   <ul class="mcat__links">
-                    <li><a href="#team">Our team</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Life at CONFLICT</a></li>
-                    <li><a href="#">Press kit</a></li>
+                    <li><a href="team.html">Our team</a></li>
+                    <li><a href="team-spartan.html">Team Spartan</a></li>
+                    <li><a href="career.html">Careers</a></li>
                   </ul>
                 </section>
                 <section class="mcat">
                   <div class="mcat__head"><div><h4>Resources</h4></div></div>
                   <ul class="mcat__links">
-                    <li><a href="#work">Showcase</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#case-studies">Case studies</a></li>
-                    <li><a href="#">Docs</a></li>
+                    <li><a href="showcase.html">Showcase</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="success-stories.html">Case studies</a></li>
                   </ul>
                 </section>
               </div>
             </div>
+            <!-- Team Spartan — wyróżniony box z wideo (wideo startuje przy otwarciu menu: nav.js) -->
+            <aside class="megamenu__spartan">
+              <a class="mm-spartan" href="team-spartan.html">
+                <span class="mm-spartan__media" aria-hidden="true"><video src="materials/spartan-muted.mp4" muted loop playsinline preload="none"></video></span>
+                <span class="mm-spartan__body">
+                  <span class="mm-spartan__title">Team <span class="sp-glitch" data-text="Spartan">Spartan</span></span>
+                  <span class="mm-spartan__tag">Ops &amp; security. On demand.</span>
+                  <span class="mm-spartan__desc">Senior engineers for production security, cloud infrastructure, and reliable operations.</span>
+                  <span class="mm-spartan__cta">Explore Team Spartan <em aria-hidden="true">→</em></span>
+                </span>
+              </a>
+            </aside>
           </div>
           <div class="megamenu__bar">
             <a href="about.html" class="mmbar mmbar--primary">
               <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>
               <span>About us</span> <em aria-hidden="true">→</em>
             </a>
-            <a href="#" class="mmbar">
+            <a href="career.html" class="mmbar">
               <svg viewBox="0 0 24 24"><path d="M4 7h16v13H4zM9 7V4h6v3"/></svg>
               <span>Careers</span>
             </a>
-            <a href="contact.html" class="mmbar">
+            <a href="https://meetings.hubspot.com/leo-mata" class="mmbar" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="16" rx="1.5"/><path d="M4 9h16M8 3v4M16 3v4"/><path d="M9 14l2 2 4-4"/></svg>
               <span>Book a call</span>
             </a>
+            <a href="team-spartan.html#bail-out" class="mmbar mmbar--urgent"><span class="mm-spartan__dot" aria-hidden="true"></span><span>Need urgent help?</span> <b>$5K triage</b></a>
           </div>
         </div>
       </div>
@@ -194,88 +225,88 @@
                 <section class="mcat">
                   <div class="mcat__head">
                     <span class="mcat__icon"><svg viewBox="0 0 24 24"><path d="M9 7l-4 5 4 5M15 7l4 5-4 5"/></svg></span>
-                    <div><h4><a href="services.html#ai">AI &amp; Intelligence</a></h4><p>Smarter systems. Faster outcomes. AI, without the fluff.</p></div>
+                    <div><h4><a href="service-category.html?id=ai">AI &amp; Intelligence</a></h4><p>Smarter systems. Faster outcomes. AI, without the fluff.</p></div>
                   </div>
                   <ul class="mcat__links">
-                    <li><a href="services.html#ai">Data Engineering &amp; Analytics</a></li>
-                    <li><a href="services.html#ai">AI Infrastructure &amp; MLOps</a></li>
-                    <li><a href="services.html#ai">AI Integrations &amp; API Automation</a></li>
-                    <li><a href="services.html#ai">Audio Intelligence &amp; Voice AI</a></li>
-                    <li><a href="services.html#ai">Autonomous Agents &amp; Orchestrated Intelligence</a></li>
-                    <li><a href="services.html#ai">CalliopeAI</a></li>
-                    <li><a href="services.html#ai">Computer Vision &amp; Detection Systems</a></li>
-                    <li><a href="services.html#ai">Custom Model Development</a></li>
-                    <li><a href="services.html#ai">Data Infrastructure &amp; ML Readiness</a></li>
-                    <li><a href="services.html#ai">Forecasting &amp; Predictive Modeling</a></li>
-                    <li><a href="services.html#ai">Retrieval Augmented Generation (RAG)</a></li>
+                    <li><a href="service.html?id=data-engineering-analytics">Data Engineering &amp; Analytics</a></li>
+                    <li><a href="service.html?id=ai-infrastructure-mlops">AI Infrastructure &amp; MLOps</a></li>
+                    <li><a href="service.html?id=ai-integrations-api-automation">AI Integrations &amp; API Automation</a></li>
+                    <li><a href="service.html?id=audio-intelligence-voice-ai">Audio Intelligence &amp; Voice AI</a></li>
+                    <li><a href="service.html?id=autonomous-agents-orchestrated-intelligence">Autonomous Agents &amp; Orchestrated Intelligence</a></li>
+                    <li><a href="service.html?id=calliopeai">CalliopeAI</a></li>
+                    <li><a href="service.html?id=computer-vision-detection-systems">Computer Vision &amp; Detection Systems</a></li>
+                    <li><a href="service.html?id=custom-model-development">Custom Model Development</a></li>
+                    <li><a href="service.html?id=data-strategy-ml-readiness">Data Infrastructure &amp; ML Readiness</a></li>
+                    <li><a href="service.html?id=forecasting-and-predictive-ai">Forecasting &amp; Predictive Modeling</a></li>
+                    <li><a href="service.html?id=retrieval-augmented-generation-rag">Retrieval Augmented Generation (RAG)</a></li>
                   </ul>
                 </section>
 
                 <section class="mcat">
                   <div class="mcat__head">
                     <span class="mcat__icon"><svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M11 18h2"/></svg></span>
-                    <div><h4><a href="services.html#apps">App Development</a></h4><p>Apps that work. Code that lasts.</p></div>
+                    <div><h4><a href="service-category.html?id=apps">App Development</a></h4><p>Apps that work. Code that lasts.</p></div>
                   </div>
                   <ul class="mcat__links">
-                    <li><a href="services.html#apps">Systems Integration</a></li>
-                    <li><a href="services.html#apps">API Design &amp; Development</a></li>
-                    <li><a href="services.html#apps">Desktop Application Development</a></li>
-                    <li><a href="services.html#apps">Mobile Application Development</a></li>
-                    <li><a href="services.html#apps">Web Application Development</a></li>
-                    <li><a href="services.html#apps">Workflows &amp; Automation</a></li>
-                    <li><a href="services.html#apps">Product Taxonomy &amp; Discovery</a></li>
+                    <li><a href="service.html?id=systems-integration">Systems Integration</a></li>
+                    <li><a href="service.html?id=api-design-development">API Design &amp; Development</a></li>
+                    <li><a href="service.html?id=desktop-application-development">Desktop Application Development</a></li>
+                    <li><a href="service.html?id=mobile-application-development">Mobile Application Development</a></li>
+                    <li><a href="service.html?id=web-application-development">Web Application Development</a></li>
+                    <li><a href="service.html?id=workflow-automation-internal-tools">Workflows &amp; Automation</a></li>
+                    <li><a href="service.html?id=product-taxonomy-discovery">Product Taxonomy &amp; Discovery</a></li>
                   </ul>
                 </section>
 
                 <section class="mcat">
                   <div class="mcat__head">
                     <span class="mcat__icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/><path d="M3 4h2l2.5 11h10l2-7H6"/></svg></span>
-                    <div><h4><a href="services.html#commerce">eCommerce</a></h4><p>Commerce that scales under load.</p></div>
+                    <div><h4><a href="service-category.html?id=ecommerce">eCommerce</a></h4><p>Commerce that scales under load.</p></div>
                   </div>
                   <ul class="mcat__links">
-                    <li><a href="services.html#commerce">Cart, Checkout &amp; Subscription Flows</a></li>
-                    <li><a href="services.html#commerce">eCommerce Analytics &amp; Optimization</a></li>
-                    <li><a href="services.html#commerce">eCommerce Compliance</a></li>
-                    <li><a href="services.html#commerce">eCommerce Performance &amp; Resilience</a></li>
-                    <li><a href="services.html#commerce">eCommerce Platforms</a></li>
-                    <li><a href="services.html#commerce">Fraud &amp; Customer Experience</a></li>
-                    <li><a href="services.html#commerce">Fulfillment, ERP &amp; Supply Chain</a></li>
-                    <li><a href="services.html#commerce">Headless Commerce Architecture</a></li>
-                    <li><a href="services.html#commerce">International eCommerce &amp; Global Expansion</a></li>
-                    <li><a href="services.html#commerce">Loyalty, CRM &amp; Retention</a></li>
-                    <li><a href="services.html#commerce">Marketplace &amp; Multi-Vendor Commerce</a></li>
-                    <li><a href="services.html#commerce">Payments Infrastructure</a></li>
+                    <li><a href="service.html?id=cart-checkout-subscription-flows">Cart, Checkout &amp; Subscription Flows</a></li>
+                    <li><a href="service.html?id=ecommerce-analytics-optimization">eCommerce Analytics &amp; Optimization</a></li>
+                    <li><a href="service.html?id=ecommerce-compliance">eCommerce Compliance</a></li>
+                    <li><a href="service.html?id=ecommerce-performance-resilience">eCommerce Performance &amp; Resilience</a></li>
+                    <li><a href="service.html?id=ecommerce-platforms">eCommerce Platforms</a></li>
+                    <li><a href="service.html?id=fraud-customer-experience">Fraud &amp; Customer Experience</a></li>
+                    <li><a href="service.html?id=fulfillment-erp-supply-chain">Fulfillment, ERP &amp; Supply Chain</a></li>
+                    <li><a href="service.html?id=headless-commerce-architecture">Headless Commerce Architecture</a></li>
+                    <li><a href="service.html?id=international-ecommerce-global-expansion">International eCommerce &amp; Global Expansion</a></li>
+                    <li><a href="service.html?id=loyalty-crm-retention">Loyalty, CRM &amp; Retention</a></li>
+                    <li><a href="service.html?id=marketplace-platforms-multi-vendor-commerce">Marketplace &amp; Multi-Vendor Commerce</a></li>
+                    <li><a href="service.html?id=payments-infrastructure">Payments Infrastructure</a></li>
                   </ul>
                 </section>
 
                 <section class="mcat">
                   <div class="mcat__head">
                     <span class="mcat__icon"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6z" fill="currentColor" stroke="none"/></svg></span>
-                    <div><h4><a href="services.html#platform">Platform &amp; Infrastructure</a></h4><p>Resilient platforms, built to run.</p></div>
+                    <div><h4><a href="service-category.html?id=platform">Platform &amp; Infrastructure</a></h4><p>Resilient platforms, built to run.</p></div>
                   </div>
                   <ul class="mcat__links">
-                    <li><a href="services.html#platform">Cloud IT &amp; Agentic IT</a></li>
-                    <li><a href="services.html#platform">High Performance &amp; Private Cloud</a></li>
-                    <li><a href="services.html#platform">Cloud-Native Architecture</a></li>
-                    <li><a href="services.html#platform">DevOps Transformation</a></li>
-                    <li><a href="services.html#platform">Observability &amp; Telemetry</a></li>
-                    <li><a href="services.html#platform">Security &amp; Compliance</a></li>
-                    <li><a href="services.html#platform">Site Reliability Engineering</a></li>
-                    <li><a href="services.html#platform">Systems Administration</a></li>
+                    <li><a href="service.html?id=cloud-it">Cloud IT &amp; Agentic IT</a></li>
+                    <li><a href="service.html?id=high-performance-datacenter-private-cloud">High Performance &amp; Private Cloud</a></li>
+                    <li><a href="service.html?id=cloud-native-architecture">Cloud-Native Architecture</a></li>
+                    <li><a href="service.html?id=devops-transformation">DevOps Transformation</a></li>
+                    <li><a href="service.html?id=observability-telemetry">Observability &amp; Telemetry</a></li>
+                    <li><a href="service.html?id=security-compliance">Security &amp; Compliance</a></li>
+                    <li><a href="service.html?id=site-reliability-engineering">Site Reliability Engineering</a></li>
+                    <li><a href="service.html?id=systems-administration">Systems Administration</a></li>
                   </ul>
                 </section>
 
                 <section class="mcat">
                   <div class="mcat__head">
                     <span class="mcat__icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg></span>
-                    <div><h4><a href="services.html#consulting">Consulting</a></h4><p>Elite engineering, on your terms.</p></div>
+                    <div><h4><a href="service-category.html?id=shared-consulting">Consulting</a></h4><p>Elite engineering, on your terms.</p></div>
                   </div>
                   <ul class="mcat__links">
-                    <li><a href="services.html#consulting">Transformation &amp; Enablement</a></li>
-                    <li><a href="services.html#consulting">Consulting &amp; Strategic Advisory</a></li>
-                    <li><a href="services.html#consulting">Engineering Support &amp; Retainers</a></li>
-                    <li><a href="services.html#consulting">On-Call Engineering &amp; Incident Response</a></li>
-                    <li><a href="services.html#consulting">Shared Engineering Services</a></li>
+                    <li><a href="service.html?id=transformation-enablement">Transformation &amp; Enablement</a></li>
+                    <li><a href="service.html?id=consulting-strategic-advisory">Consulting &amp; Strategic Advisory</a></li>
+                    <li><a href="service.html?id=engineering-support-retainers">Engineering Support &amp; Retainers</a></li>
+                    <li><a href="service.html?id=on-call-engineering-incident-response">On-Call Engineering &amp; Incident Response</a></li>
+                    <li><a href="service.html?id=shared-engineering-services">Shared Engineering Services</a></li>
                   </ul>
                 </section>
               </div>
@@ -283,14 +314,14 @@
 
             <aside class="megamenu__showcase">
               <span class="showcase__title">Our Solutions</span>
-              <a href="https://weareconflict.com/showcase/" class="feat feat--collab">
+              <a href="showcase.html" class="feat feat--collab">
                 <span class="feat__art feat__art--grid"></span>
                 <span class="feat__body">
                   <strong>Boilerworks™</strong>
                   <span>Modular full-stack platform — production-grade apps, from internal tools to $1B+ storefronts.</span>
                 </span>
               </a>
-              <a href="https://weareconflict.com/showcase/" class="feat feat--pm">
+              <a href="showcase.html" class="feat feat--pm">
                 <span class="feat__art">
                   <span class="feat__cursors"><i></i><i></i><i></i></span>
                 </span>
@@ -299,14 +330,14 @@
                   <span>Private AI for teams — assistants, notebooks, chat &amp; agents, with governance.</span>
                 </span>
               </a>
-              <a href="https://weareconflict.com/showcase/" class="feat feat--analytics">
+              <a href="showcase.html" class="feat feat--analytics">
                 <span class="feat__art feat__art--radar"><i class="feat__msg"></i></span>
                 <span class="feat__body">
                   <strong>VeraCall</strong>
                   <span>AI comms assistant — calls, messaging, scheduling &amp; reminders in one.</span>
                 </span>
               </a>
-              <a href="https://weareconflict.com/showcase/" class="feat feat--auto">
+              <a href="showcase.html" class="feat feat--auto">
                 <span class="feat__art feat__art--planet"><i class="feat__orbit"></i></span>
                 <span class="feat__body">
                   <strong>Ezacto</strong>
@@ -322,7 +353,7 @@
               <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
               <span>All services</span> <em aria-hidden="true">→</em>
             </a>
-            <a href="#work" class="mmbar">
+            <a href="showcase.html" class="mmbar">
               <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="1.5"/><path d="M3 9h18M8 18v2M16 18v2"/></svg>
               <span>Showcase</span>
             </a>
@@ -330,7 +361,7 @@
               <svg viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 3v18M4 7.5l8 4.5 8-4.5"/></svg>
               <span>Products</span>
             </a>
-            <a href="contact.html" class="mmbar">
+            <a href="https://meetings.hubspot.com/leo-mata" class="mmbar" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="16" rx="1.5"/><path d="M4 9h16M8 3v4M16 3v4"/><path d="M9 14l2 2 4-4"/></svg>
               <span>Book a call</span>
             </a>
@@ -346,55 +377,56 @@
             <div class="megamenu__main">
               <div class="megamenu__cats">
                 <section class="mcat mcat--wide">
-                  <div class="mcat__head"><div><h4>Problems we solve</h4></div></div>
+                  <div class="mcat__head"><div><h4><a href="problems.html">Problems we solve</a></h4></div></div>
                   <ul class="mcat__links mcat__links--cols">
-                    <li><a href="#">AI Hyperburn</a></li>
-                    <li><a href="#">Death by Consultants</a></li>
-                    <li><a href="#">No Observability</a></li>
-                    <li><a href="#">Skunksworks for Hire</a></li>
-                    <li><a href="#">Mobile Mess</a></li>
-                    <li><a href="#">AI Fatigue &amp; Overwhelm</a></li>
-                    <li><a href="#">Big Bets</a></li>
-                    <li><a href="#">Cloud Chaos</a></li>
-                    <li><a href="#">Compliance Pain</a></li>
-                    <li><a href="#">Data Silos</a></li>
-                    <li><a href="#">Dev Team Friction</a></li>
-                    <li><a href="#">eCommerce Struggles</a></li>
-                    <li><a href="#">Faux DevOps</a></li>
-                    <li><a href="#">Deliver Through a Hiring Freeze</a></li>
-                    <li><a href="#">Non-Core Development</a></li>
-                    <li><a href="#">Need for Speed</a></li>
-                    <li><a href="#">SRE Gaps</a></li>
-                    <li><a href="#">Startup Whiplash</a></li>
-                    <li><a href="#">Tool Sprawl</a></li>
-                    <li><a href="#">Vendor Lock-In</a></li>
-                    <li><a href="#">Platform Scale Mismatch</a></li>
+                    <li><a href="problem.html?id=tried-ai-got-burned">AI Hyperburn</a></li>
+                    <li><a href="problem.html?id=you-hired-help-and-still-got-nowhere">Death by Consultants</a></li>
+                    <li><a href="problem.html?id=youre-flying-blind">No Observability</a></li>
+                    <li><a href="problem.html?id=you-got-a-wild-idea-you-need-a-team-that-gets-it">Skunksworks for Hire</a></li>
+                    <li><a href="problem.html?id=your-mobile-app-is-a-mess-or-still-on-the-whiteboard">Mobile Mess</a></li>
+                    <li><a href="problem.html?id=ai-overwhelm">AI Fatigue &amp; Overwhelm</a></li>
+                    <li><a href="problem.html?id=big-bets-no-owners">Big Bets</a></li>
+                    <li><a href="problem.html?id=cloud-chaos">Cloud Chaos</a></li>
+                    <li><a href="problem.html?id=compliance-pain">Compliance Pain</a></li>
+                    <li><a href="problem.html?id=data-silos-integration-headaches">Data Silos</a></li>
+                    <li><a href="problem.html?id=dev-team-friction">Dev Team Friction</a></li>
+                    <li><a href="problem.html?id=ecommerce-struggles">eCommerce Struggles</a></li>
+                    <li><a href="problem.html?id=fake-devops-real-problems">Faux DevOps</a></li>
+                    <li><a href="problem.html?id=headcount-frozen-roadmaps-not">Deliver Through a Hiring Freeze</a></li>
+                    <li><a href="problem.html?id=internal-apps-you-shouldnt-be-building">Non-Core Development</a></li>
+                    <li><a href="problem.html?id=need-for-speed">Need for Speed</a></li>
+                    <li><a href="problem.html?id=sre-gaps">SRE Gaps</a></li>
+                    <li><a href="problem.html?id=startup-whiplash">Startup Whiplash</a></li>
+                    <li><a href="problem.html?id=too-many-tools-not-enough-flow">Tool Sprawl</a></li>
+                    <li><a href="problem.html?id=vendor-lock-in">Vendor Lock-In</a></li>
+                    <li><a href="problem.html?id=your-stack-doesnt-match-your-scale">Platform Scale Mismatch</a></li>
                   </ul>
                 </section>
                 <section class="mcat">
-                  <div class="mcat__head"><div><h4>Industries</h4></div></div>
+                  <div class="mcat__head"><div><h4><a href="industries.html">Industries</a></h4></div></div>
                   <ul class="mcat__links">
-                    <li><a href="#">Fintech</a></li>
-                    <li><a href="#">Healthtech</a></li>
-                    <li><a href="#">eCommerce</a></li>
-                    <li><a href="#">SaaS</a></li>
-                    <li><a href="#">Logistics</a></li>
-                    <li><a href="#">Energy</a></li>
+                    <li><a href="industry.html?id=tech-for-trades">Trades & Field Services</a></li>
+                    <li><a href="industry.html?id=ecommerce">E-Commerce & Retail</a></li>
+                    <li><a href="industry.html?id=startups-high-velocity-teams">Startups</a></li>
+                    <li><a href="industry.html?id=enterprise-complex-organizations">Enterprise</a></li>
+                    <li><a href="industry.html?id=health-tech-digital-care-platforms">Health Tech</a></li>
+                    <li><a href="industry.html?id=regulated-compliance-heavy-environments">Regulated & Compliance</a></li>
+                    <li><a href="industry.html?id=saas-platforms-b2b-tools">SaaS & B2B Tools</a></li>
                   </ul>
                 </section>
               </div>
             </div>
           </div>
           <div class="megamenu__bar">
-            <a href="https://weareconflict.com/showcase/" class="mmbar mmbar--primary">
+            <a href="success-stories.html" class="mmbar mmbar--primary">
               <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="1.5"/><path d="M3 9h18M8 18v2M16 18v2"/></svg>
               <span>Case studies</span> <em aria-hidden="true">→</em>
             </a>
-            <a href="#work" class="mmbar">
+            <a href="showcase.html" class="mmbar">
               <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
               <span>Showcase</span>
             </a>
-            <a href="contact.html" class="mmbar">
+            <a href="https://meetings.hubspot.com/leo-mata" class="mmbar" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="16" rx="1.5"/><path d="M4 9h16M8 3v4M16 3v4"/><path d="M9 14l2 2 4-4"/></svg>
               <span>Book a call</span>
             </a>
@@ -402,8 +434,8 @@
         </div>
       </div>
 
-      <a href="#case-studies" class="nav__item">Showcase</a>
-      <a href="#" class="nav__item">Blog</a>
+      <a href="showcase.html" class="nav__item">Showcase</a>
+      <a href="blog.html" class="nav__item">Blog</a>
     </nav>
 
     <button class="nav__sound" id="nav-sound" aria-label="Przełącz dźwięk" aria-pressed="false">
@@ -424,6 +456,8 @@
   <!-- Scrim: blur całej strony pod otwartym mega menu -->
   <div class="nav-scrim" id="nav-scrim" aria-hidden="true"></div>
 
+
+  <main id="top">
 
   <!-- ===== HERO (pin + poziomy scroll-jack: slajd 1 → slajd 2) ===== -->
   <div class="hero-scroll" id="hero-scroll">
@@ -461,8 +495,8 @@
           <!-- Górna połowa: opis + akcje -->
           <div class="hero__copy">
             <div class="hero__partners">
-              <img src="materials/aws-partner.png" alt="AWS Partner" />
-              <img src="materials/google-partner.png" alt="Google Cloud Partner" />
+              <a href="partner.html?id=aws" class="sp-partners__link"><img src="materials/aws-partner.png" alt="AWS Partner" /></a>
+              <a href="partner.html?id=google" class="sp-partners__link"><img src="materials/google-partner.png" alt="Google Cloud Partner" /></a>
             </div>
             <p class="hero__subtitle">
               <strong>CONFLICT™</strong> designs and builds software for ambitious teams —
@@ -483,11 +517,12 @@
             <div class="carousel" id="portfolio-carousel">
               <div class="carousel__viewport">
                 <div class="carousel__track">
+                  <figure class="carousel__slide carousel__slide--case carousel__slide--site carousel__slide--das" data-href="das.html"><iframe src="das.html?embed=1" title="DAS Technology UI animation" loading="lazy" tabindex="-1" sandbox="allow-scripts" aria-hidden="true"></iframe><figcaption><strong>DAS Technology</strong><span>Showcase</span></figcaption></figure>
                   <figure class="carousel__slide carousel__slide--case"><img src="src/portfolio/asbestos-removal-reference.webp" alt="Workers in protective suits at a removal site" /><figcaption><strong>Asbestos removal system</strong><span>Illustrative image</span></figcaption></figure>
-                  <figure class="carousel__slide"><img src="src/portfolio/02.jpg" alt="Project 02" onerror="this.closest('.carousel__slide').classList.add('is-empty'); this.remove();" /></figure>
-                  <figure class="carousel__slide"><img src="src/portfolio/03.jpg" alt="Project 03" onerror="this.closest('.carousel__slide').classList.add('is-empty'); this.remove();" /></figure>
-                  <figure class="carousel__slide"><img src="src/portfolio/04.jpg" alt="Project 04" onerror="this.closest('.carousel__slide').classList.add('is-empty'); this.remove();" /></figure>
-                  <figure class="carousel__slide"><img src="src/portfolio/05.jpg" alt="Project 05" onerror="this.closest('.carousel__slide').classList.add('is-empty'); this.remove();" /></figure>
+                  <figure class="carousel__slide carousel__slide--case carousel__slide--site" data-href="showcase.html#boilerworks"><img src="materials/showcase/sm/boilerworks.jpg" width="640" height="363" alt="Boilerworks website" loading="lazy" /><figcaption><strong>Boilerworks</strong><span>Showcase</span></figcaption></figure>
+                  <figure class="carousel__slide carousel__slide--case carousel__slide--site" data-href="showcase.html#calliope"><img src="materials/showcase/sm/calliope.jpg" width="640" height="363" alt="Calliope AI website" loading="lazy" /><figcaption><strong>Calliope AI</strong><span>Showcase</span></figcaption></figure>
+                  <figure class="carousel__slide carousel__slide--case carousel__slide--site" data-href="showcase.html#ezacto"><img src="materials/showcase/sm/ezacto.jpg" width="640" height="363" alt="Ezacto website" loading="lazy" /><figcaption><strong>Ezacto</strong><span>Showcase</span></figcaption></figure>
+                  <figure class="carousel__slide carousel__slide--case carousel__slide--site" data-href="showcase.html#veracall"><img src="materials/showcase/sm/veracall.jpg" width="640" height="423" alt="VeraCall website" loading="lazy" /><figcaption><strong>VeraCall</strong><span>Showcase</span></figcaption></figure>
                 </div>
               </div>
               <div class="carousel__nav">
@@ -505,19 +540,19 @@
   <!-- Slajd 2 (layout slajdu 1, kostka + ENGINEERED FOR OUTCOMES) -->
   <section class="hero hero-slide" id="hero-3">
     <div class="hero__frame">
-      <h1 class="hero__title">
+      <h2 class="hero__title">
         <svg class="hero__title-svg" id="title-svg-3" role="img" aria-label="Engineered for Outcomes">
           <text class="hero__title-text" id="title-text-3" x="0" y="0">ENGINEERED FOR OUTCOMES</text>
         </svg>
-      </h1>
+      </h2>
 
       <div class="hero__body">
         <canvas class="code-rain" aria-hidden="true"></canvas>
         <span class="hero__divider" aria-hidden="true"></span>
         <div class="hero__figure media-video fx-glitch is-mode-a">
           <div class="hero__figure-inner" id="hero-follow-3" data-parallax="0.35">
-            <video class="media-video__el" autoplay muted loop playsinline preload="auto">
-              <source src="materials/hero2.webm" type="video/webm" />
+            <video class="media-video__el" data-lazy-video muted loop playsinline preload="none">
+              <source data-src="materials/hero2.webm" type="video/webm" />
             </video>
           </div>
         </div>
@@ -525,8 +560,8 @@
         <div class="hero__right" id="hero-content-3">
           <div class="hero__copy">
             <div class="hero__partners">
-              <img src="materials/aws-partner.png" alt="AWS Partner" />
-              <img src="materials/google-partner.png" alt="Google Cloud Partner" />
+              <a href="partner.html?id=aws" class="sp-partners__link"><img src="materials/aws-partner.png" alt="AWS Partner" /></a>
+              <a href="partner.html?id=google" class="sp-partners__link"><img src="materials/google-partner.png" alt="Google Cloud Partner" /></a>
             </div>
             <p class="hero__subtitle">
               Better outcomes start with the right decisions. We align on the problem,
@@ -546,11 +581,12 @@
             <div class="carousel" id="portfolio-carousel-3">
               <div class="carousel__viewport">
                 <div class="carousel__track">
+                  <figure class="carousel__slide carousel__slide--case carousel__slide--site carousel__slide--das" data-href="das.html"><iframe src="das.html?embed=1" title="DAS Technology UI animation" loading="lazy" tabindex="-1" sandbox="allow-scripts" aria-hidden="true"></iframe><figcaption><strong>DAS Technology</strong><span>Showcase</span></figcaption></figure>
                   <figure class="carousel__slide carousel__slide--case"><img src="src/portfolio/asbestos-removal-reference.webp" alt="Workers in protective suits at a removal site" /><figcaption><strong>Asbestos removal system</strong><span>Illustrative image</span></figcaption></figure>
-                  <figure class="carousel__slide"><img src="src/portfolio/02.jpg" alt="Project 02" onerror="this.closest('.carousel__slide').classList.add('is-empty'); this.remove();" /></figure>
-                  <figure class="carousel__slide"><img src="src/portfolio/03.jpg" alt="Project 03" onerror="this.closest('.carousel__slide').classList.add('is-empty'); this.remove();" /></figure>
-                  <figure class="carousel__slide"><img src="src/portfolio/04.jpg" alt="Project 04" onerror="this.closest('.carousel__slide').classList.add('is-empty'); this.remove();" /></figure>
-                  <figure class="carousel__slide"><img src="src/portfolio/05.jpg" alt="Project 05" onerror="this.closest('.carousel__slide').classList.add('is-empty'); this.remove();" /></figure>
+                  <figure class="carousel__slide carousel__slide--case carousel__slide--site" data-href="showcase.html#boilerworks"><img src="materials/showcase/sm/boilerworks.jpg" width="640" height="363" alt="Boilerworks website" loading="lazy" /><figcaption><strong>Boilerworks</strong><span>Showcase</span></figcaption></figure>
+                  <figure class="carousel__slide carousel__slide--case carousel__slide--site" data-href="showcase.html#calliope"><img src="materials/showcase/sm/calliope.jpg" width="640" height="363" alt="Calliope AI website" loading="lazy" /><figcaption><strong>Calliope AI</strong><span>Showcase</span></figcaption></figure>
+                  <figure class="carousel__slide carousel__slide--case carousel__slide--site" data-href="showcase.html#ezacto"><img src="materials/showcase/sm/ezacto.jpg" width="640" height="363" alt="Ezacto website" loading="lazy" /><figcaption><strong>Ezacto</strong><span>Showcase</span></figcaption></figure>
+                  <figure class="carousel__slide carousel__slide--case carousel__slide--site" data-href="showcase.html#veracall"><img src="materials/showcase/sm/veracall.jpg" width="640" height="423" alt="VeraCall website" loading="lazy" /><figcaption><strong>VeraCall</strong><span>Showcase</span></figcaption></figure>
                 </div>
               </div>
               <div class="carousel__nav">
@@ -619,27 +655,28 @@
     </div>
 
     <div class="svc__acc" id="svc-acc">
+      <!-- wwb:start (generowane: node tools/seo-build.mjs z src/data/service-pages.js) -->
       <article class="svc__item is-open">
         <button class="svc__row" aria-expanded="true">
           <span class="svc__num">01</span>
-          <span class="svc__name">AI &amp; Intelligence</span>
+          <span class="svc__name">Platform Engineering &amp; Infrastructure</span>
+          <span class="svc__count" aria-hidden="true">8</span>
           <span class="svc__plus" aria-hidden="true"></span>
         </button>
         <div class="svc__panel"><div class="svc__inner"><div class="svc__content">
-          <div class="svc__media" aria-hidden="true"><div class="svc__vid media-video fx-glitch fx-glitch--soft is-mode-a"><video class="media-video__el" src="materials/1-clean.mp4" autoplay muted loop playsinline preload="metadata"></video></div></div>
           <div class="svc__desc">
-            <p>Smarter systems, faster outcomes — applied AI without the fluff. From data foundations to autonomous agents running in production.</p>
-            <a href="services.html#ai" class="svc__cta">Explore AI &amp; Intelligence <em>→</em></a>
+            <p>Resilient platforms, built to run. Cloud-native architecture, DevOps and SRE that keep serious products online.</p>
+            <a href="service-category.html?id=platform" class="svc__cta">Explore Platform Engineering &amp; Infrastructure <em>→</em></a>
           </div>
           <ul class="svc__list">
-            <li>Data Engineering &amp; Analytics</li>
-            <li>AI Infrastructure &amp; MLOps</li>
-            <li>AI Integrations &amp; API Automation</li>
-            <li>Autonomous Agents &amp; Orchestration</li>
-            <li>Computer Vision &amp; Detection</li>
-            <li>Custom Model Development</li>
-            <li>Forecasting &amp; Predictive Modeling</li>
-            <li>Retrieval-Augmented Generation (RAG)</li>
+            <li><a class="svc__link" href="service.html?id=cloud-native-architecture">Infrastructure Strategy</a></li>
+            <li><a class="svc__link" href="service.html?id=devops-transformation">DevOps &amp; Delivery</a></li>
+            <li><a class="svc__link" href="service.html?id=site-reliability-engineering">Site Reliability Engineering</a></li>
+            <li><a class="svc__link" href="service.html?id=observability-telemetry">Observability &amp; Telemetry</a></li>
+            <li><a class="svc__link" href="service.html?id=security-compliance">Security &amp; Compliance</a></li>
+            <li><a class="svc__link" href="service.html?id=systems-administration">Systems Administration</a></li>
+            <li><a class="svc__link" href="service.html?id=cloud-it">Cloud IT &amp; Agentic IT</a></li>
+            <li><a class="svc__link" href="service.html?id=high-performance-datacenter-private-cloud">High Performance &amp; Private Cloud</a></li>
           </ul>
         </div></div></div>
       </article>
@@ -647,23 +684,27 @@
       <article class="svc__item">
         <button class="svc__row" aria-expanded="false">
           <span class="svc__num">02</span>
-          <span class="svc__name">Application Development</span>
+          <span class="svc__name">AI Enablement &amp; Applied Intelligence</span>
+          <span class="svc__count" aria-hidden="true">11</span>
           <span class="svc__plus" aria-hidden="true"></span>
         </button>
         <div class="svc__panel"><div class="svc__inner"><div class="svc__content">
-          <div class="svc__media" aria-hidden="true"><div class="svc__vid svc__vid--portrait media-video fx-glitch fx-glitch--soft is-mode-b"><img class="media-video__el" src="materials/mobile.jpg" alt="" loading="lazy" decoding="async" /></div></div>
           <div class="svc__desc">
-            <p>Apps that work, code that lasts. Web, mobile and desktop products engineered to ship fast and scale cleanly.</p>
-            <a href="services.html#apps" class="svc__cta">Explore Application Development <em>→</em></a>
+            <p>Smarter systems, faster outcomes — applied AI without the fluff. From data foundations to autonomous agents running in production.</p>
+            <a href="service-category.html?id=ai" class="svc__cta">Explore AI Enablement &amp; Applied Intelligence <em>→</em></a>
           </div>
           <ul class="svc__list">
-            <li>Web Application Development</li>
-            <li>Mobile Application Development</li>
-            <li>Desktop Application Development</li>
-            <li>API Design &amp; Development</li>
-            <li>Systems Integration</li>
-            <li>Workflows &amp; Automation</li>
-            <li>Product Taxonomy &amp; Discovery</li>
+            <li><a class="svc__link" href="service.html?id=custom-model-development">Custom Model Development</a></li>
+            <li><a class="svc__link" href="service.html?id=retrieval-augmented-generation-rag">Retrieval-Augmented Generation (RAG)</a></li>
+            <li><a class="svc__link" href="service.html?id=ai-integrations-api-automation">AI Integrations &amp; API Wrappers</a></li>
+            <li><a class="svc__link" href="service.html?id=ai-infrastructure-mlops">AI Infrastructure &amp; MLOps</a></li>
+            <li><a class="svc__link" href="service.html?id=computer-vision-detection-systems">Computer Vision &amp; Image Intelligence</a></li>
+            <li><a class="svc__link" href="service.html?id=audio-intelligence-voice-ai">Audio &amp; Speech Intelligence</a></li>
+            <li><a class="svc__link" href="service.html?id=autonomous-agents-orchestrated-intelligence">Autonomous Agents &amp; Tool-Use</a></li>
+            <li><a class="svc__link" href="service.html?id=forecasting-and-predictive-ai">Forecasting &amp; Predictive Intelligence</a></li>
+            <li><a class="svc__link" href="service.html?id=data-strategy-ml-readiness">Data Strategy &amp; ML Readiness</a></li>
+            <li><a class="svc__link" href="service.html?id=calliopeai">CalliopeAI: Our Internal AI Workbench</a></li>
+            <li><a class="svc__link" href="service.html?id=data-engineering-analytics">Data Engineering &amp; Analytics</a></li>
           </ul>
         </div></div></div>
       </article>
@@ -671,24 +712,22 @@
       <article class="svc__item">
         <button class="svc__row" aria-expanded="false">
           <span class="svc__num">03</span>
-          <span class="svc__name">eCommerce Engineering</span>
+          <span class="svc__name">Application Development</span>
+          <span class="svc__count" aria-hidden="true">6</span>
           <span class="svc__plus" aria-hidden="true"></span>
         </button>
         <div class="svc__panel"><div class="svc__inner"><div class="svc__content">
-          <div class="svc__media" aria-hidden="true"><div class="svc__vid svc__vid--fill media-video fx-glitch fx-glitch--soft is-mode-a"><img class="media-video__el" src="materials/commerce.jpg" alt="" loading="lazy" decoding="async" /></div></div>
           <div class="svc__desc">
-            <p>Commerce that scales under load. Headless storefronts, resilient payments and fulfilment built for billion-dollar volume.</p>
-            <a href="services.html#commerce" class="svc__cta">Explore eCommerce Engineering <em>→</em></a>
+            <p>Apps that work, code that lasts. Web, mobile and desktop products engineered to ship fast and scale cleanly.</p>
+            <a href="service-category.html?id=apps" class="svc__cta">Explore Application Development <em>→</em></a>
           </div>
           <ul class="svc__list">
-            <li>Headless Commerce Architecture</li>
-            <li>Cart, Checkout &amp; Subscriptions</li>
-            <li>Payments Infrastructure</li>
-            <li>Marketplace &amp; Multi-Vendor</li>
-            <li>Fulfillment, ERP &amp; Supply Chain</li>
-            <li>Loyalty, CRM &amp; Retention</li>
-            <li>eCommerce Analytics &amp; Optimization</li>
-            <li>International eCommerce</li>
+            <li><a class="svc__link" href="service.html?id=web-application-development">Web Apps</a></li>
+            <li><a class="svc__link" href="service.html?id=mobile-application-development">Mobile Apps</a></li>
+            <li><a class="svc__link" href="service.html?id=api-design-development">APIs &amp; Integration Layers</a></li>
+            <li><a class="svc__link" href="service.html?id=workflow-automation-internal-tools">Workflow Automation Tools</a></li>
+            <li><a class="svc__link" href="service.html?id=desktop-application-development">Desktop Apps</a></li>
+            <li><a class="svc__link" href="service.html?id=systems-integration">Systems Integration</a></li>
           </ul>
         </div></div></div>
       </article>
@@ -696,23 +735,29 @@
       <article class="svc__item">
         <button class="svc__row" aria-expanded="false">
           <span class="svc__num">04</span>
-          <span class="svc__name">Platform &amp; Infrastructure</span>
+          <span class="svc__name">eCommerce Engineering</span>
+          <span class="svc__count" aria-hidden="true">13</span>
           <span class="svc__plus" aria-hidden="true"></span>
         </button>
         <div class="svc__panel"><div class="svc__inner"><div class="svc__content">
-          <div class="svc__media" aria-hidden="true"><!-- tu obrazek: <img src="..." alt=""/> --></div>
           <div class="svc__desc">
-            <p>Resilient platforms, built to run. Cloud-native architecture, DevOps and SRE that keep serious products online.</p>
-            <a href="services.html#platform" class="svc__cta">Explore Platform &amp; Infrastructure <em>→</em></a>
+            <p>Commerce that scales under load. Headless storefronts, resilient payments and fulfilment built for billion-dollar volume.</p>
+            <a href="service-category.html?id=ecommerce" class="svc__cta">Explore eCommerce Engineering <em>→</em></a>
           </div>
           <ul class="svc__list">
-            <li>Cloud-Native Architecture</li>
-            <li>DevOps Transformation</li>
-            <li>Site Reliability Engineering</li>
-            <li>Observability &amp; Telemetry</li>
-            <li>Security &amp; Compliance</li>
-            <li>High-Performance &amp; Private Cloud</li>
-            <li>Systems Administration</li>
+            <li><a class="svc__link" href="service.html?id=ecommerce-platforms">Platforms &amp; Architecture</a></li>
+            <li><a class="svc__link" href="service.html?id=cart-checkout-subscription-flows">Cart, Checkout &amp; Payments</a></li>
+            <li><a class="svc__link" href="service.html?id=loyalty-crm-retention">Loyalty, CRM &amp; Retention</a></li>
+            <li><a class="svc__link" href="service.html?id=product-taxonomy-discovery">Product Taxonomy &amp; Search</a></li>
+            <li><a class="svc__link" href="service.html?id=fulfillment-erp-supply-chain">Fulfillment, ERP &amp; Supply Chain</a></li>
+            <li><a class="svc__link" href="service.html?id=fraud-customer-experience">Customer Experience &amp; Fraud Prevention</a></li>
+            <li><a class="svc__link" href="service.html?id=international-ecommerce-global-expansion">Internationalization &amp; Compliance</a></li>
+            <li><a class="svc__link" href="service.html?id=ecommerce-performance-resilience">Performance, Analytics &amp; Optimization</a></li>
+            <li><a class="svc__link" href="service.html?id=ecommerce-analytics-optimization">Analytics &amp; CRO</a></li>
+            <li><a class="svc__link" href="service.html?id=ecommerce-compliance">Compliance</a></li>
+            <li><a class="svc__link" href="service.html?id=headless-commerce-architecture">Headless Commerce Architecture</a></li>
+            <li><a class="svc__link" href="service.html?id=marketplace-platforms-multi-vendor-commerce">Marketplace Platforms &amp; Multi-Vendor Commerce</a></li>
+            <li><a class="svc__link" href="service.html?id=payments-infrastructure">Payments Infrastructure</a></li>
           </ul>
         </div></div></div>
       </article>
@@ -720,24 +765,25 @@
       <article class="svc__item">
         <button class="svc__row" aria-expanded="false">
           <span class="svc__num">05</span>
-          <span class="svc__name">Consulting &amp; Shared Services</span>
+          <span class="svc__name">Shared Services &amp; Consulting</span>
+          <span class="svc__count" aria-hidden="true">5</span>
           <span class="svc__plus" aria-hidden="true"></span>
         </button>
         <div class="svc__panel"><div class="svc__inner"><div class="svc__content">
-          <div class="svc__media" aria-hidden="true"><!-- tu obrazek: <img src="..." alt=""/> --></div>
           <div class="svc__desc">
             <p>Elite engineering, on your terms. Strategic advisory, embedded teams and on-call support when it matters most.</p>
-            <a href="services.html#consulting" class="svc__cta">Explore Consulting &amp; Shared Services <em>→</em></a>
+            <a href="service-category.html?id=shared-consulting" class="svc__cta">Explore Shared Services &amp; Consulting <em>→</em></a>
           </div>
           <ul class="svc__list">
-            <li>Consulting &amp; Strategic Advisory</li>
-            <li>Transformation &amp; Enablement</li>
-            <li>Engineering Support &amp; Retainers</li>
-            <li>On-Call Engineering &amp; Incident Response</li>
-            <li>Shared Engineering Services</li>
+            <li><a class="svc__link" href="service.html?id=consulting-strategic-advisory">Fractional Leadership &amp; Architecture</a></li>
+            <li><a class="svc__link" href="service.html?id=shared-engineering-services">Staff Augmentation &amp; Embedded Teams</a></li>
+            <li><a class="svc__link" href="service.html?id=on-call-engineering-incident-response">On-Call Engineering Support</a></li>
+            <li><a class="svc__link" href="service.html?id=engineering-support-retainers">Support Retainers &amp; Emergency Help</a></li>
+            <li><a class="svc__link" href="service.html?id=transformation-enablement">Transformation &amp; Enablement</a></li>
           </ul>
         </div></div></div>
       </article>
+      <!-- wwb:end -->
     </div>
 
     <a href="services.html" class="svc__all">
@@ -745,6 +791,9 @@
       <em aria-hidden="true">→</em>
     </a>
   </section>
+  <!-- ===== CTA — pas konwersji (src/components/cta-band.js) ===== -->
+  <div data-component="cta-band" data-title="Tell us what you’re" data-accent="building."></div>
+
   <!-- ===== WORK — scroll-journey (dwie dłonie) ===== -->
   <section class="journey" id="work" aria-label="The work">
     <div class="journey__scroll" id="journey-scroll">
@@ -801,6 +850,9 @@
     </div><!-- /puppets-hidden -->
   </section>
 
+  <!-- ===== CTA — pas konwersji ===== -->
+  <div data-component="cta-band" data-title="Or the problem you’re" data-accent="solving."></div>
+
   <!-- ===== HOW WE WORK — trzy etapy współpracy ===== -->
   <section class="process" id="process" aria-labelledby="process-title">
     <div class="process__scroll" id="process-scroll">
@@ -835,7 +887,7 @@
     <div class="cases__head" data-reveal>
       <span class="panel__index">03</span>
       <h2 class="cases__title">Case studies</h2>
-      <a href="https://weareconflict.com/showcase/" class="cases__all">View all <em aria-hidden="true">→</em></a>
+      <a href="showcase.html" class="cases__all">View all <em aria-hidden="true">→</em></a>
     </div>
     <div class="cases-scroll" id="cases-scroll">
      <div class="cases-pin">
@@ -852,7 +904,7 @@
           </div>
           <h3 class="cs__title">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3>
           <p class="cs__desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim.</p>
-          <a href="https://weareconflict.com/showcase/" class="cs__link">Read the case study</a>
+          <a href="showcase.html" class="cs__link">Read the case study</a>
           <blockquote class="cs__quote">
             <p>"Lorem ipsum dolor sit amet — engagement rate up 25% from last year, bounce rate down 20%, and user conversion up 11%."</p>
             <footer><strong>Lorem Nomen</strong><span>Principal Designer @ Lorem</span></footer>
@@ -872,7 +924,7 @@
           </div>
           <h3 class="cs__title">Sed do eiusmod tempor incididunt ut labore dolore</h3>
           <p class="cs__desc">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis.</p>
-          <a href="https://weareconflict.com/showcase/" class="cs__link">Read the case study</a>
+          <a href="showcase.html" class="cs__link">Read the case study</a>
           <blockquote class="cs__quote">
             <p>"Duis aute irure dolor — deploy time cut 90%, scaled to 3M+ users with zero downtime across three regions."</p>
             <footer><strong>Nomen Aliud</strong><span>VP Engineering @ Dolor</span></footer>
@@ -892,7 +944,7 @@
           </div>
           <h3 class="cs__title">Consectetur adipiscing elit sed do eiusmod</h3>
           <p class="cs__desc">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <a href="https://weareconflict.com/showcase/" class="cs__link">Read the case study</a>
+          <a href="showcase.html" class="cs__link">Read the case study</a>
           <blockquote class="cs__quote">
             <p>"Lorem ipsum — 2.4× conversion and sub-second pages under peak traffic across global regions."</p>
             <footer><strong>Tertium Quid</strong><span>Head of Product @ Amet</span></footer>
@@ -907,111 +959,8 @@
     </div><!-- /cases-scroll -->
   </section>
 
-  <!-- ===== DISCIPLINES → TEAM (reveal słowo-po-słowie, przechodzi w czerwony gradient) ===== -->
-  <section class="places" id="team" aria-label="Our disciplines">
-    <p class="places__kicker" data-reveal>Every discipline, in-house</p>
-    <p class="places__statement" id="places-statement">
-      <span class="place__word">AI Engineering.</span>
-      <span class="place__word">Product Design.</span>
-      <span class="place__word">ML Engineering.</span>
-      <span class="place__word">UX Research.</span>
-      <span class="place__word">LLM Engineering.</span>
-      <span class="place__word">Design Systems.</span>
-      <span class="place__word">Frontend.</span>
-      <span class="place__word">Frontend Engineering.</span>
-      <span class="place__word">Web Development.</span>
-      <span class="place__word">UI Engineering.</span>
-      <span class="place__word">Responsive Design.</span>
-      <span class="place__word">Web Performance.</span>
-      <span class="place__word">Accessibility.</span>
-      <span class="place__word">Motion Design.</span>
-      <span class="place__word">Backend.</span>
-      <span class="place__word">Prompt Engineering.</span>
-      <span class="place__word">Agent Engineering.</span>
-      <span class="place__word">Full-Stack.</span>
-      <span class="place__word">Computer Vision.</span>
-      <span class="place__word">Mobile.</span>
-      <span class="place__word">Mobile Development.</span>
-      <span class="place__word">iOS Development.</span>
-      <span class="place__word">Android Development.</span>
-      <span class="place__word">Cross-Platform Apps.</span>
-      <span class="place__word">NLP.</span>
-      <span class="place__word">API Design.</span>
-      <span class="place__word">Model Training.</span>
-      <span class="place__word">Data Science.</span>
-      <span class="place__word">Data Engineering.</span>
-      <span class="place__word">Data Analytics.</span>
-      <span class="place__word">Database Dev.</span>
-      <span class="place__word">Cloud Architecture.</span>
-      <span class="place__word">DevOps.</span>
-      <span class="place__word">MLOps.</span>
-      <span class="place__word">Platform Engineering.</span>
-      <span class="place__word">Site Reliability.</span>
-      <span class="place__word">Observability.</span>
-      <span class="place__word">Infrastructure.</span>
-      <span class="place__word">QA Automation.</span>
-      <span class="place__word">Security.</span>
-    </p>
-    <p class="places__team" id="places-team"><span class="place__word place__word--team" data-text="One team.">One&nbsp;team.</span></p>
-
-    <div class="team__marquee" id="team-marquee">
-      <ul class="team__cards" id="team-cards" aria-label="Certified engineers">
-        <li class="team__card team__card--initials fx-tilt" data-tilt><span class="team__initials" aria-hidden="true">PP</span><span class="team__num">03</span><div class="team__meta"><h3 class="team__name">Patrycja Piotrowska</h3></div></li>
-        <li class="team__card team__card--initials fx-tilt" data-tilt><span class="team__initials" aria-hidden="true">RP</span><span class="team__num">04</span><div class="team__meta"><h3 class="team__name">Rafał Pilawka</h3></div></li>
-        <li class="team__card team__card--initials fx-tilt" data-tilt><span class="team__initials" aria-hidden="true">TR</span><span class="team__num">05</span><div class="team__meta"><h3 class="team__name">Tomasz Rej</h3></div></li>
-        <li class="team__card team__card--initials fx-tilt" data-tilt><span class="team__initials" aria-hidden="true">MR</span><span class="team__num">06</span><div class="team__meta"><h3 class="team__name">Magda Rej</h3></div></li>
-        <li class="team__card team__card--photo team__card--lead fx-tilt" data-tilt data-flip role="button" tabindex="0" aria-pressed="false" aria-label="Leo Mata, CEO &amp; Founder — show key skills">
-          <span class="team__photo-wrap media-video fx-glitch fx-glitch--soft is-mode-a"><img class="team__photo media-video__el" src="materials/Leo.png" alt="Leo Mata" loading="lazy" decoding="async" /></span>
-          <span class="team__num">01</span>
-          <span class="team__flip-hint" aria-hidden="true">↻</span>
-          <div class="team__meta"><span class="team__cert">CEO &amp; Founder</span><h3 class="team__name">Leo Mata</h3></div>
-          <!-- odwrót karty: podsumowanie najważniejszych kompetencji (źródło: leomata.com) -->
-          <div class="team__back" data-flip-back aria-hidden="true">
-            <h4 class="team__back-name">Leo Mata</h4>
-            <p class="team__back-tag">Leadership · Scale · AI &amp; Product</p>
-            <ul class="team__stats">
-              <li><b>25+</b><span>years building</span></li>
-              <li><b>Billions</b><span>users served</span></li>
-            </ul>
-            <ul class="team__skills">
-              <li>Engineering Leadership</li>
-              <li>Product &amp; AI</li>
-              <li>Scale &amp; Reliability</li>
-              <li>Security &amp; Compliance</li>
-            </ul>
-            <div class="team__back-links">
-              <a href="https://leomata.com/" target="_blank" rel="noopener" tabindex="-1">leomata.com ↗</a>
-              <a href="https://www.linkedin.com/in/leonardomata" target="_blank" rel="noopener" tabindex="-1">LinkedIn ↗</a>
-            </div>
-          </div>
-        </li>
-        <li class="team__card team__card--photo fx-tilt" data-tilt data-flip role="button" tabindex="0" aria-pressed="false" aria-label="Piotr Pietruszewski, React Native Lead Developer — show key skills">
-          <span class="team__photo-wrap media-video fx-glitch fx-glitch--soft is-mode-b"><img class="team__photo media-video__el" src="materials/Piotr.png" alt="Piotr Pietruszewski" loading="lazy" decoding="async" /></span>
-          <span class="team__num">02</span>
-          <span class="team__flip-hint" aria-hidden="true">↻</span>
-          <div class="team__meta"><span class="team__cert">React Native Lead</span><h3 class="team__name">Piotr Pietruszewski</h3></div>
-          <!-- odwrót karty: podsumowanie kompetencji (źródło: LinkedIn) -->
-          <div class="team__back" data-flip-back aria-hidden="true">
-            <h4 class="team__back-name">Piotr Pietruszewski</h4>
-            <p class="team__back-tag">React Native Lead Developer · CONFLICT</p>
-            <ul class="team__stats">
-              <li><b>8+</b><span>years front-end &amp; mobile</span></li>
-              <li><b>AWS</b><span>Certified Cloud Practitioner</span></li>
-            </ul>
-            <ul class="team__skills">
-              <li>Senior React Native — Pulsetto, Flip</li>
-              <li>React Native Team Leader — Netguru</li>
-              <li>Co-owner &amp; Front-end Developer — P2</li>
-              <li>Eng. Computer Science</li>
-            </ul>
-          </div>
-        </li>
-        <li class="team__card team__card--initials fx-tilt" data-tilt><span class="team__initials" aria-hidden="true">BM</span><span class="team__num">07</span><div class="team__meta"><h3 class="team__name">Byron Miranda</h3></div></li>
-        <li class="team__card team__card--initials fx-tilt" data-tilt><span class="team__initials" aria-hidden="true">HG</span><span class="team__num">08</span><div class="team__meta"><h3 class="team__name">Hiram Gonzalez</h3></div></li>
-        <li class="team__card team__card--initials fx-tilt" data-tilt><span class="team__initials" aria-hidden="true">LH</span><span class="team__num">09</span><div class="team__meta"><h3 class="team__name">Luis Hernandez</h3></div></li>
-      </ul>
-    </div>
-  </section>
+  <!-- ===== DISCIPLINES → TEAM — komponent src/components/team.js ===== -->
+  <div data-component="team"></div>
 
   <!-- ===== TESTIMONIALS (carousel, na czarnym) ===== -->
   <section class="testi" id="referrals" aria-label="Testimonials">
@@ -1021,8 +970,8 @@
     <div class="testi__partners">
       <img class="footer__brand" src="materials/logo.svg" alt="CONFLICT" />
       <span class="footer__badges-sep" aria-hidden="true"></span>
-      <img src="materials/aws-partner.png" alt="AWS Partner" />
-      <img src="materials/google-partner.png" alt="Google Cloud Partner" />
+      <a href="partner.html?id=aws" class="sp-partners__link"><img src="materials/aws-partner.png" alt="AWS Partner" /></a>
+      <a href="partner.html?id=google" class="sp-partners__link"><img src="materials/google-partner.png" alt="Google Cloud Partner" /></a>
     </div>
 
     <div class="testi__track" id="testi-track">
@@ -1075,6 +1024,8 @@
     </div>
   </section>
 
+  </main>
+
   <!-- ===== FOOTER / CONTACT ===== -->
   <div class="footer-wrap">
   <footer class="footer" id="contact">
@@ -1092,28 +1043,28 @@
 
     <!-- Social (pod Contact us, nad „In the new era") -->
     <div class="connect__row footer__connect">
-      <a href="#" class="footer__soc">
+      <a href="https://www.linkedin.com/company/conflict" class="footer__soc" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 10v7M7 7v.01M11 17v-4a2 2 0 0 1 4 0v4M11 10v7"/></svg>
         <span>LinkedIn</span><span class="footer__arrow">→</span>
       </a>
-      <a href="#" class="footer__soc">
-        <svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20"/></svg>
-        <span>Twitter</span><span class="footer__arrow">→</span>
+      <a href="mailto:hi@weareconflict.com" class="footer__soc">
+        <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 7l9 6 9-6"/></svg>
+        <span>Email</span><span class="footer__arrow">→</span>
       </a>
-      <a href="#" class="footer__soc">
-        <svg viewBox="0 0 24 24"><path d="M9 19c-4 1.4-4-2.5-6-3m12 5v-3.4a3 3 0 0 0-.8-2.3c2.9-.3 5.8-1.4 5.8-6.4a5 5 0 0 0-1.3-3.4 4.6 4.6 0 0 0-.1-3.4s-1.1-.3-3.5 1.3a12 12 0 0 0-6 0C6.2 2 5.1 2.3 5.1 2.3a4.6 4.6 0 0 0-.1 3.4A5 5 0 0 0 3.6 9.1c0 5 2.9 6.1 5.8 6.4a3 3 0 0 0-.8 2.3V22"/></svg>
-        <span>GitHub</span><span class="footer__arrow">→</span>
+      <a href="https://meetings.hubspot.com/leo-mata" class="footer__soc" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="16" rx="1.5"/><path d="M4 9h16M8 3v4M16 3v4"/><path d="M9 14l2 2 4-4"/></svg>
+        <span>Book a call</span><span class="footer__arrow">→</span>
       </a>
-      <a href="#" class="footer__soc">
-        <svg viewBox="0 0 24 24"><path d="M15.6 13c0-2 1.6-3 1.6-3s-1-1.6-2.9-1.6c-1.4 0-2 .7-2.8.7s-1.4-.7-2.6-.7C7 8.1 5.5 9.8 5.5 12.4c0 2.8 2.1 5.9 3.3 5.9.8 0 1.3-.6 2.2-.6s1.3.6 2.2.6c1 0 2.7-2.5 2.7-2.5s-2.3-.9-2.3-2.8z" fill="currentColor" stroke="none"/><path d="M13.3 6.6c.6-.8 1-1.8.9-2.6-.9 0-1.8.5-2.3 1.2-.5.7-1 1.6-.8 2.5 1 .1 1.7-.4 2.2-1.1z" fill="currentColor" stroke="none"/></svg>
-        <span>App Store</span><span class="footer__arrow">→</span>
+      <a href="team-spartan.html" class="footer__soc">
+        <svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg>
+        <span>Team Spartan</span><span class="footer__arrow">→</span>
       </a>
     </div>
 
     <!-- Logo + adresy (lewa) + mapa strony (prawa) -->
     <div class="footer__map">
       <div class="footer__map-brand">
-        <a class="footer__logo" href="#hero"><img src="materials/logo.svg" alt="CONFLICT" /></a>
+        <a class="footer__logo" href="index.html"><img src="materials/logo.svg" alt="CONFLICT" /></a>
         <p class="footer__desc">In the new era of AI-native engineering we build the infrastructure, software, and AI that power serious products.</p>
         <ul class="footer__contact">
           <li><a href="mailto:hi@weareconflict.com">hi@weareconflict.com</a></li>
@@ -1123,20 +1074,20 @@
 
       <div class="footer__cols">
         <div class="footer__col">
-          <h4>Product</h4>
-          <a href="#">Technology</a><a href="#">Integrations</a><a href="#">Releases</a><a href="#">Status</a>
+          <h4>Services</h4>
+          <a href="services.html">All services</a><a href="service-category.html?id=ai">AI &amp; Intelligence</a><a href="service-category.html?id=apps">App Development</a><a href="service-category.html?id=ecommerce">eCommerce</a><a href="service-category.html?id=platform">Platform &amp; Infrastructure</a><a href="service-category.html?id=shared-consulting">Consulting</a>
         </div>
         <div class="footer__col">
-          <h4>Resources</h4>
-          <a href="#">Docs</a><a href="#">API Reference</a><a href="#">Tutorials</a><a href="#">System Guide</a>
+          <h4>Solutions</h4>
+          <a href="problems.html">Problems we solve</a><a href="industries.html">Industries</a><a href="showcase.html">Showcase</a><a href="success-stories.html">Success stories</a><a href="team-spartan.html">Team Spartan</a>
         </div>
         <div class="footer__col">
           <h4>Company</h4>
-          <a href="#">Team</a><a href="#">Culture</a><a href="#">Jobs</a><a href="#">Press Kit</a>
+          <a href="about.html">About us</a><a href="approach.html">Our approach</a><a href="outcome.html">Outcome Engineering</a><a href="team.html">Our team</a><a href="career.html">Careers</a><a href="partnerships.html">Partnerships</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a>
         </div>
         <div class="footer__col">
           <h4>Legal</h4>
-          <a href="#">Imprint</a><a href="#">Data Policy</a><a href="#">Cookie Policy</a><a href="#">Terms of Use</a>
+          <a href="legal.html?id=privacy">Privacy Policy</a><a href="legal.html?id=tos">Terms of Service</a>
         </div>
       </div>
     </div>
@@ -1149,35 +1100,41 @@
 
   <!-- Legal (pod stopką) -->
   <div class="legal">
-    <a href="#">Terms &amp; Conditions</a>
-    <a href="#">Privacy Policy</a>
-    <a href="#">Cookie Policy</a>
+    <a href="legal.html?id=tos">Terms of Service</a>
+    <a href="legal.html?id=privacy">Privacy Policy</a>
+    <button type="button" class="legal__btn" data-consent-open>Cookie settings</button>
   </div>
 
   <div class="page-glitch" id="page-glitch" aria-hidden="true"></div>
 
-  <script src="src/scripts/intro.js?v=20261109f" type="module"></script>
-  <script src="src/scripts/smooth-scroll.js?v=20261109f" type="module"></script>
-  <script src="src/scripts/nav.js?v=20261109f" type="module"></script>
-  <script src="src/scripts/cursor-glitch.js?v=20261109f" type="module"></script>
-  <script src="src/scripts/main.js?v=20261109f" type="module"></script>
-  <script src="src/scripts/hero-scroll.js?v=20261109f" type="module"></script>
-  <script src="src/scripts/cases-scroll.js?v=20261109f" type="module"></script>
-  <script src="src/scripts/crt-barrel.js?v=20261109f" type="module"></script>
-  <script src="src/scripts/glitch.js?v=20261109f" type="module"></script>
-  <script src="src/scripts/fit-title.js?v=20261109f" type="module"></script>
-  <script src="src/scripts/carousel.js?v=20261109f" type="module"></script>
-  <script src="src/scripts/code-rain.js?v=20261109f" type="module"></script>
-  <script src="src/scripts/logos.js?v=20261109f" type="module"></script>
-  <script src="src/scripts/accordion.js?v=20261109f" type="module"></script>
-  <script src="src/scripts/words-reveal.js?v=20261109f" type="module"></script>
-  <script src="src/scripts/puppets.js?v=20261109f" type="module"></script>
-  <script src="src/scripts/journey.js?v=20261109f" type="module"></script>
-  <script src="src/scripts/tilt.js?v=20261109f" type="module"></script>
-  <script src="src/scripts/flip.js?v=20261109f" type="module"></script>
-  <script src="src/scripts/process-scroll.js?v=20261109f" type="module"></script>
-  <script src="src/scripts/sound.js?v=20261109f" type="module"></script>
-  <script src="src/scripts/page-glitch.js?v=20261109f" type="module"></script>
-  <script src="src/scripts/ambient.js?v=20261109f" type="module"></script>
+  <script src="src/components/cta-band.js?v=20261113m" type="module"></script>
+  <script src="src/components/team.js?v=20261113m" type="module"></script>
+  <script src="src/scripts/intro.js?v=20261113m" type="module"></script>
+  <script src="src/scripts/smooth-scroll.js?v=20261113m" type="module"></script>
+  <script src="src/scripts/nav.js?v=20261113m" type="module"></script>
+  <script src="src/scripts/cursor-glitch.js?v=20261113m" type="module"></script>
+  <script src="src/components/lazy-video.js?v=20261113m" type="module"></script>
+  <script src="src/components/consent.js?v=20261113m" type="module"></script>
+  <script src="src/components/contact-nudge.js?v=20261113m" type="module"></script>
+  <script src="src/scripts/track.js?v=20261113m" type="module"></script>
+  <script src="src/scripts/main.js?v=20261113m" type="module"></script>
+  <script src="src/scripts/hero-scroll.js?v=20261113m" type="module"></script>
+  <script src="src/scripts/cases-scroll.js?v=20261113m" type="module"></script>
+  <script src="src/scripts/crt-barrel.js?v=20261113m" type="module"></script>
+  <script src="src/scripts/glitch.js?v=20261113m" type="module"></script>
+  <script src="src/scripts/fit-title.js?v=20261113m" type="module"></script>
+  <script src="src/scripts/carousel.js?v=20261113m" type="module"></script>
+  <script src="src/scripts/code-rain.js?v=20261113m" type="module"></script>
+  <script src="src/scripts/logos.js?v=20261113m" type="module"></script>
+  <script src="src/scripts/accordion.js?v=20261113m" type="module"></script>
+  <script src="src/scripts/words-reveal.js?v=20261113m" type="module"></script>
+  <script src="src/scripts/puppets.js?v=20261113m" type="module"></script>
+  <script src="src/scripts/journey.js?v=20261113m" type="module"></script>
+  <script src="src/scripts/tilt.js?v=20261113m" type="module"></script>
+  <script src="src/scripts/flip.js?v=20261113m" type="module"></script>
+  <script src="src/scripts/process-scroll.js?v=20261113m" type="module"></script>
+  <script src="src/scripts/sound.js?v=20261113m" type="module"></script>
+  <script src="src/scripts/page-glitch.js?v=20261113m" type="module"></script>
+  <script src="src/scripts/ambient.js?v=20261113m" type="module"></script>
 </body>
 </html>

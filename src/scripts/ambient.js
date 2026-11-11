@@ -4,9 +4,19 @@ const LEVEL = 0.35; // głośność tła
 
 const audio = new Audio("materials/bg.mp3");
 audio.loop = true;
-audio.preload = "auto";
+audio.preload = "metadata"; // pełny plik dociąga się dopiero przy odtwarzaniu
 audio.volume = 0;
-try { audio.load(); } catch (e) {}
+// (bez wymuszonego load — oszczędza ~8 MB na wejściu)
+
+// ciągłość między podstronami: zapamiętaj pozycję przy wyjściu, wznów przy wejściu
+const POS_KEY = "conflict:bg-pos";
+try {
+  const pos = parseFloat(sessionStorage.getItem(POS_KEY));
+  if (pos > 0) audio.addEventListener("loadedmetadata", () => { audio.currentTime = pos % (audio.duration || pos + 1); }, { once: true });
+} catch (e) {}
+window.addEventListener("pagehide", () => {
+  try { if (playing) sessionStorage.setItem(POS_KEY, String(audio.currentTime)); } catch (e) {}
+});
 
 let playing = false;
 let ambMuted = false;

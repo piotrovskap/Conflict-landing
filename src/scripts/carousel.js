@@ -13,6 +13,8 @@ function initCarousel(carousel) {
   originals.forEach((s) => track.appendChild(s.cloneNode(true)));
 
   const slides = [...track.children]; // 3N
+  slides.slice(0, N).concat(slides.slice(2 * N)).forEach((s) => s.setAttribute("aria-hidden", "true")); // klony
+  const reduceMotionNav = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
   let index = N; // pierwsza realizacja jest aktywna po wejściu na stronę
   let animating = false;
 
@@ -20,7 +22,14 @@ function initCarousel(carousel) {
     const vw = viewport.clientWidth;
     if (!vw) { requestAnimationFrame(() => center(withTransition)); return; }
     const active = slides[index];
-    slides.forEach((s, i) => s.classList.toggle("is-active", i === index));
+    slides.forEach((s, i) => {
+      const on = i === index;
+      s.classList.toggle("is-active", on);
+      if (s.dataset.href) { // tylko aktywny slajd jest linkiem dla klawiatury i czytnika
+        if (on) { s.tabIndex = 0; s.setAttribute("role", "link"); s.setAttribute("aria-label", `${s.querySelector("strong")?.textContent || "Project"} — open in Showcase`); }
+        else { s.removeAttribute("tabindex"); s.removeAttribute("role"); s.removeAttribute("aria-label"); }
+      }
+    });
     const offset = vw / 2 - (active.offsetLeft + active.offsetWidth / 2);
     track.style.transition = withTransition ? "" : "none";
     track.style.transform = `translateX(${offset}px)`;
@@ -45,14 +54,22 @@ function initCarousel(carousel) {
   carousel.querySelectorAll(".carousel__btn").forEach((btn) =>
     btn.addEventListener("click", () => go(parseInt(btn.dataset.dir, 10)))
   );
-  slides.forEach((s, i) =>
+  // klik w boczny slajd → przewiń do niego; klik w aktywny slajd z data-href → otwórz projekt
+  const open = (s) => {
+    if (!s.dataset.href || s.classList.contains("is-opening")) return;
+    s.classList.add("is-opening");
+    setTimeout(() => { location.href = s.dataset.href; }, reduceMotionNav ? 0 : 420);
+  };
+  slides.forEach((s, i) => {
     s.addEventListener("click", () => {
-      if (animating || i === index) return;
+      if (animating) return;
+      if (i === index) { open(s); return; }
       animating = true;
       index = i;
       center(true);
-    })
-  );
+    });
+    s.addEventListener("keydown", (e) => { if ((e.key === "Enter" || e.key === " ") && i === index) { e.preventDefault(); open(s); } });
+  });
 
   const recenter = () => center(false);
   requestAnimationFrame(recenter);

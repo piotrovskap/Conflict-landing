@@ -57,6 +57,19 @@ if (heroVids.length && finePointer) {
     v.removeAttribute("loop");
     v.pause();
     const grab = () => { s.dur = v.duration || s.dur; v.pause(); };
+    // serwer bez obsługi Range (np. python http.server) → wideo nie jest „seekable" i każde
+    // przewinięcie wraca na 0. Wtedy pobieramy plik raz w całości i gramy z pamięci (blob).
+    const ensureSeekable = () => {
+      if (s.blob || (v.seekable.length && v.seekable.end(0) > 0)) return;
+      s.blob = true;
+      const src = v.currentSrc;
+      fetch(src).then((r) => r.blob()).then((b) => {
+        v.src = URL.createObjectURL(b);
+        v.pause();
+      }).catch(() => {});
+    };
+    v.addEventListener("loadedmetadata", () => setTimeout(ensureSeekable, 300));
+    if (v.readyState >= 1) setTimeout(ensureSeekable, 300); // metadane mogły przyjść przed tym skryptem
     v.addEventListener("loadedmetadata", grab);
     v.addEventListener("loadeddata", grab);
     v.addEventListener("canplay", grab);
@@ -71,7 +84,12 @@ if (heroVids.length && finePointer) {
       // mysz skrajnie lewo/prawo → pełny obrót; środek = na wprost
       const target = s.dur * 0.5 + mouseX * (s.dur * 0.25) * DIR;
       s.cur += (target - s.cur) * 0.14; // płynne przewijanie
-      try { s.v.currentTime = Math.max(0, Math.min(s.dur - 0.05, s.cur)); } catch (e) {}
+      // nowe przewinięcie dopiero po zakończeniu poprzedniego — inaczej każde kolejne
+      // przerywa poprzednie i obraz stoi w miejscu; ruchy mniejsze niż ~1 klatka pomijamy
+      if (s.v.seeking) continue;
+      const t = Math.max(0, Math.min(s.dur - 0.05, s.cur));
+      if (Math.abs(s.v.currentTime - t) < 0.03) continue;
+      try { s.v.currentTime = t; } catch (e) {}
     }
   }
   requestAnimationFrame(scrubLoop);
