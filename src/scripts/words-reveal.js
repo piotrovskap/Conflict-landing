@@ -1,4 +1,4 @@
-import { autoMarquee } from "../components/auto-marquee.js?v=20261113o";
+import { autoMarquee } from "../components/auto-marquee.js?v=20261113p";
 // ===== Reveal słowo-po-słowie przy scrollu (manifest LAB) =====
 const stmt = document.getElementById("lab-statement");
 
