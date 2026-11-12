@@ -38,7 +38,7 @@ function fadeTo(target, ms) {
 
 // Próba startu — wywoływana przy każdym geście aż audio naprawdę ruszy.
 function tryStart() {
-  if (reduce || playing) return;
+  if (reduce || playing || ambMuted) return;
   const p = audio.play();
   if (p && typeof p.then === "function") {
     p.then(() => {
@@ -67,7 +67,13 @@ audio.addEventListener("canplay", tryStart);
 // sync ze stanem z przełącznika (jedno źródło prawdy w sound.js)
 window.addEventListener("cue:mute", (e) => {
   ambMuted = !!e.detail?.muted;
-  audio.muted = ambMuted;        // twarde wyciszenie na wszelki wypadek
-  tryStart();                    // klik to też gest — odblokowuje, jeśli jeszcze nie gra
-  if (playing) fadeTo(ambMuted ? 0 : LEVEL, 600);
+  // iOS ignoruje audio.volume (zawsze 1) — wyciszamy twardo: muted + pauza, bez polegania na fade
+  if (ambMuted) {
+    audio.muted = true;
+    audio.pause();
+    playing = false;
+    return;
+  }
+  audio.muted = false;
+  tryStart();                    // klik to też gest — wznawia odtwarzanie
 });
