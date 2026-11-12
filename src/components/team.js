@@ -6,10 +6,70 @@
 
 // --- karty (każda: tilt; zdjęciowe: obrót ze skillami + glitch) ---
 const CARDS = [
-  `<li class="team__card team__card--initials fx-tilt" data-tilt><span class="team__initials" aria-hidden="true">PP</span><span class="team__num">03</span><div class="team__meta"><h3 class="team__name">Patrycja Piotrowska</h3></div></li>`,
+  `<li class="team__card team__card--photo fx-tilt" data-tilt data-flip role="button" tabindex="0" aria-pressed="false" aria-label="Patrycja Piotrowska, Senior Product Designer — show key skills">
+  <span class="team__photo-wrap media-video fx-glitch fx-glitch--soft is-mode-a"><img class="team__photo media-video__el" src="materials/Patrycja.png" alt="Patrycja Piotrowska" loading="lazy" decoding="async" /></span>
+  <span class="team__num">03</span>
+  <span class="team__flip-hint" aria-hidden="true">↻</span>
+  <div class="team__meta"><span class="team__cert">Senior Product Designer</span><h3 class="team__name">Patrycja Piotrowska</h3></div>
+  <!-- odwrót karty: podsumowanie kompetencji (źródło: LinkedIn — bio, certyfikaty) -->
+  <div class="team__back" data-flip-back aria-hidden="true">
+    <h4 class="team__back-name">Patrycja Piotrowska</h4>
+    <p class="team__back-tag">Senior Product Designer · CONFLICT</p>
+    <ul class="team__stats">
+      <li><b>10</b><span>years of product design</span></li>
+      <li><b>Claude</b><span>Code in Action — Anthropic</span></li>
+    </ul>
+    <ul class="team__skills">
+      <li>Health · Green energy · Beauty · Banking · IoT · AI</li>
+      <li>Bachelor’s in IT — design specialization</li>
+      <li>IxDF — AI for Designers</li>
+      <li>Hotjar Foundations Lvl. 2 · UX Writing (Uxcel)</li>
+    </ul>
+  </div>
+</li>`,
   `<li class="team__card team__card--initials fx-tilt" data-tilt><span class="team__initials" aria-hidden="true">RP</span><span class="team__num">04</span><div class="team__meta"><h3 class="team__name">Rafał Pilawka</h3></div></li>`,
-  `<li class="team__card team__card--initials fx-tilt" data-tilt><span class="team__initials" aria-hidden="true">TR</span><span class="team__num">05</span><div class="team__meta"><h3 class="team__name">Tomasz Rej</h3></div></li>`,
-  `<li class="team__card team__card--initials fx-tilt" data-tilt><span class="team__initials" aria-hidden="true">MR</span><span class="team__num">06</span><div class="team__meta"><h3 class="team__name">Magda Rej</h3></div></li>`,
+  `<li class="team__card team__card--photo fx-tilt" data-tilt data-flip role="button" tabindex="0" aria-pressed="false" aria-label="Tomasz Rej, Senior React Native Developer — show key skills">
+  <span class="team__photo-wrap media-video fx-glitch fx-glitch--soft is-mode-a"><img class="team__photo media-video__el" src="materials/Tomasz.png" alt="Tomasz Rej" loading="lazy" decoding="async" /></span>
+  <span class="team__num">05</span>
+  <span class="team__flip-hint" aria-hidden="true">↻</span>
+  <div class="team__meta"><span class="team__cert">Senior React Native</span><h3 class="team__name">Tomasz Rej</h3></div>
+  <!-- odwrót karty: podsumowanie kompetencji (źródło: LinkedIn) -->
+  <div class="team__back" data-flip-back aria-hidden="true">
+    <h4 class="team__back-name">Tomasz Rej</h4>
+    <p class="team__back-tag">Senior React Native Developer · CONFLICT</p>
+    <ul class="team__stats">
+      <li><b>7+</b><span>years React &amp; React Native</span></li>
+      <li><b>Claude</b><span>Certified Architect — Foundations</span></li>
+    </ul>
+    <ul class="team__skills">
+      <li>Senior Software Engineer — Calliope AI</li>
+      <li>React Native Developer — Netguru</li>
+      <li>AWS Certified Developer — Associate</li>
+      <li>AWS Certified AI Practitioner</li>
+    </ul>
+  </div>
+</li>`,
+  `<li class="team__card team__card--photo fx-tilt" data-tilt data-flip role="button" tabindex="0" aria-pressed="false" aria-label="Magda Rej, Software Quality Assurance Engineer — show key skills">
+  <span class="team__photo-wrap media-video fx-glitch fx-glitch--soft is-mode-b"><img class="team__photo media-video__el" src="materials/Magda.png" alt="Magda Rej" loading="lazy" decoding="async" /></span>
+  <span class="team__num">06</span>
+  <span class="team__flip-hint" aria-hidden="true">↻</span>
+  <div class="team__meta"><span class="team__cert">QA Engineer</span><h3 class="team__name">Magda Rej</h3></div>
+  <!-- odwrót karty: podsumowanie kompetencji (źródło: LinkedIn) -->
+  <div class="team__back" data-flip-back aria-hidden="true">
+    <h4 class="team__back-name">Magda Rej</h4>
+    <p class="team__back-tag">Software Quality Assurance Engineer · CONFLICT</p>
+    <ul class="team__stats">
+      <li><b>3+</b><span>years software QA</span></li>
+      <li><b>Playwright</b><span>Postman · Scrum</span></li>
+    </ul>
+    <ul class="team__skills">
+      <li>Software QA Tester — Evisa Express</li>
+      <li>Software QA Tester — mDevelopers</li>
+      <li>Regression testing</li>
+      <li>Functional testing</li>
+    </ul>
+  </div>
+</li>`,
   `<li class="team__card team__card--photo team__card--lead fx-tilt" data-tilt data-flip role="button" tabindex="0" aria-pressed="false" aria-label="Leo Mata, CEO &amp; Founder — show key skills">
   <span class="team__photo-wrap media-video fx-glitch fx-glitch--soft is-mode-a"><img class="team__photo media-video__el" src="materials/Leo.png" alt="Leo Mata" loading="lazy" decoding="async" /></span>
   <span class="team__num">01</span>

@@ -4144,3 +4144,18 @@ html.nudge-open { overflow: hidden; }
   .footer__contact a, .legal__btn { display: inline-flex; align-items: center; min-height: 40px; }
   .lab__ask, .svc__cta, .cases__all, .cs__link { display: inline-flex; align-items: center; min-height: 44px; }
 }
+
+/* telefon / tablet: hero bez karuzeli projektów (projekty są w Showcase) */
+@media (max-width: 860px) {
+  .hero__portfolio { display: none; }
+}
+
+/* telefon: „What you / imagine" blisko siebie — obejmują dłonie z góry i z dołu zamiast rogów ekranu */
+@media (max-width: 860px) {
+  .journey__w { font-size: clamp(2.2rem, 11vw, 4rem); }
+  .journey__w--tl { top: auto; bottom: 60%; left: 6vw; }
+  .journey__w--br { top: 59%; bottom: auto; right: 6vw; }
+}
+
+/* statystyki na odwrocie karty — Unica One miesza wielkość liter, więc zawsze wersaliki */
+.team__stats b { text-transform: uppercase; }

@@ -1,5 +1,12 @@
 // ===== Karuzela coverflow NIESKOŃCZONA (klony po bokach) — na każdym .carousel =====
-document.querySelectorAll(".carousel").forEach(initCarousel);
+// Start dopiero, gdy karuzela ma szerokość — ukryta (np. hero na telefonie: display:none)
+// nie klonuje slajdów (iframe'y) i nie kręci pętli; ruszy, gdy stanie się widoczna (obrót / resize).
+document.querySelectorAll(".carousel").forEach((c) => {
+  const vp = c.querySelector(".carousel__viewport") || c;
+  if (vp.clientWidth || !window.ResizeObserver) return initCarousel(c);
+  const ro = new ResizeObserver(() => { if (vp.clientWidth) { ro.disconnect(); initCarousel(c); } });
+  ro.observe(vp);
+});
 
 function initCarousel(carousel) {
   const viewport = carousel.querySelector(".carousel__viewport");
@@ -20,7 +27,7 @@ function initCarousel(carousel) {
 
   function center(withTransition) {
     const vw = viewport.clientWidth;
-    if (!vw) { requestAnimationFrame(() => center(withTransition)); return; }
+    if (!vw) return; // ukryta — wyśrodkuje się przy następnym resize
     const active = slides[index];
     slides.forEach((s, i) => {
       const on = i === index;

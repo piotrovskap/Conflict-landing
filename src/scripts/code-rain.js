@@ -1,4 +1,4 @@
-import { visibleLoop } from "../components/visible-loop.js?v=20261113w";
+import { visibleLoop } from "../components/visible-loop.js?v=20261114b";
 // ===== Lecący kod (matrix) + czerwona fraza spadająca w dół — na każdym .code-rain =====
 const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 if (!reduce) document.querySelectorAll(".code-rain").forEach(initRain);
