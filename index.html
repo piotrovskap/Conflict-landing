@@ -30,9 +30,9 @@
   <link rel="icon" href="materials/favicon/favicon-32.png" type="image/png" sizes="32x32" />
   <link rel="apple-touch-icon" href="materials/favicon/apple-touch-icon.png" />
   <link rel="preload" href="materials/fonts/unica-one-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="src/styles/fonts.css?v=20261114n" />
+  <link rel="stylesheet" href="src/styles/fonts.css?v=20261115q" />
   <link rel="stylesheet" href="node_modules/lenis/dist/lenis.css" />
-  <link rel="stylesheet" href="src/styles/main.css?v=20261114n" />
+  <link rel="stylesheet" href="src/styles/main.css?v=20261115q" />
   <!-- krytyczny styl intro — zakrywa stronę natychmiast, zanim wczyta się main.css -->
   <style>
     #intro { position: fixed; inset: 0; z-index: 10000; background: #060705;
@@ -514,25 +514,6 @@
             </div>
           </div>
 
-          <!-- Dolna połowa: karuzela portfolio (jeden duży, reszta mała) -->
-          <div class="hero__portfolio">
-            <div class="carousel" id="portfolio-carousel">
-              <div class="carousel__viewport">
-                <div class="carousel__track">
-                  <figure class="carousel__slide carousel__slide--case carousel__slide--site carousel__slide--das" data-href="case.html?id=das-meridian"><iframe src="das.html?embed=1" title="DAS Technology UI animation" loading="lazy" tabindex="-1" sandbox="allow-scripts" aria-hidden="true"></iframe><figcaption><strong>DAS Technology</strong><span>Case study</span></figcaption></figure>
-                  <figure class="carousel__slide carousel__slide--case"><img src="src/portfolio/asbestos-removal-reference.webp" alt="Workers in protective suits at a removal site" /><figcaption><strong>Asbestos removal system</strong><span>Illustrative image</span></figcaption></figure>
-                  <figure class="carousel__slide carousel__slide--case carousel__slide--site" data-href="showcase.html#boilerworks"><img src="materials/showcase/sm/boilerworks.jpg" width="640" height="363" alt="Boilerworks website" loading="lazy" /><figcaption><strong>Boilerworks</strong><span>Showcase</span></figcaption></figure>
-                  <figure class="carousel__slide carousel__slide--case carousel__slide--site" data-href="showcase.html#calliope"><img src="materials/showcase/sm/calliope.jpg" width="640" height="363" alt="Calliope AI website" loading="lazy" /><figcaption><strong>Calliope AI</strong><span>Showcase</span></figcaption></figure>
-                  <figure class="carousel__slide carousel__slide--case carousel__slide--site" data-href="showcase.html#ezacto"><img src="materials/showcase/sm/ezacto.jpg" width="640" height="363" alt="Ezacto website" loading="lazy" /><figcaption><strong>Ezacto</strong><span>Showcase</span></figcaption></figure>
-                  <figure class="carousel__slide carousel__slide--case carousel__slide--site" data-href="showcase.html#veracall"><img src="materials/showcase/sm/veracall.jpg" width="640" height="423" alt="VeraCall website" loading="lazy" /><figcaption><strong>VeraCall</strong><span>Showcase</span></figcaption></figure>
-                </div>
-              </div>
-              <div class="carousel__nav">
-                <button class="carousel__btn" data-dir="-1" aria-label="Poprzedni">‹</button>
-                <button class="carousel__btn" data-dir="1" aria-label="Następny">›</button>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -580,24 +561,6 @@
             </div>
           </div>
 
-          <div class="hero__portfolio">
-            <div class="carousel" id="portfolio-carousel-3">
-              <div class="carousel__viewport">
-                <div class="carousel__track">
-                  <figure class="carousel__slide carousel__slide--case carousel__slide--site carousel__slide--das" data-href="case.html?id=das-meridian"><iframe src="das.html?embed=1" title="DAS Technology UI animation" loading="lazy" tabindex="-1" sandbox="allow-scripts" aria-hidden="true"></iframe><figcaption><strong>DAS Technology</strong><span>Case study</span></figcaption></figure>
-                  <figure class="carousel__slide carousel__slide--case"><img src="src/portfolio/asbestos-removal-reference.webp" alt="Workers in protective suits at a removal site" /><figcaption><strong>Asbestos removal system</strong><span>Illustrative image</span></figcaption></figure>
-                  <figure class="carousel__slide carousel__slide--case carousel__slide--site" data-href="showcase.html#boilerworks"><img src="materials/showcase/sm/boilerworks.jpg" width="640" height="363" alt="Boilerworks website" loading="lazy" /><figcaption><strong>Boilerworks</strong><span>Showcase</span></figcaption></figure>
-                  <figure class="carousel__slide carousel__slide--case carousel__slide--site" data-href="showcase.html#calliope"><img src="materials/showcase/sm/calliope.jpg" width="640" height="363" alt="Calliope AI website" loading="lazy" /><figcaption><strong>Calliope AI</strong><span>Showcase</span></figcaption></figure>
-                  <figure class="carousel__slide carousel__slide--case carousel__slide--site" data-href="showcase.html#ezacto"><img src="materials/showcase/sm/ezacto.jpg" width="640" height="363" alt="Ezacto website" loading="lazy" /><figcaption><strong>Ezacto</strong><span>Showcase</span></figcaption></figure>
-                  <figure class="carousel__slide carousel__slide--case carousel__slide--site" data-href="showcase.html#veracall"><img src="materials/showcase/sm/veracall.jpg" width="640" height="423" alt="VeraCall website" loading="lazy" /><figcaption><strong>VeraCall</strong><span>Showcase</span></figcaption></figure>
-                </div>
-              </div>
-              <div class="carousel__nav">
-                <button class="carousel__btn" data-dir="-1" aria-label="Poprzedni">‹</button>
-                <button class="carousel__btn" data-dir="1" aria-label="Następny">›</button>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -891,44 +854,50 @@
      <div class="cases-pin">
       <div class="cases-screen">
       <div class="cases-track" id="cases-track">
-      <article class="cs" data-reveal>
+      <article class="cs cs--v2" data-reveal>
         <div class="cs__left">
-          <div class="cs__meta">
-            <strong class="cs__client">Lorem Ipsum</strong>
-            <span class="cs__tag cs__tag--accent">Series A</span>
-            <span class="cs__tag">B2B</span>
-            <span class="cs__tag">SaaS</span>
-            <span class="cs__date">2024–2025</span>
-          </div>
-          <h3 class="cs__title">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3>
-          <p class="cs__desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim.</p>
-          <a href="showcase.html" class="cs__link">Read the case study</a>
+          <p class="cs__kicker"><strong>DAS Technology</strong><span>Automotive SaaS</span><span>Forward-deployed</span><span class="cs__kicker-live">Live in production</span></p>
+          <h3 class="cs__title cs__title--hook"><span>One customer.</span><span>Every car.</span><span class="cs__title-accent">Zero guesswork.</span></h3>
+          <p class="cs__desc">Meridian, DAS Technology’s customer data platform, turns 100+ CRMs, DMS platforms, ad channels and OEM feeds into one explainable customer record — every vehicle, every consent, a confidence score on every field.</p>
+          <a href="case.html?id=das-meridian" class="cs__link">Read the case study <em aria-hidden="true">→</em></a>
           <blockquote class="cs__quote">
-            <p>"Lorem ipsum dolor sit amet — engagement rate up 25% from last year, bounce rate down 20%, and user conversion up 11%."</p>
-            <footer><strong>Lorem Nomen</strong><span>Principal Designer @ Lorem</span></footer>
+            <p>“Re-derive, don’t inherit.”</p>
+            <footer><strong>Alex English</strong><span>SVP Product, DAS Technology</span></footer>
           </blockquote>
         </div>
-        <div class="cs__media cs__media--1" aria-hidden="true"><span class="cs__stat">121M+</span></div>
+        <!-- podgląd: profil klienta (golden record) z działającej aplikacji DAS -->
+        <div class="cs__media cs__media--embed" aria-hidden="true">
+          <div class="cs__stage">
+            <div class="cs__window">
+              <span class="cs__window-bar"><i></i><i></i><i></i></span>
+              <img class="cs__shot" src="materials/showcase/das-profile.jpg" width="1600" height="1185" alt="" loading="lazy" decoding="async" />
+            </div>
+            <span class="cs__stat"><b>100+</b><small>data sources · one record</small></span>
+          </div>
+        </div>
       </article>
 
-      <article class="cs" data-reveal>
+      <article class="cs cs--v2" data-reveal>
         <div class="cs__left">
-          <div class="cs__meta">
-            <strong class="cs__client">Dolor Sit</strong>
-            <span class="cs__tag cs__tag--accent">Scale-up</span>
-            <span class="cs__tag">Platform</span>
-            <span class="cs__tag">AI</span>
-            <span class="cs__date">2023–2024</span>
-          </div>
-          <h3 class="cs__title">Sed do eiusmod tempor incididunt ut labore dolore</h3>
-          <p class="cs__desc">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis.</p>
-          <a href="showcase.html" class="cs__link">Read the case study</a>
+          <p class="cs__kicker"><strong>eZacto · by CONFLICT</strong><span>Time tracking SaaS</span><span>Open source</span><span class="cs__kicker-live">Live</span></p>
+          <h3 class="cs__title cs__title--hook"><span>16.5× the bill.</span><span>So we built</span><span class="cs__title-accent">our own.</span></h3>
+          <p class="cs__desc">When Harvest raised our price from $130 to $2,145 a month, we built eZacto — an open-source Harvest alternative for time tracking, projects and invoicing. 48 releases in six weeks, built AI-native.</p>
+          <a href="case.html?id=ezacto" class="cs__link">Read the case study <em aria-hidden="true">→</em></a>
           <blockquote class="cs__quote">
-            <p>"Duis aute irure dolor — deploy time cut 90%, scaled to 3M+ users with zero downtime across three regions."</p>
-            <footer><strong>Nomen Aliud</strong><span>VP Engineering @ Dolor</span></footer>
+            <p>“Good software should earn your business, not depend on how hard it is to leave.”</p>
+            <footer><strong>The eZacto team</strong><span>CONFLICT</span></footer>
           </blockquote>
         </div>
-        <div class="cs__media cs__media--2" aria-hidden="true"><span class="cs__stat">3M+</span></div>
+        <!-- podgląd: raporty w aplikacji eZacto -->
+        <div class="cs__media cs__media--embed" aria-hidden="true">
+          <div class="cs__stage">
+            <div class="cs__window">
+              <span class="cs__window-bar"><i></i><i></i><i></i></span>
+              <img class="cs__shot" src="materials/cases/ezacto/app-reports.jpg" width="2400" height="1500" alt="" loading="lazy" decoding="async" />
+            </div>
+            <span class="cs__stat"><b>48</b><small>releases in six weeks</small></span>
+          </div>
+        </div>
       </article>
 
       <article class="cs">
@@ -1103,33 +1072,33 @@
 
   <div class="page-glitch" id="page-glitch" aria-hidden="true"></div>
 
-  <script src="src/components/team.js?v=20261114n" type="module"></script>
-  <script src="src/scripts/intro.js?v=20261114n" type="module"></script>
-  <script src="src/scripts/smooth-scroll.js?v=20261114n" type="module"></script>
-  <script src="src/scripts/nav.js?v=20261114n" type="module"></script>
-  <script src="src/scripts/cursor-glitch.js?v=20261114n" type="module"></script>
-  <script src="src/components/lazy-video.js?v=20261114n" type="module"></script>
-  <script src="src/components/consent.js?v=20261114n" type="module"></script>
-  <script src="src/components/contact-nudge.js?v=20261114n" type="module"></script>
-  <script src="src/scripts/track.js?v=20261114n" type="module"></script>
-  <script src="src/scripts/main.js?v=20261114n" type="module"></script>
-  <script src="src/scripts/hero-scroll.js?v=20261114n" type="module"></script>
-  <script src="src/scripts/cases-scroll.js?v=20261114n" type="module"></script>
-  <script src="src/scripts/crt-barrel.js?v=20261114n" type="module"></script>
-  <script src="src/scripts/glitch.js?v=20261114n" type="module"></script>
-  <script src="src/scripts/fit-title.js?v=20261114n" type="module"></script>
-  <script src="src/scripts/carousel.js?v=20261114n" type="module"></script>
-  <script src="src/scripts/code-rain.js?v=20261114n" type="module"></script>
-  <script src="src/scripts/logos.js?v=20261114n" type="module"></script>
-  <script src="src/scripts/accordion.js?v=20261114n" type="module"></script>
-  <script src="src/scripts/words-reveal.js?v=20261114n" type="module"></script>
-  <script src="src/scripts/puppets.js?v=20261114n" type="module"></script>
-  <script src="src/scripts/journey.js?v=20261114n" type="module"></script>
-  <script src="src/scripts/tilt.js?v=20261114n" type="module"></script>
-  <script src="src/scripts/flip.js?v=20261114n" type="module"></script>
-  <script src="src/scripts/process-scroll.js?v=20261114n" type="module"></script>
-  <script src="src/scripts/sound.js?v=20261114n" type="module"></script>
-  <script src="src/scripts/page-glitch.js?v=20261114n" type="module"></script>
-  <script src="src/scripts/ambient.js?v=20261114n" type="module"></script>
+  <script src="src/components/team.js?v=20261115q" type="module"></script>
+  <script src="src/scripts/intro.js?v=20261115q" type="module"></script>
+  <script src="src/scripts/smooth-scroll.js?v=20261115q" type="module"></script>
+  <script src="src/scripts/nav.js?v=20261115q" type="module"></script>
+  <script src="src/scripts/cursor-glitch.js?v=20261115q" type="module"></script>
+  <script src="src/components/lazy-video.js?v=20261115q" type="module"></script>
+  <script src="src/components/consent.js?v=20261115q" type="module"></script>
+  <script src="src/components/contact-nudge.js?v=20261115q" type="module"></script>
+  <script src="src/scripts/track.js?v=20261115q" type="module"></script>
+  <script src="src/scripts/main.js?v=20261115q" type="module"></script>
+  <script src="src/scripts/hero-scroll.js?v=20261115q" type="module"></script>
+  <script src="src/scripts/cases-scroll.js?v=20261115q" type="module"></script>
+  <script src="src/scripts/crt-barrel.js?v=20261115q" type="module"></script>
+  <script src="src/scripts/glitch.js?v=20261115q" type="module"></script>
+  <script src="src/scripts/fit-title.js?v=20261115q" type="module"></script>
+  <script src="src/scripts/carousel.js?v=20261115q" type="module"></script>
+  <script src="src/scripts/code-rain.js?v=20261115q" type="module"></script>
+  <script src="src/scripts/logos.js?v=20261115q" type="module"></script>
+  <script src="src/scripts/accordion.js?v=20261115q" type="module"></script>
+  <script src="src/scripts/words-reveal.js?v=20261115q" type="module"></script>
+  <script src="src/scripts/puppets.js?v=20261115q" type="module"></script>
+  <script src="src/scripts/journey.js?v=20261115q" type="module"></script>
+  <script src="src/scripts/tilt.js?v=20261115q" type="module"></script>
+  <script src="src/scripts/flip.js?v=20261115q" type="module"></script>
+  <script src="src/scripts/process-scroll.js?v=20261115q" type="module"></script>
+  <script src="src/scripts/sound.js?v=20261115q" type="module"></script>
+  <script src="src/scripts/page-glitch.js?v=20261115q" type="module"></script>
+  <script src="src/scripts/ambient.js?v=20261115q" type="module"></script>
 </body>
 </html>

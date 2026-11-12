@@ -29,10 +29,10 @@
   <link rel="icon" href="materials/favicon/favicon-32.png" type="image/png" sizes="32x32" />
   <link rel="apple-touch-icon" href="materials/favicon/apple-touch-icon.png" />
   <link rel="preload" href="materials/fonts/unica-one-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="src/styles/fonts.css?v=20261114n" />
+  <link rel="stylesheet" href="src/styles/fonts.css?v=20261115q" />
   <link rel="stylesheet" href="node_modules/lenis/dist/lenis.css" />
-  <link rel="stylesheet" href="src/styles/main.css?v=20261114n" />
-  <link rel="stylesheet" href="src/styles/subpage.css?v=20261114n" />
+  <link rel="stylesheet" href="src/styles/main.css?v=20261115q" />
+  <link rel="stylesheet" href="src/styles/subpage.css?v=20261115q" />
 </head>
 <body class="page-sub page-outcome">
   <!-- Filtr glitch/displacement (reużywalny: filter: url(#fx-glitch)) -->
@@ -465,7 +465,11 @@
           </div>
         </div>
         <div class="sp-hero__media svc__media" aria-hidden="true" data-reveal data-reveal-delay="160">
-          <div class="svc__vid media-video fx-glitch fx-glitch--soft is-mode-a"><video class="media-video__el" src="materials/1-clean.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
+          <div class="svc__vid media-video fx-glitch fx-glitch--soft is-mode-a"><video class="media-video__el" autoplay muted loop playsinline preload="metadata">
+            <source src="materials/hero_alpha.mov" type='video/quicktime; codecs="hvc1"' />
+            <source src="materials/hero_alpha.webm" type="video/webm" />
+            <source src="materials/hero_scrub.mp4" type="video/mp4" />
+          </video></div>
         </div>
       </div>
     </section>
@@ -474,20 +478,21 @@
     <section class="sp-do" id="projects" aria-labelledby="sc-edges">
       <h2 class="sp-h2" id="sc-edges" data-reveal>Explore the edges of what we’re building.</h2>
       <ul class="sp-projs">
-        <li class="sp-proj" id="das" data-reveal data-reveal-delay="0">
+        <li class="sp-proj sp-proj--wide" id="das" data-reveal data-reveal-delay="0">
           <a class="sp-proj__link fx-tilt" data-tilt="8" href="case.html?id=das-meridian">
-            <span class="sp-thumb sp-proj__thumb sp-proj__thumb--animation"><iframe src="das.html?embed=1" title="DAS Technology customer intelligence animation" loading="lazy" tabindex="-1" sandbox="allow-scripts" aria-hidden="true"></iframe></span>
-            
+            <span class="sp-thumb sp-proj__thumb media-video fx-glitch fx-glitch--soft is-mode-a" data-fallback="DAS Technology"><img class="media-video__el" src="materials/cases/das/app-global.jpg" width="2400" height="1500" alt="Meridian global view for DAS Technology" loading="lazy" decoding="async" /></span>
+
+            <span class="sp-proj__tag">Case study</span>
             <span class="sp-proj__name sp-glitch" data-text="DAS Technology">DAS Technology</span>
             <span class="sp-proj__lead">Your unfair advantage™</span>
-            <span class="sp-proj__desc">A unified customer profile built from all connected data sources. Animation uses demonstration data.</span>
+            <span class="sp-proj__desc">Meridian, an AI-ready customer data platform for automotive retail: one explainable golden record per customer, live in production.</span>
             <span class="sp-proj__cta">Read case study <em aria-hidden="true">→</em></span>
           </a>
         </li>
         <li class="sp-proj" id="boilerworks" data-reveal data-reveal-delay="0">
           <a class="sp-proj__link fx-tilt" data-tilt="8" href="contact.html#contact-form">
             <span class="sp-thumb sp-proj__thumb media-video fx-glitch fx-glitch--soft is-mode-a" data-fallback="Boilerworks"><img class="media-video__el" src="materials/showcase/boilerworks.jpg" width="1600" height="908" alt="Boilerworks website" loading="lazy" decoding="async" onerror="const t=this.parentElement;t.classList.add('sp-thumb--empty');t.innerHTML='&lt;i class=&quot;sp-thumb__c sp-thumb__c--tl&quot;&gt;&lt;/i&gt;&lt;i class=&quot;sp-thumb__c sp-thumb__c--br&quot;&gt;&lt;/i&gt;&lt;i class=&quot;sp-thumb__x&quot;&gt;&lt;/i&gt;&lt;span class=&quot;sp-thumb__label&quot;&gt;'+t.dataset.fallback+' · 16/10&lt;/span&gt;'" /></span>
-            
+
             <span class="sp-proj__name sp-glitch" data-text="Boilerworks">Boilerworks</span>
             <span class="sp-proj__lead">Modern product infrastructure, ready to launch.</span>
             <span class="sp-proj__desc">Boilerworks is our internal development platform — a modular, full-stack system for building production-grade apps. Backend, frontend, infra — all wired up and ready to go. It’s the “happy path” to scalable software, used on everything from internal tools to billion-dollar storefronts.</span>
@@ -495,23 +500,47 @@
           </a>
         </li>
         <li class="sp-proj" id="calliope" data-reveal data-reveal-delay="100">
-          <a class="sp-proj__link fx-tilt" data-tilt="8" href="contact.html#contact-form">
-            <span class="sp-thumb sp-proj__thumb media-video fx-glitch fx-glitch--soft is-mode-a" data-fallback="Calliope AI"><img class="media-video__el" src="materials/showcase/calliope.jpg" width="1600" height="908" alt="Calliope AI website" loading="lazy" decoding="async" onerror="const t=this.parentElement;t.classList.add('sp-thumb--empty');t.innerHTML='&lt;i class=&quot;sp-thumb__c sp-thumb__c--tl&quot;&gt;&lt;/i&gt;&lt;i class=&quot;sp-thumb__c sp-thumb__c--br&quot;&gt;&lt;/i&gt;&lt;i class=&quot;sp-thumb__x&quot;&gt;&lt;/i&gt;&lt;span class=&quot;sp-thumb__label&quot;&gt;'+t.dataset.fallback+' · 16/10&lt;/span&gt;'" /></span>
-            
+          <a class="sp-proj__link fx-tilt" data-tilt="8" href="case.html?id=calliope-ai">
+            <span class="sp-thumb sp-proj__thumb media-video fx-glitch fx-glitch--soft is-mode-a" data-fallback="Calliope AI"><img class="media-video__el" src="materials/cases/calliope/ide-main.jpg" width="2400" height="1500" alt="Calliope AI IDE with the built-in AI agent" loading="lazy" decoding="async" onerror="const t=this.parentElement;t.classList.add('sp-thumb--empty');t.innerHTML='&lt;i class=&quot;sp-thumb__c sp-thumb__c--tl&quot;&gt;&lt;/i&gt;&lt;i class=&quot;sp-thumb__c sp-thumb__c--br&quot;&gt;&lt;/i&gt;&lt;i class=&quot;sp-thumb__x&quot;&gt;&lt;/i&gt;&lt;span class=&quot;sp-thumb__label&quot;&gt;'+t.dataset.fallback+' · 16/10&lt;/span&gt;'" /></span>
+
+            <span class="sp-proj__tag">Case study</span>
             <span class="sp-proj__name sp-glitch" data-text="Calliope AI">Calliope AI</span>
             <span class="sp-proj__lead">Private AI for teams that need control over their data.</span>
             <span class="sp-proj__desc">Calliope AI, CONFLICT’s sister company, brings coding assistants, notebooks, chat, and agents together with governance and private deployment options. CONFLICT provides implementation and integration services.</span>
-            <span class="sp-proj__cta">Explore Calliope AI <em aria-hidden="true">→</em></span>
+            <span class="sp-proj__cta">Read case study <em aria-hidden="true">→</em></span>
           </a>
         </li>
-        <li class="sp-proj" id="ezacto" data-reveal data-reveal-delay="0">
-          <a class="sp-proj__link fx-tilt" data-tilt="8" href="contact.html#contact-form">
-            <span class="sp-thumb sp-proj__thumb media-video fx-glitch fx-glitch--soft is-mode-a" data-fallback="Ezacto"><img class="media-video__el" src="materials/showcase/ezacto.jpg" width="1600" height="908" alt="Ezacto website" loading="lazy" decoding="async" onerror="const t=this.parentElement;t.classList.add('sp-thumb--empty');t.innerHTML='&lt;i class=&quot;sp-thumb__c sp-thumb__c--tl&quot;&gt;&lt;/i&gt;&lt;i class=&quot;sp-thumb__c sp-thumb__c--br&quot;&gt;&lt;/i&gt;&lt;i class=&quot;sp-thumb__x&quot;&gt;&lt;/i&gt;&lt;span class=&quot;sp-thumb__label&quot;&gt;'+t.dataset.fallback+' · 16/10&lt;/span&gt;'" /></span>
-            
+        <li class="sp-proj" id="zentinelle" data-reveal data-reveal-delay="0">
+          <a class="sp-proj__link fx-tilt" data-tilt="8" href="case.html?id=zentinelle">
+            <span class="sp-thumb sp-proj__thumb media-video fx-glitch fx-glitch--soft is-mode-a" data-fallback="Zentinelle"><img class="media-video__el" src="materials/cases/zentinelle/dashboard.jpg" width="2400" height="1500" alt="Zentinelle AI agent governance dashboard" loading="lazy" decoding="async" onerror="const t=this.parentElement;t.classList.add('sp-thumb--empty');t.innerHTML='&lt;i class=&quot;sp-thumb__c sp-thumb__c--tl&quot;&gt;&lt;/i&gt;&lt;i class=&quot;sp-thumb__c sp-thumb__c--br&quot;&gt;&lt;/i&gt;&lt;i class=&quot;sp-thumb__x&quot;&gt;&lt;/i&gt;&lt;span class=&quot;sp-thumb__label&quot;&gt;'+t.dataset.fallback+' · 16/10&lt;/span&gt;'" /></span>
+
+            <span class="sp-proj__tag">Case study</span>
+            <span class="sp-proj__name sp-glitch" data-text="Zentinelle">Zentinelle</span>
+            <span class="sp-proj__lead">Runtime governance, risk and compliance for AI agents.</span>
+            <span class="sp-proj__desc">Built by CONFLICT. Policies, content scanning and a tamper-evident audit trail between your AI agents and their model providers — with SOC 2, GDPR and EU AI Act mapping, and no changes to agent code.</span>
+            <span class="sp-proj__cta">Read case study <em aria-hidden="true">→</em></span>
+          </a>
+        </li>
+        <li class="sp-proj" id="astrolift" data-reveal data-reveal-delay="100">
+          <a class="sp-proj__link fx-tilt" data-tilt="8" href="case.html?id=astrolift">
+            <span class="sp-thumb sp-proj__thumb media-video fx-glitch fx-glitch--soft is-mode-a" data-fallback="Astrolift"><img class="media-video__el" src="materials/cases/astrolift/manifest.jpg" width="2400" height="1500" alt="Astrolift astrolift.toml manifest and deploy workflow" loading="lazy" decoding="async" onerror="const t=this.parentElement;t.classList.add('sp-thumb--empty');t.innerHTML='&lt;i class=&quot;sp-thumb__c sp-thumb__c--tl&quot;&gt;&lt;/i&gt;&lt;i class=&quot;sp-thumb__c sp-thumb__c--br&quot;&gt;&lt;/i&gt;&lt;i class=&quot;sp-thumb__x&quot;&gt;&lt;/i&gt;&lt;span class=&quot;sp-thumb__label&quot;&gt;'+t.dataset.fallback+' · 16/10&lt;/span&gt;'" /></span>
+
+            <span class="sp-proj__tag">Case study</span>
+            <span class="sp-proj__name sp-glitch" data-text="Astrolift">Astrolift</span>
+            <span class="sp-proj__lead">Deploy apps and AI agents into your own cloud.</span>
+            <span class="sp-proj__desc">Built by CONFLICT. An open-source control plane and CLI: describe a workload once in astrolift.toml and ship it the same way every time, with a preview environment for every pull request.</span>
+            <span class="sp-proj__cta">Read case study <em aria-hidden="true">→</em></span>
+          </a>
+        </li>
+        <li class="sp-proj sp-proj--wide" id="ezacto" data-reveal data-reveal-delay="0">
+          <a class="sp-proj__link fx-tilt" data-tilt="8" href="case.html?id=ezacto">
+            <span class="sp-thumb sp-proj__thumb media-video fx-glitch fx-glitch--soft is-mode-a" data-fallback="Ezacto"><img class="media-video__el" src="materials/cases/ezacto/app-reports.jpg" width="2400" height="1500" alt="eZacto reports: logged time, capacity and amounts" loading="lazy" decoding="async" onerror="const t=this.parentElement;t.classList.add('sp-thumb--empty');t.innerHTML='&lt;i class=&quot;sp-thumb__c sp-thumb__c--tl&quot;&gt;&lt;/i&gt;&lt;i class=&quot;sp-thumb__c sp-thumb__c--br&quot;&gt;&lt;/i&gt;&lt;i class=&quot;sp-thumb__x&quot;&gt;&lt;/i&gt;&lt;span class=&quot;sp-thumb__label&quot;&gt;'+t.dataset.fallback+' · 16/10&lt;/span&gt;'" /></span>
+
+            <span class="sp-proj__tag">Case study</span>
             <span class="sp-proj__name sp-glitch" data-text="Ezacto">Ezacto</span>
             <span class="sp-proj__lead">Time tracking and invoicing, available as hosted SaaS or open-source software you can self-host.</span>
             <span class="sp-proj__desc">Built by CONFLICT. Track time, manage projects and clients, and turn billable work into invoices. Use the hosted service or run it on your own infrastructure.</span>
-            <span class="sp-proj__cta">Explore Ezacto <em aria-hidden="true">→</em></span>
+            <span class="sp-proj__cta">Read case study <em aria-hidden="true">→</em></span>
           </a>
         </li>
         <li class="sp-proj" id="veracall" data-reveal data-reveal-delay="100">
@@ -647,17 +676,17 @@
 
   <div class="page-glitch" id="page-glitch" aria-hidden="true"></div>
 
-  <script src="src/scripts/smooth-scroll.js?v=20261114n" type="module"></script>
-  <script src="src/scripts/nav.js?v=20261114n" type="module"></script>
-  <script src="src/scripts/cursor-glitch.js?v=20261114n" type="module"></script>
-  <script src="src/components/consent.js?v=20261114n" type="module"></script>
-  <script src="src/components/contact-nudge.js?v=20261114n" type="module"></script>
-  <script src="src/scripts/track.js?v=20261114n" type="module"></script>
-  <script src="src/scripts/main.js?v=20261114n" type="module"></script>
-  <script src="src/scripts/subpage.js?v=20261114n" type="module"></script>
-  <script src="src/scripts/tilt.js?v=20261114n" type="module"></script>
-  <script src="src/scripts/sound.js?v=20261114n" type="module"></script>
-  <script src="src/scripts/page-glitch.js?v=20261114n" type="module"></script>
-  <script src="src/scripts/ambient.js?v=20261114n" type="module"></script>
+  <script src="src/scripts/smooth-scroll.js?v=20261115q" type="module"></script>
+  <script src="src/scripts/nav.js?v=20261115q" type="module"></script>
+  <script src="src/scripts/cursor-glitch.js?v=20261115q" type="module"></script>
+  <script src="src/components/consent.js?v=20261115q" type="module"></script>
+  <script src="src/components/contact-nudge.js?v=20261115q" type="module"></script>
+  <script src="src/scripts/track.js?v=20261115q" type="module"></script>
+  <script src="src/scripts/main.js?v=20261115q" type="module"></script>
+  <script src="src/scripts/subpage.js?v=20261115q" type="module"></script>
+  <script src="src/scripts/tilt.js?v=20261115q" type="module"></script>
+  <script src="src/scripts/sound.js?v=20261115q" type="module"></script>
+  <script src="src/scripts/page-glitch.js?v=20261115q" type="module"></script>
+  <script src="src/scripts/ambient.js?v=20261115q" type="module"></script>
 </body>
 </html>

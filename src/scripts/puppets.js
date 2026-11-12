@@ -1,4 +1,4 @@
-import { visibleLoop } from "../components/visible-loop.js?v=20261114n";
+import { visibleLoop } from "../components/visible-loop.js?v=20261115q";
 // ===== Pajacyki: liny Verlet (wyginają się) + chwytanie myszką =====
 const rig = document.querySelector(".puppets__rig");
 const puppetEls = [...document.querySelectorAll(".puppet")];
