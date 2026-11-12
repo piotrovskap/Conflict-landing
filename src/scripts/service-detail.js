@@ -84,6 +84,7 @@ if (at < 0) {
   // --- więcej w kategorii ---
   $("d-more-svc").textContent = cat.name;
   const more = $("d-more");
+  more.classList.add("sp-caps--compact"); // karty bez opisu — bez pustej wysokości
   siblings.forEach((s, k) => {
     if (s === p) return;
     const li = el("li", "sp-caps__item");

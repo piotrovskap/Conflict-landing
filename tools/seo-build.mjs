@@ -169,7 +169,17 @@ for (const u of old) {
   if (to) redirects.push([u, to]); else unmapped.push(u);
 }
 // wariant bez końcowego „/” też przekierowujemy
-const lines = redirects.flatMap(([from, to]) => [`${from} ${to} 301`, `${from.replace(/\/$/, "")} ${to} 301`]);
+// Cloudflare Pages serwuje x.html pod „ładnym" adresem /x i sam robi 308 z /x.html → /x.
+// Cel musi więc być ładnym adresem (bez .html), a reguła nie może mieć źródła równego celowi —
+// inaczej /x → /x.html → /x … = ERR_TOO_MANY_REDIRECTS.
+const pretty = (to) => to.replace(/^\/index\.html(?=$|\?)/, "/").replace(/\.html(?=$|\?)/, "");
+const lines = redirects.flatMap(([from, to]) => {
+  const target = pretty(to);
+  const targetPath = target.split("?")[0];
+  return [...new Set([from, from.replace(/\/$/, "")])]
+    .filter((src) => src && src !== targetPath)
+    .map((src) => `${src} ${target} 301`);
+});
 fs.writeFileSync(path.join(ROOT, "_redirects"), `# 301 — stare adresy weareconflict.com → nowa strona (generowane: node tools/seo-build.mjs)\n${lines.join("\n")}\n`);
 fs.writeFileSync(path.join(ROOT, "redirects.json"), JSON.stringify(redirects.map(([from, to]) => ({ from, to, status: 301 })), null, 2) + "\n");
 

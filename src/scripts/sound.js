@@ -47,6 +47,8 @@ document.addEventListener("pointerdown", (e) => {
     const open = t.closest(".svc__item")?.classList.contains("is-open");
     return void play("toggle", { volume: 0.4, emphasis: open ? "soft" : "strong" });
   }
+  const flipCard = t.closest("[data-flip]");
+  if (flipCard && !t.closest("a")) return void play(flipCard.classList.contains("is-flipped") ? "close" : "open", { volume: 0.35 });
   if (t.closest(".carousel__btn")) return void play("navigate", { volume: 0.22 });
   if (t.closest(".sp-chip, .sp-consent__label")) return void play("select", { volume: 0.3 });
   if (t.closest(".sp-faq__item summary")) return void play("toggle", { volume: 0.35 });

@@ -2628,3 +2628,129 @@
 .sp-prose__timeline p { margin: 0; color: var(--text-dim); }
 @media (prefers-reduced-motion: reduce) { .sp-posts > li.is-new { animation: none; } }
 @media (max-width: 900px) { .sp-posts--3 { grid-template-columns: minmax(0, 1fr); } }
+
+/* =====================================================================
+   RWD PASS — poprawki telefon / tablet (audyt 390 / 768)
+   ===================================================================== */
+/* A. nagłówki: bez osieroconych słów, szersze na tablecie */
+.sp-h2, .sp-svc__title, .sp-case-block__title, .sp-pager .sp-line__value,
+.sp-hero__title, .sp-statement__text, .sp-post__title, .sp-post h3 { text-wrap: balance; }
+.sp-ethos__lead, .sp-who__text, .sp-lead, .sp-hero__lead { text-wrap: pretty; }
+@media (min-width: 561px) {
+  .sp-h2 { max-width: 24ch; }
+  .sp-svc__title { max-width: 22ch; }
+}
+/* adres e-mail / telefon / tytuły w pagerze — krój display zawsze wersalikami (bez „HI@weareconflict") */
+.sp-line__value { text-transform: uppercase; }
+
+/* B. puste przestrzenie */
+@media (max-width: 860px) {
+  .sp-statement { min-height: 0; padding-block: clamp(64px, 16vw, 112px); }
+}
+/* cytat w case study: autor pod cytatem, nie obok */
+#c-quote-sec { flex-direction: column; gap: clamp(20px, 3vw, 32px); }
+/* kontakt → pager / „More in…": jeden odstęp zamiast dwóch */
+.sp-contact + .sp-pager { margin-top: 0; }
+.sp-contact + .sp-detail-more { padding-top: 0; }
+.sp-contact:has(+ .sp-pager), .sp-contact:has(+ .sp-detail-more) { padding-bottom: clamp(40px, 6vw, 72px); }
+
+/* C. karty: odstępnik pod opisem (tytuły w rzędzie równo), bez pustego pasa na telefonie */
+.sp-cap:not(.sp-story) {
+  grid-template-rows: auto auto auto 1fr auto;
+  grid-template-areas: "num go" "title title" "desc desc" ". ." "more more";
+}
+.sp-cap--static { grid-template-areas: "num" "title" "desc" "."; grid-template-rows: auto auto auto 1fr; }
+@media (max-width: 560px) {
+  .sp-cap { min-height: 0; }
+}
+/* samotna ostatnia karta w siatce 2-kolumnowej → pełna szerokość */
+@media (min-width: 561px) and (max-width: 1100px) {
+  .sp-caps:not(.sp-caps--3) > .sp-caps__item:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .sp-caps--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .sp-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sp-case-visuals__grid > :last-child:nth-child(odd) { grid-column: 1 / -1; }
+}
+@media (min-width: 721px) and (max-width: 1100px) {
+  .sp-projs > .sp-proj:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .sp-projs > .sp-proj:last-child:nth-child(odd) .sp-proj__thumb { aspect-ratio: 2.4; }
+}
+@media (max-width: 560px) {
+  .sp-caps--3 { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 720px) {
+  .team__cards.team-grid > .team__card:last-child:nth-child(odd) { grid-column: 1 / -1; }
+}
+@media (min-width: 561px) and (max-width: 860px) {
+  .sp-clients__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+/* odznaka branży: na telefonie na całą szerokość, niższa */
+@media (max-width: 720px) {
+  .sp-ind-badge { width: 100%; aspect-ratio: 16 / 10; }
+}
+/* karty partnerów w hero: bez podwójnej ramki na telefonie */
+@media (max-width: 860px) {
+  .sp-hero__side.sp-partner-cards { padding-inline: 0; }
+}
+/* miniatura VeraCall — kadr od lewej (tekst strony nie jest ucinany) */
+#veracall .sp-proj__thumb .media-video__el { object-position: left top; }
+
+/* D. przyciski na telefonie: równe, na pełną szerokość */
+@media (max-width: 520px) {
+  .sp-hero__actions .btn, .sp-contact__actions .btn, .sp-404__actions .btn { flex: 1 1 100%; justify-content: center; }
+}
+
+/* E. pasek „Need urgent help" nie zasłania końca treści */
+body:has(.sp-urgent.is-on) .sp { padding-bottom: 88px; }
+
+/* G. tabela we wpisie: przewijana z wyraźną wskazówką, ciaśniejsze komórki */
+@media (max-width: 600px) {
+  .sp-prose__table { position: relative; }
+  .sp-prose__table table { min-width: 560px; font-size: 0.86rem; }
+  .sp-prose__table th, .sp-prose__table td { padding: 10px 12px; }
+  .sp-prose__table th { white-space: nowrap; }
+  .sp-prose__table::before {
+    content: "scroll →";
+    position: sticky; left: 0;
+    display: block;
+    padding: 6px 12px;
+    text-align: right;
+    font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--hud);
+    background: #0b0c0b;
+    border-bottom: 1px solid var(--line);
+  }
+}
+/* zakładki: numer w linii z etykietą; prawa krawędź sygnalizuje „jest więcej" */
+.sp-index__item { align-items: baseline; }
+.sp-index__num { padding-top: 0; }
+@media (max-width: 860px) {
+  .sp-svc__num { font-size: clamp(4.5rem, 20vw, 7rem); }
+}
+.sp-tabs__list { scroll-padding-inline: 16px; }
+
+/* J. cele dotyku */
+.sp-svc__cta { min-height: 44px; display: inline-flex; align-items: center; }
+.sp-privacy__more summary { min-height: 44px; display: flex; align-items: center; }
+.sp-proj__tag { font-size: max(0.68rem, 11px); }
+/* „jest więcej →" — przyklejona strzałka na prawym brzegu przewijanego paska (jednolite tło, bez gradientu) */
+.sp-tabs__list.is-more::after, #sp-index.is-more::after {
+  content: "→";
+  position: sticky;
+  right: 0;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  min-width: 36px;
+  margin-left: auto;
+  font-family: var(--mono);
+  color: var(--hud);
+  background: var(--bg);
+  border-left: 1px solid var(--line);
+  animation: sp-more-nudge 1.6s var(--ease) infinite;
+}
+@keyframes sp-more-nudge { 50% { text-indent: 6px; } }
+@media (prefers-reduced-motion: reduce) { .sp-tabs__list.is-more::after, #sp-index.is-more::after { animation: none; } }
+.nowrap { white-space: nowrap; }
+/* legal: terminal w hero na pełną szerokość (jak na stronie wpisu) */
+#lg-term { min-width: 0; }
+.sp-hero__side:has(#lg-term) .sp-term { width: 100%; }

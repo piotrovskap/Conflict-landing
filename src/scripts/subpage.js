@@ -196,6 +196,8 @@ document.querySelectorAll("[data-tabs]").forEach((root) => {
       if (panels[k]) panels[k].hidden = !on;
     });
     const t = tabs[i];
+    // telefon: wybrana zakładka zawsze w widoku paska
+    if (list.scrollWidth > list.clientWidth) list.scrollTo({ left: t.offsetLeft - (list.clientWidth - t.offsetWidth) / 2, behavior: reduce ? "auto" : "smooth" });
     list.style.setProperty("--tx", `${t.offsetLeft}px`);
     list.style.setProperty("--tw", `${t.offsetWidth}px`);
     if (focus) t.focus();
@@ -270,4 +272,14 @@ document.querySelectorAll("[data-urgent-pill]").forEach((pill) => {
     sync();
   }, { threshold: 0 });
   [hero, target, footer].forEach((el) => el && io.observe(el));
+});
+
+
+// ---------- Wskazówka „jest więcej →" na poziomo przewijanych paskach (zakładki, spis usług) ----------
+document.querySelectorAll(".sp-tabs__list, #sp-index").forEach((bar) => {
+  const upd = () => bar.classList.toggle("is-more", bar.scrollWidth - bar.clientWidth - bar.scrollLeft > 4);
+  bar.addEventListener("scroll", upd, { passive: true });
+  window.addEventListener("resize", upd);
+  if (window.ResizeObserver) new ResizeObserver(upd).observe(bar);
+  upd();
 });

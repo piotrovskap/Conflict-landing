@@ -152,9 +152,29 @@ export function autoMarquee(viewport, track, { speed = 60, hoverSpeed = 0.35, re
     else if (left + card.offsetWidth > vw) setX(x + left + card.offsetWidth - vw + 16);
   });
   viewport.addEventListener("focusout", (e) => { if (!viewport.contains(e.relatedTarget)) { focus = false; manual(); } });
+  // obrócona karta płynnie wjeżdża na środek pasa
+  function centerFlipped() {
+    const card = track.querySelector(".is-flipped");
+    if (!card || drag) return;
+    const from = getX();
+    let to = card.offsetLeft - (viewport.clientWidth - card.offsetWidth) / 2;
+    // najkrótsza droga w pętli
+    let d = to - from;
+    d -= Math.round(d / period) * period;
+    if (Math.abs(d) < 4) return;
+    cancelAnimationFrame(inertiaRaf);
+    const t0 = performance.now(), ms = 520;
+    const step = (t) => {
+      const k = Math.min(1, (t - t0) / ms);
+      setX(from + d * (1 - Math.pow(1 - k, 3)));
+      if (k < 1) inertiaRaf = requestAnimationFrame(step);
+      else inertiaRaf = 0;
+    };
+    inertiaRaf = requestAnimationFrame(step);
+  }
   new MutationObserver(() => {
     const f = !!track.querySelector(".is-flipped");
-    if (f !== flipped) { flipped = f; f ? sync(true) : manual(); }
+    if (f !== flipped) { flipped = f; f ? (sync(true), centerFlipped()) : manual(); }
   }).observe(track, { subtree: true, attributes: true, attributeFilter: ["class"] });
 
   // --- tylko gdy widać
