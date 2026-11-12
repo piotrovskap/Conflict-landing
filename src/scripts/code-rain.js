@@ -1,3 +1,4 @@
+import { visibleLoop } from "../components/visible-loop.js?v=20261113t";
 // ===== Lecący kod (matrix) + czerwona fraza spadająca w dół — na każdym .code-rain =====
 const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 if (!reduce) document.querySelectorAll(".code-rain").forEach(initRain);
@@ -24,7 +25,6 @@ function initRain(canvas) {
   }
 
   function frame(t) {
-    requestAnimationFrame(frame);
     if (t - last < STEP_MS) return; // throttling → wolniejszy spadek
     last = t;
 
@@ -55,7 +55,7 @@ function initRain(canvas) {
   }
 
   resize();
-  requestAnimationFrame(frame);
+  visibleLoop(canvas, frame); // poza ekranem nie rysuje (hero znika przy scrollu)
   if (window.ResizeObserver) new ResizeObserver(resize).observe(canvas);
   else window.addEventListener("resize", resize);
 }

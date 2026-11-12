@@ -1,3 +1,4 @@
+import { visibleLoop } from "../components/visible-loop.js?v=20261113t";
 // ===== Pajacyki: liny Verlet (wyginają się) + chwytanie myszką =====
 const rig = document.querySelector(".puppets__rig");
 const puppetEls = [...document.querySelectorAll(".puppet")];
@@ -99,7 +100,6 @@ if (rig && puppetEls.length) {
 
   let last = 0;
   function loop(t) {
-    requestAnimationFrame(loop);
     const dt = Math.min(0.03, (t - last) / 1000) || 0.016;
     last = t;
     const gy = GRAV * dt * dt;
@@ -174,5 +174,5 @@ if (rig && puppetEls.length) {
     }
   }
 
-  if (!reduce) requestAnimationFrame(loop);
+  if (!reduce) visibleLoop(stage || rig, loop); // fizyka lin liczy się tylko, gdy sekcja jest widoczna
 }

@@ -4000,3 +4000,28 @@ html.nudge-open { overflow: hidden; }
   .nudge__text, .nudge__actions, .nudge__lines, .nudge__telemetry { transform: none; transition: opacity 0.2s linear !important; }
   .nudge__panel:hover .nudge__accent { animation: none; }
 }
+
+/* ===== Pas zespołu na telefonie / dotyku — wydajność =====
+   Animowany filtr SVG (#crt-tile: feTurbulence + displacement) jest liczony na CPU w każdej klatce;
+   przy przesuwanym pasie na telefonie to główna przyczyna przycinania. Zostaje lekki glitch
+   na samych transformacjach (kompozytor GPU), bez filtrów i rozmyć. */
+@media (max-width: 860px), (hover: none) {
+  .team__marquee .team__card--photo .fx-glitch .team__photo,
+  .team__marquee .team__card--photo .fx-glitch.is-switching .team__photo {
+    filter: none;
+    animation: team-jolt-gpu 5s steps(1) infinite;
+  }
+  .team__marquee .fx-tilt { will-change: auto; transition: none; }
+  .team__marquee .fx-tilt__glare { display: none; }
+  .team__marquee .team__card { contain: layout paint style; }
+  .team__marquee .team__cards { backface-visibility: hidden; }
+}
+@keyframes team-jolt-gpu {
+  0%, 90%, 100% { transform: none; opacity: 1; }
+  91% { transform: translate3d(-4px, 0, 0); opacity: 0.85; }
+  93% { transform: translate3d(5px, 0, 0); }
+  95% { transform: translate3d(-2px, 0, 0); opacity: 0.92; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .team__marquee .team__card--photo .fx-glitch .team__photo { animation: none; }
+}
