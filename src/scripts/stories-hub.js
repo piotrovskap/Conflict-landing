@@ -3,10 +3,11 @@
 import { CASES } from "../data/cases.js";
 
 const pad = (n) => String(n).padStart(2, "0");
+const slugify = (value) => value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 const tabsRoot = document.getElementById("ss-tabs");
 const jump = document.getElementById("ss-jump");
 const clients = [...new Set(CASES.map((c) => c.client))];
-const groups = [{ id: "all", name: "All", list: CASES }, ...clients.map((cl) => ({ id: cl.toLowerCase(), name: cl, list: CASES.filter((c) => c.client === cl) }))];
+const groups = [{ id: "all", name: "All", list: CASES }, ...clients.map((cl) => ({ id: slugify(cl), name: cl, list: CASES.filter((c) => c.client === cl) }))];
 
 const card = (c) => {
   const i = CASES.indexOf(c);
@@ -64,7 +65,7 @@ if (jump) {
     a.href = "#stories";
     a.innerHTML = `<span class="sp-jump__num">${pad(k + 1)}</span><span class="sp-jump__name"></span><span class="sp-jump__tag">${n} stories</span>`;
     a.querySelector(".sp-jump__name").textContent = cl;
-    a.addEventListener("click", () => document.getElementById(`ss-${cl.toLowerCase()}-tab`)?.click());
+    a.addEventListener("click", () => document.getElementById(`ss-${slugify(cl)}-tab`)?.click());
     jump.appendChild(a);
   });
 }

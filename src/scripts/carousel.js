@@ -26,7 +26,7 @@ function initCarousel(carousel) {
       const on = i === index;
       s.classList.toggle("is-active", on);
       if (s.dataset.href) { // tylko aktywny slajd jest linkiem dla klawiatury i czytnika
-        if (on) { s.tabIndex = 0; s.setAttribute("role", "link"); s.setAttribute("aria-label", `${s.querySelector("strong")?.textContent || "Project"} — open in Showcase`); }
+        if (on) { s.tabIndex = 0; s.setAttribute("role", "link"); s.setAttribute("aria-label", `${s.querySelector("strong")?.textContent || "Project"} — open project`); }
         else { s.removeAttribute("tabindex"); s.removeAttribute("role"); s.removeAttribute("aria-label"); }
       }
     });

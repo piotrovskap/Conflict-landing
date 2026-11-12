@@ -2056,6 +2056,23 @@
   color: var(--text);
   text-shadow: 0 0 30px rgba(219, 57, 76, 0.45);
 }
+.sp-case-visuals { padding: clamp(48px, 8vw, 110px) var(--sp-pad); border-top: 1px solid var(--line); }
+.sp-case-visuals__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.8fr);
+  align-items: end;
+  gap: clamp(24px, 5vw, 80px);
+  margin-bottom: clamp(28px, 4vw, 54px);
+}
+.sp-case-visuals__head .sp-lead { max-width: 58ch; }
+.sp-case-visuals__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(12px, 1.5vw, 24px); }
+.sp-case-visual { min-width: 0; margin: 0; border: 1px solid var(--line); background: var(--sp-panel); overflow: hidden; }
+.sp-case-visual--live { grid-column: 1 / -1; }
+.sp-case-visual__frame { display: block; aspect-ratio: 1.35; overflow: hidden; background: #ededef; border-bottom: 1px solid var(--line); }
+.sp-case-visual__frame iframe { display: block; width: 100%; height: 100%; border: 0; border-radius: 0; pointer-events: none; }
+.sp-case-visual figcaption { display: grid; gap: 7px; padding: clamp(16px, 1.6vw, 24px); }
+.sp-case-visual figcaption strong { font-family: var(--font-display); font-size: clamp(1.25rem, 1.7vw, 1.8rem); font-weight: 400; text-transform: uppercase; line-height: 1; }
+.sp-case-visual figcaption span { color: var(--text-dim); font-size: 0.9rem; line-height: 1.45; }
 .sp-case-body { padding: var(--sp-gap) var(--sp-pad) 0; border-top: 1px solid var(--line); }
 .sp-case-block {
   display: grid;
@@ -2074,8 +2091,14 @@
 .sp-case-block__list li { color: var(--text); font-size: 1rem; }
 .sp-case-quote__author { margin-top: 18px; text-align: center; font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); }
 @media (max-width: 720px) {
+  .sp-case-visuals__head, .sp-case-visuals__grid { grid-template-columns: minmax(0, 1fr); }
+  .sp-case-visual--live { grid-column: auto; }
   .sp-case-block { grid-template-columns: minmax(0, 1fr); }
   .sp-case-block__head { position: static; }
+}
+@media (min-width: 721px) and (max-width: 1100px) {
+  .sp-case-visuals__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sp-case-visual--live { grid-column: 1 / -1; }
 }
 
 /* =====================================================================

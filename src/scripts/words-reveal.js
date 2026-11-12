@@ -1,3 +1,4 @@
+import { autoMarquee } from "../components/auto-marquee.js?v=20261113o";
 // ===== Reveal słowo-po-słowie przy scrollu (manifest LAB) =====
 const stmt = document.getElementById("lab-statement");
 
@@ -64,35 +65,7 @@ if (places && placesSection) {
   update();
 }
 
-// ===== Poziomy pas kart zespołu przesuwany scrollem =====
+// ===== Pas kart zespołu: płynie sam, przewijany ręcznie (komponent auto-marquee) =====
 const marquee = document.getElementById("team-marquee");
 const track = document.getElementById("team-cards");
-
-if (marquee && track) {
-  let ticking = false;
-
-  function update() {
-    ticking = false;
-    const maxShift = track.scrollWidth - marquee.clientWidth;
-    if (maxShift <= 0) {
-      track.style.transform = "none";
-      return;
-    }
-    const rect = marquee.getBoundingClientRect();
-    const vh = window.innerHeight || 1;
-    const total = vh + rect.height;
-    const p = Math.max(0, Math.min(1, (vh - rect.top) / total));
-    track.style.transform = `translate3d(${(-p * maxShift).toFixed(1)}px, 0, 0)`;
-  }
-
-  function onScroll() {
-    if (!ticking) {
-      ticking = true;
-      requestAnimationFrame(update);
-    }
-  }
-
-  window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", onScroll);
-  update();
-}
+if (marquee && track) autoMarquee(marquee, track);

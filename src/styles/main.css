@@ -1906,9 +1906,16 @@ body {
   .hero {
     min-height: auto;
     align-items: stretch;
-    padding: 0 4vw;
+    /* Stały minimalny gutter + safe area: Chrome nie przycina ramki przy krawędzi viewportu. */
+    padding-inline:
+      max(16px, calc(env(safe-area-inset-left) + 4vw))
+      max(16px, calc(env(safe-area-inset-right) + 4vw));
   }
-  .hero__frame { max-height: none; }
+  .hero__frame {
+    max-height: none;
+    min-width: 0;
+    --frame-pad: clamp(14px, 4.5vw, 24px);
+  }
 
   /* czysty stack: wideo → opis → karuzela, bez nakładających się marginesów */
   .hero__body {
@@ -1921,7 +1928,30 @@ body {
     height: clamp(260px, 46vh, 440px);
     margin-top: clamp(-56px, -7vh, -24px); /* lekko najeżdża na tytuł */
     margin-bottom: 0;
+    overflow: visible;
   }
+
+  /*
+   * Chrome potrafi rasteryzować przezroczysty VP9/WebM na czarnym tle,
+   * gdy wideo przechodzi przez animowany filtr SVG. W mobilnym hero zachowujemy
+   * alpha i spokojny ruch całej figury, ale wyłączamy filtr/cięcie samego wideo.
+   */
+  .hero__figure.fx-glitch .hero__figure-inner {
+    inset: 0 clamp(10px, 3vw, 22px);
+  }
+  .hero__figure.fx-glitch .media-video__el,
+  .hero__figure.fx-glitch.is-mode-a .media-video__el,
+  .hero__figure.fx-glitch.is-mode-b .media-video__el,
+  .hero__figure.fx-glitch.is-switching .media-video__el {
+    filter: none;
+    animation: none;
+    clip-path: none;
+    transform: none;
+    background: transparent;
+    object-fit: contain;
+    object-position: 50% 100%;
+  }
+  .hero__figure.fx-glitch::before { display: none; }
 
   .hero__right {
     order: 2;
@@ -2798,7 +2828,14 @@ body {
   /* przycinamy tylko w poziomie — przechylona karta (fx-tilt) i jej cień nie są ścinane krawędzią pasa */
   overflow-x: clip;
   overflow-y: visible;
+  touch-action: pan-y; /* pionowy scroll dla strony, poziomy przejmuje pas */
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
 }
+.team__marquee.is-dragging { cursor: grabbing; }
+.team__marquee.is-dragging .team__card { pointer-events: none; }
+.team__marquee img { -webkit-user-drag: none; }
 .team__cards {
   list-style: none;
   margin: 0;
@@ -2811,12 +2848,13 @@ body {
 .team__card {
   position: relative;
   flex: 0 0 auto;
-  width: clamp(150px, 15vw, 230px);
+  width: clamp(190px, 15vw, 230px);
+  min-height: 390px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 16px;
-  aspect-ratio: 3 / 5; /* pionowy prostokąt */
+  aspect-ratio: auto; /* stała minimalna wysokość chroni treść odwrotu */
   padding: clamp(14px, 1.3vw, 20px);
   border: 1px solid var(--glass-border);
   background: var(--glass);
@@ -3010,14 +3048,20 @@ body {
   [data-flip-back] { transition: none; }
 }
 
-@media (max-width: 480px) {
-  .team__card { width: clamp(130px, 46vw, 170px); }
-}
 /* RWD: telefon — napis „One team." widoczny (karty tylko lekko na niego nachodzą),
    lista dyscyplin bez rozstrzelonych odstępów z justowania */
 @media (max-width: 860px) {
   .places__statement { text-align: left; text-align-last: left; font-size: clamp(1.05rem, 4.4vw, 1.6rem); }
-  .team__marquee { margin-top: -0.6em; font-size: clamp(4rem, 16vw, 15rem); }
+  .team__marquee { margin-top: -0.6em; }
+  .team__marquee .team__cards { padding: 8px 0 14px; }
+  .team__marquee .team__card {
+    width: min(82vw, 300px);
+    min-height: 440px;
+  }
+  .team__marquee .team__back { gap: 9px; }
+  .team__marquee .team__back-name { font-size: clamp(1.3rem, 6vw, 1.7rem); }
+  .team__marquee .team__back-tag { font-size: 0.62rem; }
+  .team__marquee .team__skills li { font-size: 0.78rem; line-height: 1.35; }
 }
 
 /* ===== CASE STUDIES — pinowany poziomy scroll ===== */

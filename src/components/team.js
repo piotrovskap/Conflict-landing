@@ -67,6 +67,9 @@ const MARQUEE_ORDER = CARDS;
 // siatka: po numerach 01 → 09
 const GRID_ORDER = [...CARDS].sort((a, b) => numOf(a) - numOf(b));
 const cardsHTML = (list) => list.map((c) => "        " + c.replace(/\n/g, "\n        ")).join("\n");
+// kopia karty do pętli pasa: ukryta dla czytników, poza kolejnością Tab
+const cloneCard = (c) =>
+  c.replace("<li ", '<li data-clone aria-hidden="true" ').replace(/tabindex="0"/g, 'tabindex="-1"');
 
 const TEAM_HTML = `
   <section class="places" id="team" aria-label="Our disciplines">
@@ -118,6 +121,7 @@ const TEAM_HTML = `
     <div class="team__marquee" id="team-marquee">
       <ul class="team__cards" id="team-cards" aria-label="Certified engineers">
 ${cardsHTML(MARQUEE_ORDER)}
+${cardsHTML(MARQUEE_ORDER.map(cloneCard))}
       </ul>
     </div>
   </section>

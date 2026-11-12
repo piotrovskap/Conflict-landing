@@ -41,7 +41,7 @@ export const CASES = [
       {
         "heading": "About DAS and the engagement",
         "text": [
-          "DAS Technology, formerly Digital Air Strike, is an automotive SaaS company. Its products cover lead management, reputation management and digital advertising for dealerships across the United States.",
+          "DAS Technology (Digital Air Strike) is an automotive SaaS company. Its products cover lead management, reputation management and digital advertising for dealerships across the United States.",
           "Meridian is DAS’s customer data platform. CONFLICT engineers work inside the DAS team in a forward-deployed model. Phase 0 was a discovery engagement of about one month. Phase 1 is the build."
         ]
       },
@@ -49,7 +49,7 @@ export const CASES = [
         "heading": "The core problem",
         "text": [
           "Consumer and vehicle data is spread across more than 100 sources: CRMs, DMS platforms, ad channels such as Meta and TikTok, OEM feeds and internal applications. DAS has no unified view of who a customer is across dealerships, so every downstream product has to solve identity and aggregation again from scratch.",
-          "The first application blocked by this is Vehicle Smart Score (VSS), a consumer dashboard that scores vehicle health and creates opportunities to offer service and protection plans.",
+          "The first application blocked by this is Vehicle Smart Score (VSS), a consumer dashboard that scores vehicle health and upsells service and protection plans.",
           "The common thread is identity and ownership data that is siloed, difficult to trust and impossible to trace or repair consistently. Alex English, SVP Product, turned the response into a clear doctrine: re-derive, don’t inherit. Legacy conclusions are not carried forward; Meridian derives them again from raw, replayable facts."
         ]
       },
