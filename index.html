@@ -30,9 +30,9 @@
   <link rel="icon" href="materials/favicon/favicon-32.png" type="image/png" sizes="32x32" />
   <link rel="apple-touch-icon" href="materials/favicon/apple-touch-icon.png" />
   <link rel="preload" href="materials/fonts/unica-one-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="src/styles/fonts.css?v=20261114b" />
+  <link rel="stylesheet" href="src/styles/fonts.css?v=20261114n" />
   <link rel="stylesheet" href="node_modules/lenis/dist/lenis.css" />
-  <link rel="stylesheet" href="src/styles/main.css?v=20261114b" />
+  <link rel="stylesheet" href="src/styles/main.css?v=20261114n" />
   <!-- krytyczny styl intro — zakrywa stronę natychmiast, zanim wczyta się main.css -->
   <style>
     #intro { position: fixed; inset: 0; z-index: 10000; background: #060705;
@@ -794,8 +794,6 @@
       <em aria-hidden="true">→</em>
     </a>
   </section>
-  <!-- ===== CTA — pas konwersji (src/components/cta-band.js) ===== -->
-  <div data-component="cta-band" data-title="Tell us what you’re" data-accent="building."></div>
 
   <!-- ===== WORK — scroll-journey (dwie dłonie) ===== -->
   <section class="journey" id="work" aria-label="The work">
@@ -852,9 +850,6 @@
     </div>
     </div><!-- /puppets-hidden -->
   </section>
-
-  <!-- ===== CTA — pas konwersji ===== -->
-  <div data-component="cta-band" data-title="Or the problem you’re" data-accent="solving."></div>
 
   <!-- ===== HOW WE WORK — trzy etapy współpracy ===== -->
   <section class="process" id="process" aria-labelledby="process-title">
@@ -963,7 +958,7 @@
   </section>
 
   <!-- ===== DISCIPLINES → TEAM — komponent src/components/team.js ===== -->
-  <div data-component="team"></div>
+  <div data-component="team" data-team-only></div>
 
   <!-- ===== TESTIMONIALS (carousel, na czarnym) ===== -->
   <section class="testi" id="referrals" aria-label="Testimonials">
@@ -1108,34 +1103,33 @@
 
   <div class="page-glitch" id="page-glitch" aria-hidden="true"></div>
 
-  <script src="src/components/cta-band.js?v=20261114b" type="module"></script>
-  <script src="src/components/team.js?v=20261114b" type="module"></script>
-  <script src="src/scripts/intro.js?v=20261114b" type="module"></script>
-  <script src="src/scripts/smooth-scroll.js?v=20261114b" type="module"></script>
-  <script src="src/scripts/nav.js?v=20261114b" type="module"></script>
-  <script src="src/scripts/cursor-glitch.js?v=20261114b" type="module"></script>
-  <script src="src/components/lazy-video.js?v=20261114b" type="module"></script>
-  <script src="src/components/consent.js?v=20261114b" type="module"></script>
-  <script src="src/components/contact-nudge.js?v=20261114b" type="module"></script>
-  <script src="src/scripts/track.js?v=20261114b" type="module"></script>
-  <script src="src/scripts/main.js?v=20261114b" type="module"></script>
-  <script src="src/scripts/hero-scroll.js?v=20261114b" type="module"></script>
-  <script src="src/scripts/cases-scroll.js?v=20261114b" type="module"></script>
-  <script src="src/scripts/crt-barrel.js?v=20261114b" type="module"></script>
-  <script src="src/scripts/glitch.js?v=20261114b" type="module"></script>
-  <script src="src/scripts/fit-title.js?v=20261114b" type="module"></script>
-  <script src="src/scripts/carousel.js?v=20261114b" type="module"></script>
-  <script src="src/scripts/code-rain.js?v=20261114b" type="module"></script>
-  <script src="src/scripts/logos.js?v=20261114b" type="module"></script>
-  <script src="src/scripts/accordion.js?v=20261114b" type="module"></script>
-  <script src="src/scripts/words-reveal.js?v=20261114b" type="module"></script>
-  <script src="src/scripts/puppets.js?v=20261114b" type="module"></script>
-  <script src="src/scripts/journey.js?v=20261114b" type="module"></script>
-  <script src="src/scripts/tilt.js?v=20261114b" type="module"></script>
-  <script src="src/scripts/flip.js?v=20261114b" type="module"></script>
-  <script src="src/scripts/process-scroll.js?v=20261114b" type="module"></script>
-  <script src="src/scripts/sound.js?v=20261114b" type="module"></script>
-  <script src="src/scripts/page-glitch.js?v=20261114b" type="module"></script>
-  <script src="src/scripts/ambient.js?v=20261114b" type="module"></script>
+  <script src="src/components/team.js?v=20261114n" type="module"></script>
+  <script src="src/scripts/intro.js?v=20261114n" type="module"></script>
+  <script src="src/scripts/smooth-scroll.js?v=20261114n" type="module"></script>
+  <script src="src/scripts/nav.js?v=20261114n" type="module"></script>
+  <script src="src/scripts/cursor-glitch.js?v=20261114n" type="module"></script>
+  <script src="src/components/lazy-video.js?v=20261114n" type="module"></script>
+  <script src="src/components/consent.js?v=20261114n" type="module"></script>
+  <script src="src/components/contact-nudge.js?v=20261114n" type="module"></script>
+  <script src="src/scripts/track.js?v=20261114n" type="module"></script>
+  <script src="src/scripts/main.js?v=20261114n" type="module"></script>
+  <script src="src/scripts/hero-scroll.js?v=20261114n" type="module"></script>
+  <script src="src/scripts/cases-scroll.js?v=20261114n" type="module"></script>
+  <script src="src/scripts/crt-barrel.js?v=20261114n" type="module"></script>
+  <script src="src/scripts/glitch.js?v=20261114n" type="module"></script>
+  <script src="src/scripts/fit-title.js?v=20261114n" type="module"></script>
+  <script src="src/scripts/carousel.js?v=20261114n" type="module"></script>
+  <script src="src/scripts/code-rain.js?v=20261114n" type="module"></script>
+  <script src="src/scripts/logos.js?v=20261114n" type="module"></script>
+  <script src="src/scripts/accordion.js?v=20261114n" type="module"></script>
+  <script src="src/scripts/words-reveal.js?v=20261114n" type="module"></script>
+  <script src="src/scripts/puppets.js?v=20261114n" type="module"></script>
+  <script src="src/scripts/journey.js?v=20261114n" type="module"></script>
+  <script src="src/scripts/tilt.js?v=20261114n" type="module"></script>
+  <script src="src/scripts/flip.js?v=20261114n" type="module"></script>
+  <script src="src/scripts/process-scroll.js?v=20261114n" type="module"></script>
+  <script src="src/scripts/sound.js?v=20261114n" type="module"></script>
+  <script src="src/scripts/page-glitch.js?v=20261114n" type="module"></script>
+  <script src="src/scripts/ambient.js?v=20261114n" type="module"></script>
 </body>
 </html>

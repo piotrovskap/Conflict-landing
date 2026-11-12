@@ -4159,3 +4159,12 @@ html.nudge-open { overflow: hidden; }
 
 /* statystyki na odwrocie karty — Unica One miesza wielkość liter, więc zawsze wersaliki */
 .team__stats b { text-transform: uppercase; }
+.team__stats { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.team__stats li { min-width: 0; }
+.team__stats span { overflow-wrap: anywhere; hyphens: auto; }
+/* przesunięcie postaci w kadrze karty: --photo-up na .team__card (np. 8%) podnosi zdjęcie bez odsłaniania dołu */
+.team__photo { position: relative; top: calc(-1 * var(--photo-up, 0%)); height: calc(100% + var(--photo-up, 0%)); }
+/* nazwa specjalizacji na zdjęciu: twardy, ciemny cień pod tekstem dla czytelności na czerwonym kombinezonie */
+.team__cert { text-shadow: 0 0 1px #000, 0 0 2px #000, 0 1px 3px #000, 0 0 8px rgba(0,0,0,.95), 0 0 18px rgba(0,0,0,.8); font-weight: 700; }
+/* karty bez zdjęcia (zero.png): postać przygaszona, imię w pełnym kolorze */
+.team__card--placeholder .team__photo-wrap { opacity: 0.5; }

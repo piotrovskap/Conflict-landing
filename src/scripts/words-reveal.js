@@ -1,4 +1,4 @@
-import { autoMarquee } from "../components/auto-marquee.js?v=20261114b";
+import { autoMarquee } from "../components/auto-marquee.js?v=20261114n";
 // ===== Reveal słowo-po-słowie przy scrollu (manifest LAB) =====
 const stmt = document.getElementById("lab-statement");
 
@@ -35,13 +35,15 @@ const places = document.getElementById("places-statement");
 const placesSection = document.querySelector(".places");
 const teamWord = document.querySelector(".place__word--team");
 
-if (places && placesSection) {
-  const words = [...places.querySelectorAll(".place__word")];
+if (placesSection) {
+  // bez listy dyscyplin (strona główna) postęp liczymy od samej sekcji
+  const words = places ? [...places.querySelectorAll(".place__word")] : [];
+  const ref = places || placesSection;
   let ticking = false;
 
   function update() {
     ticking = false;
-    const rect = places.getBoundingClientRect();
+    const rect = ref.getBoundingClientRect();
     const vh = window.innerHeight || 1;
     const start = vh * 0.9;
     const end = vh * 0.22;

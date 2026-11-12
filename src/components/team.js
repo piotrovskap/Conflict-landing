@@ -1,12 +1,20 @@
 // ===== Komponent: One team — JEDNO źródło prawdy dla kart zespołu =====
 // Użycie w HTML (moduł ładować PRZED words-reveal / glitch / tilt / flip):
 //   <div data-component="team"></div>       → sekcja „Every discipline, in-house" → „One team." + pas kart (główna, podstrony)
-//   <div data-component="team-grid"></div>  → wszystkie karty w siatce 01→09 (strona Our team)
+//   <div data-component="team-grid"></div>  → wszystkie karty w siatce 01→15 (strona Our team)
 // Zmiana karty tutaj podmienia ją wszędzie.
+
+// karta bez zdjęcia: wspólna grafika zastępcza (materials/zero.png), bez odwrotu
+const placeholderCard = (name) =>
+  `<li class="team__card team__card--photo team__card--placeholder fx-tilt" data-tilt>
+  <span class="team__photo-wrap media-video fx-glitch fx-glitch--soft is-mode-a"><img class="team__photo media-video__el" src="materials/zero.png" alt="" loading="lazy" decoding="async" /></span>
+  <span class="team__num">00</span>
+  <div class="team__meta"><h3 class="team__name">${name}</h3></div>
+</li>`;
 
 // --- karty (każda: tilt; zdjęciowe: obrót ze skillami + glitch) ---
 const CARDS = [
-  `<li class="team__card team__card--photo fx-tilt" data-tilt data-flip role="button" tabindex="0" aria-pressed="false" aria-label="Patrycja Piotrowska, Senior Product Designer — show key skills">
+  `<li style="--photo-up: 9%" class="team__card team__card--photo fx-tilt" data-tilt data-flip role="button" tabindex="0" aria-pressed="false" aria-label="Patrycja Piotrowska, Senior Product Designer — show key skills">
   <span class="team__photo-wrap media-video fx-glitch fx-glitch--soft is-mode-a"><img class="team__photo media-video__el" src="materials/Patrycja.png" alt="Patrycja Piotrowska" loading="lazy" decoding="async" /></span>
   <span class="team__num">03</span>
   <span class="team__flip-hint" aria-hidden="true">↻</span>
@@ -27,7 +35,27 @@ const CARDS = [
     </ul>
   </div>
 </li>`,
-  `<li class="team__card team__card--initials fx-tilt" data-tilt><span class="team__initials" aria-hidden="true">RP</span><span class="team__num">04</span><div class="team__meta"><h3 class="team__name">Rafał Pilawka</h3></div></li>`,
+  `<li class="team__card team__card--photo fx-tilt" data-tilt data-flip role="button" tabindex="0" aria-pressed="false" aria-label="Rafał Pilawka, Senior Frontend Developer — show key skills">
+  <span class="team__photo-wrap media-video fx-glitch fx-glitch--soft is-mode-b"><img class="team__photo media-video__el" src="materials/Raf.png" alt="Rafał Pilawka" loading="lazy" decoding="async" /></span>
+  <span class="team__num">04</span>
+  <span class="team__flip-hint" aria-hidden="true">↻</span>
+  <div class="team__meta"><span class="team__cert">Senior Frontend</span><h3 class="team__name">Rafał Pilawka</h3></div>
+  <!-- odwrót karty: podsumowanie kompetencji (źródło: LinkedIn) -->
+  <div class="team__back" data-flip-back aria-hidden="true">
+    <h4 class="team__back-name">Rafał Pilawka</h4>
+    <p class="team__back-tag">Senior Frontend Developer · CONFLICT</p>
+    <ul class="team__stats">
+      <li><b>12+</b><span>years as CEO</span></li>
+      <li><b>Claude</b><span>Certified Developer — Foundations</span></li>
+    </ul>
+    <ul class="team__skills">
+      <li>CEO — ImaginatioStudio</li>
+      <li>React / React Native · GraphQL — mDevelopers</li>
+      <li>AWS Certified Developer — Associate · Cloud Practitioner</li>
+      <li>BE Computer Science — Politechnika Częstochowska</li>
+    </ul>
+  </div>
+</li>`,
   `<li class="team__card team__card--photo fx-tilt" data-tilt data-flip role="button" tabindex="0" aria-pressed="false" aria-label="Tomasz Rej, Senior React Native Developer — show key skills">
   <span class="team__photo-wrap media-video fx-glitch fx-glitch--soft is-mode-a"><img class="team__photo media-video__el" src="materials/Tomasz.png" alt="Tomasz Rej" loading="lazy" decoding="async" /></span>
   <span class="team__num">05</span>
@@ -116,16 +144,51 @@ const CARDS = [
     </ul>
   </div>
 </li>`,
-  `<li class="team__card team__card--initials fx-tilt" data-tilt><span class="team__initials" aria-hidden="true">BM</span><span class="team__num">07</span><div class="team__meta"><h3 class="team__name">Byron Miranda</h3></div></li>`,
-  `<li class="team__card team__card--initials fx-tilt" data-tilt><span class="team__initials" aria-hidden="true">HG</span><span class="team__num">08</span><div class="team__meta"><h3 class="team__name">Hiram Gonzalez</h3></div></li>`,
-  `<li class="team__card team__card--initials fx-tilt" data-tilt><span class="team__initials" aria-hidden="true">LH</span><span class="team__num">09</span><div class="team__meta"><h3 class="team__name">Luis Hernandez</h3></div></li>`
+  placeholderCard("Byron Miranda"),
+  placeholderCard("Hiram Gonzalez"),
+  placeholderCard("Luis Hernandez"),
+  placeholderCard("Julio Rojas"),
+  placeholderCard("Alicia Salazar"),
+  placeholderCard("Oscar Morera"),
+  placeholderCard("Eddie"),
+  placeholderCard("Jakub Pilawka"),
+  `<li class="team__card team__card--photo fx-tilt" data-tilt data-flip role="button" tabindex="0" aria-pressed="false" aria-label="Maciej Stolarek, Senior Frontend Developer — show key skills">
+  <span class="team__photo-wrap media-video fx-glitch fx-glitch--soft is-mode-a"><img class="team__photo media-video__el" src="materials/maciej.png" alt="Maciej Stolarek" loading="lazy" decoding="async" /></span>
+  <span class="team__num">00</span>
+  <span class="team__flip-hint" aria-hidden="true">↻</span>
+  <div class="team__meta"><span class="team__cert">Senior Frontend Developer</span><h3 class="team__name">Maciej Stolarek</h3></div>
+  <!-- odwrót karty: podsumowanie kompetencji (źródło: LinkedIn) -->
+  <div class="team__back" data-flip-back aria-hidden="true">
+    <h4 class="team__back-name">Maciej Stolarek</h4>
+    <p class="team__back-tag">Senior Frontend Developer · CONFLICT</p>
+    <ul class="team__stats">
+      <li><b>Senior</b><span>React Native Developer — Pulsetto</span></li>
+      <li><b>RN · JS</b><span>React Native · JavaScript</span></li>
+    </ul>
+    <ul class="team__skills">
+      <li>Mobile Team Leader — Pulsetto</li>
+      <li>Software Developer — Domatic</li>
+      <li>Software Developer — i4B</li>
+      <li>Software Developer — self-employed</li>
+    </ul>
+  </div>
+</li>`
 ];
 
-const numOf = (html) => Number((html.match(/team__num">(\d+)/) || [])[1] || 99);
-// pas: lider w środku (kolejność jak w sekcji na głównej)
-const MARQUEE_ORDER = CARDS;
-// siatka: po numerach 01 → 09
-const GRID_ORDER = [...CARDS].sort((a, b) => numOf(a) - numOf(b));
+// kolejność zespołu (pas i siatka): Leo pierwszy, reszta wymieszana — zdjęcia przeplecione z inicjałami.
+// Numery na kartach nadawane są automatycznie według tej listy (01, 02, …).
+const ORDER = [
+  "Leo Mata", "Julio Rojas", "Patrycja Piotrowska", "Oscar Morera", "Tomasz Rej",
+  "Byron Miranda", "Alicia Salazar", "Rafał Pilawka", "Hiram Gonzalez", "Magda Rej",
+  "Jakub Pilawka", "Piotr Pietruszewski", "Eddie", "Luis Hernandez", "Maciej Stolarek"
+];
+const nameOf = (html) => (html.match(/team__name">([^<]+)</) || [])[1];
+const rank = (html) => { const i = ORDER.indexOf(nameOf(html)); return i < 0 ? ORDER.length : i; };
+const ORDERED = [...CARDS]
+  .sort((a, b) => rank(a) - rank(b))
+  .map((c, i) => c.replace(/team__num">\d+/, `team__num">${String(i + 1).padStart(2, "0")}`));
+const MARQUEE_ORDER = ORDERED;
+const GRID_ORDER = ORDERED;
 const cardsHTML = (list) => list.map((c) => "        " + c.replace(/\n/g, "\n        ")).join("\n");
 // kopia karty do pętli pasa: ukryta dla czytników, poza kolejnością Tab
 const cloneCard = (c) =>
@@ -192,9 +255,16 @@ const GRID_HTML = `
 ${cardsHTML(GRID_ORDER)}
   </ul>`;
 
+// data-team-only na znaczniku → sama „One team." + pas kart, bez linii „Every discipline, in-house" i listy dyscyplin (strona główna)
 const mount = (name, html) =>
   document.querySelectorAll(`[data-component="${name}"]`).forEach((el) => {
-    el.insertAdjacentHTML("beforebegin", html.trim());
+    let out = html.trim();
+    if (el.hasAttribute("data-team-only"))
+      out = out
+        .replace(/\s*<p class="places__kicker"[^>]*>[\s\S]*?<\/p>/, "")
+        .replace(/\s*<p class="places__statement"[^>]*>[\s\S]*?<\/p>/, "")
+        .replace('class="places"', 'class="places places--team-only"');
+    el.insertAdjacentHTML("beforebegin", out);
     el.remove();
   });
 

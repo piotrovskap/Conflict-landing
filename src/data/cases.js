@@ -4,8 +4,8 @@ export const CASES = [
   {
     "id": "das-meridian",
     "client": "DAS Technology",
-    "title": "Meridian — One Customer Record Across 100+ Automotive Data Sources",
-    "intro": "DAS Technology is building Meridian, a customer data platform that gives US dealerships a unified, traceable view of consumers and their vehicles. CONFLICT engineers are embedded with the DAS team in a forward-deployed model, moving from a one-month discovery phase into the Phase 1 build.",
+    "title": "Meridian — A trusted customer data foundation for automotive products",
+    "intro": "DAS Technology is building Meridian, a multi-tenant customer data platform that brings consumer and vehicle records together, makes identity decisions explainable, and gives the next generation of dealership products a shared foundation.",
     "parent": {
       "href": "showcase.html",
       "label": "Showcase"
@@ -50,7 +50,29 @@ export const CASES = [
         "text": [
           "Consumer and vehicle data is spread across more than 100 sources: CRMs, DMS platforms, ad channels such as Meta and TikTok, OEM feeds and internal applications. DAS has no unified view of who a customer is across dealerships, so every downstream product has to solve identity and aggregation again from scratch.",
           "The first application blocked by this is Vehicle Smart Score (VSS), a consumer dashboard that scores vehicle health and upsells service and protection plans.",
-          "The common thread is identity and ownership data that is siloed, difficult to trust and impossible to trace or repair consistently. Alex English, SVP Product, turned the response into a clear doctrine: re-derive, don’t inherit. Legacy conclusions are not carried forward; Meridian derives them again from raw, replayable facts."
+          "The common thread is identity and ownership data that is siloed, difficult to trust and impossible to trace or repair consistently. The product team confirmed two problems: messaging streams suppress one another, and the same vehicle can be assigned to multiple customers."
+        ]
+      },
+      {
+        "heading": "A connected customer experience",
+        "text": [
+          "A customer who is in one messaging stream can stop receiving the others. Someone with one car due for service and another in the trade-in window may get only the communication dictated by their last transaction.",
+          "Meridian’s Phase 1 answer is one consumer record containing every vehicle relationship. Segment membership is computed concurrently from the full event history, so one lifecycle does not suppress another. The delivery backbone is built in Phase 1; automated outbound sending is activated in Phase 2."
+        ],
+        "items": [
+          "Phase 1 brings the consumer record and segmentation together; automated outbound sending follows in Phase 2.",
+          "A deployed resolver has assembled a consumer from multiple source feeds through the live ingestion boundary."
+        ]
+      },
+      {
+        "heading": "Vehicle relationships teams can trust",
+        "text": [
+          "Today nothing prevents one vehicle from being recorded as owned by several customers. Meridian derives ownership from underlying records such as DMS transactions and leads, rather than inheriting a prior system’s conclusion.",
+          "Source-trust ranking and field-level provenance explain which evidence supports each value. Genuine conflicts go to a human review queue; Meridian never silently double-assigns a vehicle."
+        ],
+        "items": [
+          "Ownership is derived from underlying DMS transactions and leads, with source ranking and field-level provenance.",
+          "Conflicts are surfaced for human review, with merge and unmerge actions captured in an audit trail."
         ]
       },
       {
@@ -66,18 +88,52 @@ export const CASES = [
         ]
       },
       {
-        "heading": "What the team says the problem is",
+        "heading": "The doctrine · Re-derive, don’t inherit",
         "text": [
-          "The executive project review on August 7, 2026 produced the problem statements. Product validated PS-1 and PS-2. PS-3 through PS-7 remain drafts that need product validation."
+          "Alex English, SVP Product, described the constraint: “We can't suck in from CDXP 'here's everybody that owns every vehicle'… We have to pull the DMS record or the lead or whatever — the underlying data that led to that decision.”",
+          "Legacy systems contain ownership assignments, segment memberships and lifecycle placements produced by broken logic, including single-event ownership decisions and missing integrity constraints. Meridian rebuilds customer state from primary records instead of treating those conclusions as truth."
         ],
         "items": [
-          "PS-1 · Product validated — “We can’t reliably segment and dynamically communicate with customers based on predetermined events.” A customer with two vehicles can receive only the communication stream dictated by their last transaction, even when one vehicle needs service and the other is in a trade-in window.",
-          "PS-2 · Product validated — “We can’t reliably assign vehicle ownership, and we have broken parameters that are impossible to untangle.” The current system does not prevent one vehicle from being recorded as owned by several customers.",
-          "PS-3 · Draft — DAS sees what a customer does inside each product, but not across products.",
-          "PS-4 · Draft — Each new consumer product, including VSS, needs separate integrations with every source.",
-          "PS-5 · Draft — Segmentation requires duplicated, near-identical segments, while its logic carries a decade of customizations.",
-          "PS-6 · Draft — Once bad derivations enter the current system, they cannot be undone.",
-          "PS-7 · Draft — There is no way to see where a value came from or why records were or were not linked."
+          "Never import derived conclusions into survivorship. They may land in bronze for audit, but cannot determine the golden record.",
+          "Re-derive state customer by customer from primary records: DMS sales and service, plus leads, including leads marked sold.",
+          "Apply a configurable validity cutoff to derivation. About 24 months is a working figure; product still needs to set the final value. Older records remain in history, and the cutoff must not be hard-coded into the schema."
+        ]
+      },
+      {
+        "heading": "Architecture already supports the doctrine",
+        "text": [
+          "The core decisions are in place: derived views such as DWRPT are reference-only, DMS is ground truth in survivorship ranking, and every golden-record value carries field-level provenance.",
+          "The bitemporal valid_from/valid_to model can express the validity cutoff without a schema migration. A conflict queue with an audit trail surfaces cases that need human review."
+        ],
+        "items": [
+          "CDXP-family onboarding must ingest event-level and entity-level records while explicitly excluding derived ownership and segment tables.",
+          "A remediation policy is still owed: cutoff value, re-derivation scope and a measure of how many legacy ownership assignments change.",
+          "Product needs to decide whether the cutoff varies by record type: sales, service or lead."
+        ]
+      },
+      {
+        "heading": "A platform for the people using the data",
+        "text": [
+          "Meridian is a shared data platform, not a single end-user application. It is designed to serve product teams through REST and GraphQL APIs, give operators tools to inspect and curate identity, and provide dealers with tenant-scoped reporting.",
+          "The operator experience brings together a golden-record view, identity relationships, source status and data health. Dealer-facing surfaces use configurable cards and embedded dashboards, while a separate operator application supports administration and a dealer-context view."
+        ],
+        "items": [
+          "A shared ingestion and identity layer supports batch and event-based data flows.",
+          "PostgreSQL row-level security isolates dealership data while allowing DAS to maintain its authorized global view.",
+          "Consent is treated as a first-class input and checked before activation."
+        ]
+      },
+      {
+        "heading": "Additional problem candidates",
+        "text": [
+          "PS-3 to PS-7 are not all product-validated statements. PS-3 reflects engineering-leadership framing; PS-4 came from September preparation. PS-5 to PS-7 were drafted by CONFLICT from session content, and product’s own wording is still needed. The target is a final list of five to ten statements before the September executive session, with business-outcome quantification for each."
+        ],
+        "items": [
+          "PS-3 · Candidate — No cross-product customer journey exists.",
+          "PS-4 · Candidate — Every new product, such as Vehicle Smart Score, needs bespoke integrations.",
+          "PS-5 · Candidate — Segmentation is duplicated and carries a decade of customizations.",
+          "PS-6 · Candidate — Bad derivations cannot be unwound.",
+          "PS-7 · Candidate — There is no explainability: teams cannot see why records were or were not linked."
         ]
       },
       {
@@ -86,18 +142,18 @@ export const CASES = [
           "Meridian has to make fragmented identity data explainable and correctable without compromising tenant isolation or future scale."
         ],
         "items": [
-          "Scale and fragmentation — more than 100 heterogeneous sources. Later tickets reference 13,000+ dealerships and flag per-tenant partitioning as a scaling risk (MER-1184).",
-          "Identity and ownership conflicts — matching needs source-trust ranking, field-level provenance and a human review queue.",
-          "Legacy contamination — inherited derived data is difficult to untangle, which is why Meridian re-derives conclusions from raw facts.",
-          "Privacy and consent — revocation means suppression rather than deletion. Related tickets cover pepper-hash rotation risks (MER-1061, MER-1071) and a durable erasure saga (MER-37).",
+          "Scale and fragmentation — heterogeneous CRM, DMS, advertising, OEM and internal application data must feed a consistent customer view.",
+          "Identity and ownership conflicts — matching uses source-trust ranking and field-level provenance; genuine conflicts need a human review queue.",
+          "Legacy contamination — derived ownership and segment data must be excluded from survivorship and re-derived from primary records.",
+          "Validity policy — the cutoff value, record-type rules and remediation measurement still need product decisions.",
           "Multi-tenancy — dealership isolation has to coexist with a cross-tenant global view for DAS."
         ]
       },
       {
         "heading": "Roadmap and caveat",
         "text": [
-          "Phase 1 focuses on the ingestion foundation, deterministic identity resolution, tenant-aware storage and the unified Dealer-Customer API. AI/ML identity resolution, the audience builder and outbound activation are deferred to Phase 2.",
-          "The problem statements document is dated August 7–17, 2026. Ticket references come from a brain snapshot and their current Jira status has not been verified for this case study."
+          "Phase 1 includes the consumer record, segmentation, the ingestion and delivery backbone, deterministic identity resolution, tenant-aware storage and the unified Dealer-Customer API. Automated outbound sending is activated in Phase 2.",
+          "The product specifications and delivery plan describe the intended Phase 1 scope; current delivery status has not been verified."
         ]
       }
     ],
@@ -105,24 +161,7 @@ export const CASES = [
       "heading": "Scope at a glance",
       "cta": "Project scope",
       "intro": "Phase 0 discovery is complete. Phase 1 is the build.",
-      "stats": [
-        {
-          "value": "100+",
-          "label": "Heterogeneous data sources in scope"
-        },
-        {
-          "value": "13K+",
-          "label": "Dealership scale referenced in later project tickets"
-        },
-        {
-          "value": "4",
-          "label": "Core responsibilities: ingest, resolve, isolate and expose"
-        },
-        {
-          "value": "2",
-          "label": "Delivery phases defined: discovery and build"
-        }
-      ]
+      "stats": []
     },
     "quote": "Re-derive, don’t inherit.",
     "quoteAuthor": "Alex English, SVP Product, DAS Technology",
